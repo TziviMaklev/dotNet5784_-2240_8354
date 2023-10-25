@@ -9,8 +9,9 @@ namespace Stage0
     partial class Program2240
     {
         static partial void Welcome2240()
-        {
-            Console.WriteLine("I am also here");
-        }
+        { 
+            Console.WriteLine("I am also here (tzivi)");  
+
+        } 
     }
 }
