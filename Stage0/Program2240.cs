@@ -10,7 +10,7 @@ namespace Stage0
     {
         static partial void Welcome2240()
         { 
-            Console.WriteLine("I am also here (tzivi)");  
+            Console.WriteLine("I am also here (tzivi maklev) ");  
 
         } 
     }
