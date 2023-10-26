@@ -6,18 +6,17 @@ namespace Targil0
     {
         private static void Main(string[] args)
         {
-            Wellcome8354();
-            Wellcome2240();
+            Welcome8354();
+            Welcome2240();
         }
+        static partial void Welcome2240();
 
-        private static void Wellcome8354()
+        private static void Welcome8354()
         {
             string name;
             Console.WriteLine("Enter your name: ");
             name = Console.ReadLine();
             Console.WriteLine("{0}, welcome to my first console application", name);
         }
-
-        static partial void Wellcome2240();
     }
 }

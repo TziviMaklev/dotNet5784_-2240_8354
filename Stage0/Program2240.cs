@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stage0
+namespace Targil0
 {
-    partial class Program2240
+    partial class Program
     {
         static partial void Welcome2240()
         { 
