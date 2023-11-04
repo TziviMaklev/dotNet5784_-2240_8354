@@ -1,9 +1,8 @@
 ﻿
 namespace DalApi;
-
 using DO;
 
-internal interface IDependency
+public interface IDependency
 {
     int Create(Dependency item); //Creates new entity object in DAL
     Dependency? Read(int id); //Reads entity object by its ID 

@@ -5,29 +5,30 @@ using DO;
 using DalApi;
 using System.Collections.Generic;
 
-public class EngineerImplementation : IEngineer
+public class DependecyImplementation : IDependency
 {
-    public int Create(Engineer item)
+    public int Create(Dependency item)
     {
         throw new NotImplementedException();
     }
+    
 
     public void Delete(int id)
     {
         throw new NotImplementedException();
     }
 
-    public Engineer? Read(int id)
+    public Dependency? Read(int id)
     {
         throw new NotImplementedException();
     }
 
-    public List<Engineer> ReadAll()
+    public List<Dependency> ReadAll()
     {
         throw new NotImplementedException();
     }
 
-    public void Update(Engineer item)
+    public void Update(Dependency item)
     {
         throw new NotImplementedException();
     }
