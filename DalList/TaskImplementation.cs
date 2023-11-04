@@ -31,6 +31,7 @@ public class TaskImplementation : ITask
         };
 
         throw new NotImplementedException();
+        return id;
     }
 
     public void Delete(int id)
