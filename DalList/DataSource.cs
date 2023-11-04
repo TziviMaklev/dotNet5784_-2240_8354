@@ -13,8 +13,11 @@ internal static class DataSource
         // TASK config 
         internal const int idTask = 2;
         private static int nextIdTask = idTask;
-        internal static int NextIdTask { get=> nextIdTask++;}
-        //
+        public static int NextIdTask { get=> nextIdTask++;}
+        //dependency
+        internal const int idDepency = 2;
+        private static int nextIdDepency = idDepency;
+        public static int NextIdDepency { get => nextIdDepency++; }
 
     }
 
