@@ -9,8 +9,6 @@ public class TaskImplementation : ITask
 {
     public int Create(Task item)
     {
-
-
         int id = DataSource.Config.NextIdTask;
         Task newItem = new Task()
         {
@@ -29,23 +27,32 @@ public class TaskImplementation : ITask
             Remarks= item.Remarks,
             EngineerId = item.EngineerId,
         };
-
-        throw new NotImplementedException();
+        DataSource.Tasks.Add(newItem);
         return id;
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        Task taskFound = DataSource.Tasks.Find(x=> x.Id== id);
+        if(taskFound == null) {
+            throw new Exception("Error , this item is not Exist");
+                }
+        DataSource.Tasks.Remove(taskFound);
     }
 
     public Task? Read(int id)
     {
-        throw new NotImplementedException();
+        Task taskFound = DataSource.Tasks.Find(x => x.Id == id);
+        if (taskFound == null)
+        {
+            throw new Exception("Error , this item is not Exist");
+        }
+        return taskFound;
     }
 
     public List<Task> ReadAll()
     {
+
         throw new NotImplementedException();
     }
 

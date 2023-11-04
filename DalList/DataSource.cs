@@ -4,10 +4,10 @@ namespace Dal;
 
 internal static class DataSource
 {
-    internal static List<DO.Dependency?>Dependency { get; } = new();
-    internal static List<DO.Engineer?> Engineer { get; } = new();
+    internal static List<DO.Dependency?>Dependencies { get; } = new();
+    internal static List<DO.Engineer?> Engineers { get; } = new();
     //internal static List<DO.EngineerExperience?> ?EngineerExperience { get; } = new();
-    internal static List<DO.Task?> Task { get; } = new();
+    internal static List<DO.Task?> Tasks { get; } = new();
     internal static class Config
     {
         // TASK config 
