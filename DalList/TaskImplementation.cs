@@ -9,29 +9,7 @@ public class TaskImplementation : ITask
 {
     public int Create(Task item)
     {
-
-
-        int id = DataSource.Config.NextIdTask;
-        Task newItem = new Task()
-        {
-            Id = id,
-            Description = item.Description,
-            Alias=item.Alias,
-            Milestone = item.Milestone,
-            Deliverables = item.Deliverables,
-            ComplexityTask = item.ComplexityTask,
-            CreationDate = item.CreationDate,
-            StartDate = item.StartDate,
-            ScheduledDate = item.ScheduledDate,
-            ForecastDate=item.ForecastDate,
-            DeadlineDate = item.DeadlineDate,
-            CompletionDate = item.CompletionDate,
-            Remarks= item.Remarks,
-            EngineerId = item.EngineerId,
-        };
-
         throw new NotImplementedException();
-        return id;
     }
 
     public void Delete(int id)
