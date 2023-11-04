@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 public class TaskImplementation : ITask
 {
+    // creat mew task item
     public int Create(Task item)
     {
         int id = DataSource.Config.NextIdTask;
