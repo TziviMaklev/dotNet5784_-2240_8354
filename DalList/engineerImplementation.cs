@@ -15,7 +15,7 @@ public class EngineerImplementation : IEngineer
         }
         else
         {
-            throw new Exception("An Engineer object with such an ID already exists");
+            throw new Exception($"Engineer with ID={item.Id} already exist");
         }
         return item.Id;
     }
@@ -29,7 +29,7 @@ public class EngineerImplementation : IEngineer
         }
         else
         {
-            throw new Exception("An object of type Engineer with such an ID does not exist");
+            throw new Exception($"Engineer with ID={id} does Not exist");
         }
     }
 
