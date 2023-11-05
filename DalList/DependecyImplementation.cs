@@ -16,7 +16,7 @@ public class DependecyImplementation : IDependency
         }
         else
         {
-            throw new Exception("An Dependency object with such an ID already exists");
+            throw new Exception($"Dependency with ID={item.Id} already exist");
         }
         return item.Id;
     }
@@ -31,7 +31,7 @@ public class DependecyImplementation : IDependency
         }
         else
         {
-            throw new Exception("An object of type Engineer with such an ID does not exist");
+            throw new Exception($"Dependency with ID={id} does Not exist");
         }
     }
 

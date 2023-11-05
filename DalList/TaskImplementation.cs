@@ -48,8 +48,8 @@ public class TaskImplementation : ITask
     {
         Task? taskFound = DataSource.Tasks.Find(x=> x.Id== id);
         if(taskFound == null) {
-            throw new Exception("An object of type Task with such an ID does not exist");
-                }
+            throw new Exception($"Task with ID={id} does Not exist");
+        }
         DataSource.Tasks.Remove(taskFound);
     }
 
