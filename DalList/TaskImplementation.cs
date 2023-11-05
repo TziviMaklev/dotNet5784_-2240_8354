@@ -34,35 +34,31 @@ public class TaskImplementation : ITask
 
     public void Delete(int id)
     {
-        Task taskFound = DataSource.Tasks.Find(x=> x.Id== id);
+        Task? taskFound = DataSource.Tasks.Find(x=> x.Id== id);
         if(taskFound == null) {
-            throw new Exception("Error , this item is not Exist");
+            throw new Exception("An object of type Task with such an ID does not exist");
                 }
         DataSource.Tasks.Remove(taskFound);
     }
 
     public Task? Read(int id)
     {
-        Task taskFound = DataSource.Tasks.Find(x => x.Id == id);
+        Task? taskFound = DataSource.Tasks.Find(x => x.Id == id);
         if (taskFound == null)
         {
-            throw new Exception("Error , this item is not Exist");
+            return null;
         }
         return taskFound;
     }
 
     public List<Task> ReadAll()
     {
-        throw new NotImplementedException();
+        return new List <Task> (DataSource.Tasks);
     }
 
     public void Update(Task item)
     {
-        Task taskFound = DataSource.Tasks.Find(x => x.Id == item.Id);
-        if (taskFound == null)
-        {
-            throw new Exception("Error , this item is not Exist");
-        }
-        taskFound = item;
+        Delete(item.Id);
+        Create(item);
     }
 }
