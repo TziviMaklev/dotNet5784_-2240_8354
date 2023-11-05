@@ -5,9 +5,16 @@ using DalApi;
 using DO;
 using System.Collections.Generic;
 
+/// <summary>
+/// class for woking with the list of the Tasks
+/// </summary>
 public class TaskImplementation : ITask
 {
-    // creat mew task item
+    /// <summary>
+    /// creates a new task in the list of tasks
+    /// </summary>
+    /// <param name="item">the item to add</param>
+    /// <returns>returns the id of the task that created</returns>
     public int Create(Task item)
     {
         int id = DataSource.Config.NextIdTask;
@@ -32,6 +39,11 @@ public class TaskImplementation : ITask
         return id;
     }
 
+    /// <summary>
+    /// delete a task from the tasks list
+    /// </summary>
+    /// <param name="id">the id of the task to delete</param>
+    /// <exception cref="Exception">the object is not exist</exception>
     public void Delete(int id)
     {
         Task? taskFound = DataSource.Tasks.Find(x=> x.Id== id);
@@ -41,6 +53,11 @@ public class TaskImplementation : ITask
         DataSource.Tasks.Remove(taskFound);
     }
 
+    /// <summary>
+    /// read a task from the task list
+    /// </summary>
+    /// <param name="id">the id of the task to read</param>
+    /// <returns>return a reference to the task</returns>
     public Task? Read(int id)
     {
         Task? taskFound = DataSource.Tasks.Find(x => x.Id == id);
@@ -51,11 +68,19 @@ public class TaskImplementation : ITask
         return taskFound;
     }
 
+    /// <summary>
+    /// read all list of tasks
+    /// </summary>
+    /// <returns>return a new list that the same as the one exist</returns>
     public List<Task> ReadAll()
     {
         return new List <Task> (DataSource.Tasks);
     }
 
+    /// <summary>
+    /// delete one task from the list and add one with the same id
+    /// </summary>
+    /// <param name="item">the new item to update</param>
     public void Update(Task item)
     {
         Delete(item.Id);
