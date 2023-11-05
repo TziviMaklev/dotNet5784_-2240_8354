@@ -53,12 +53,16 @@ public class TaskImplementation : ITask
 
     public List<Task> ReadAll()
     {
-
         throw new NotImplementedException();
     }
 
     public void Update(Task item)
     {
-        throw new NotImplementedException();
+        Task taskFound = DataSource.Tasks.Find(x => x.Id == item.Id);
+        if (taskFound == null)
+        {
+            throw new Exception("Error , this item is not Exist");
+        }
+        taskFound = item;
     }
 }
