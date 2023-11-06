@@ -29,7 +29,7 @@ public record Task
     string Deliverables,
     EngineerExperience ComplexityTask,
     DateTime CreationDate,
-    DateTime StartDate,
+    DateTime? StartDate,
     DateTime? ScheduledDate = null,
     DateTime? ForecastDate = null,
     DateTime? DeadlineDate = null,
