@@ -5,6 +5,7 @@ using DalList;
 using System.Data;
 
 namespace DalTest;
+using Dal;
 
 public static class Initialization
 {
