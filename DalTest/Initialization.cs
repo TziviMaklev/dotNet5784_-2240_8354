@@ -1,6 +1,7 @@
 ﻿using DalApi;
 using DO;
 namespace DalTest;
+using Dal;
 
 public static class Initialization
 {
@@ -13,6 +14,6 @@ public static class Initialization
 
     private static void createTask()
     {
-
+        
     }
 }
