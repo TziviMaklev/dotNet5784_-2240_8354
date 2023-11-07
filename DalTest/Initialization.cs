@@ -219,11 +219,11 @@ public static class Initialization
     /// <exception cref="NullReferenceException">there is no list like this</exception>
     public static void Do(ITask? dalTask, IDependency? dalDependency, IEngineer dalEngineer)
     {
-        CreateTask();
-        CreateDependency();
-        CreateEngineer();
         s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
         s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
         s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
+        CreateTask();
+        CreateDependency();
+        CreateEngineer();
     }
 }
