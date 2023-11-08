@@ -44,7 +44,7 @@ public static class Initialization
             "API integration: development and integration of application programming interfaces (API), the possibilities of communication and data exchange between different software systems.",
             "Continuous integration and deployment: Implementing CI/CD pipelines to automate the build, test and deployment processes, while ensuring fast and efficient software delivery.",
             "Machine learning and data analysis: Building and training machine learning models, analyzing large data sets and generating valuable insights for informed decision-making.",
-            "Technical support: assisting users in solving technical problems, providing instructions regarding the use of the software and solving problems related to the software."
+            "Technical support: assisting users in solving technical problems, providing instructions regarding the use of the software and solving problems related to the software.",
             "Code Optimization and Recovery: Reviewing existing code bases, identifying areas for improvement, and modifying code to improve readability, maintainability, and performance"
         };
         string[] _taskAliases =
@@ -224,6 +224,6 @@ public static class Initialization
         s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
         CreateTask();
         CreateDependency();
-        CreateEngineer();
+        //CreateEngineer();
     }
 }

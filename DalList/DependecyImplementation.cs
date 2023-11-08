@@ -15,10 +15,11 @@ public class DependecyImplementation : IDependency
     /// <exception cref="Exception">the item with a same id of the parameter</exception>
     public int Create(Dependency item)
     {
-        Dependency? foundEngineer = DataSource.Dependencies.Find(x => x.Id == item.Id);
-        if (foundEngineer == null)
+        Dependency? foundDependency = DataSource.Dependencies.Find(x => (x.Id == item.Id));
+        Console.WriteLine(DataSource.Dependencies.Find(x => x.Id == item.Id));
+        if (foundDependency == null)
         {
-            DataSource.Dependencies.Add(foundEngineer);
+            DataSource.Dependencies.Add(foundDependency);
         }
         else
         {
@@ -35,10 +36,10 @@ public class DependecyImplementation : IDependency
     public void Delete(int id)
 
     {
-        Dependency? foundEngineer = DataSource.Dependencies.Find(x => x.Id == id);
-        if (foundEngineer != null)
+        Dependency? foundDependency = DataSource.Dependencies.Find(x => x.Id == id);
+        if (foundDependency != null)
         {
-            DataSource.Dependencies.Remove(foundEngineer);
+            DataSource.Dependencies.Remove(foundDependency);
         }
         else
         {
@@ -53,10 +54,10 @@ public class DependecyImplementation : IDependency
     /// <returns>return a reference to the item</returns>
     public Dependency? Read(int id)
     {
-        Dependency? foundEngineer = DataSource.Dependencies.Find(x => x.Id == id);
-        if (foundEngineer == null)
+        Dependency? foundDependency = DataSource.Dependencies.Find(x => x.Id == id);
+        if (foundDependency == null)
         {
-            return foundEngineer;
+            return foundDependency;
         }
         return null;
     }
