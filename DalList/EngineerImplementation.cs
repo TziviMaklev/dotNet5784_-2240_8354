@@ -17,7 +17,7 @@ public class EngineerImplementation : IEngineer
     {
         Engineer? foundEngineer = DataSource.Engineers.Find(x => x.Id == item.Id);
         if (foundEngineer == null) {
-            DataSource.Engineers.Add(foundEngineer);
+            DataSource.Engineers.Add(item);
         }
         else
         {
@@ -76,5 +76,13 @@ public class EngineerImplementation : IEngineer
     {
         Delete(item.Id);
         Create(item);
+    }
+
+    /// <summary>
+    /// delete all items in the Engineer list
+    /// </summary>
+    public void Reset()
+    {
+        DataSource.Engineers.Clear();
     }
 }

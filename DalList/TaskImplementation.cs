@@ -86,4 +86,12 @@ public class TaskImplementation : ITask
         Delete(item.Id);
         Create(item);
     }
+
+    /// <summary>
+    /// delete all items in the Task list
+    /// </summary>
+    public void Reset()
+    {
+        DataSource.Tasks.Clear();
+    }
 }

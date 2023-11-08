@@ -12,20 +12,12 @@ public class DependecyImplementation : IDependency
     /// </summary>
     /// <param name="item">the item to add</param>
     /// <returns>the id of the item we addad</returns>
-    /// <exception cref="Exception">the item with a same id of the parameter</exception>
     public int Create(Dependency item)
     {
-        Dependency? foundDependency = DataSource.Dependencies.Find(x => (x.Id == item.Id));
-        Console.WriteLine(DataSource.Dependencies.Find(x => x.Id == item.Id));
-        if (foundDependency == null)
-        {
-            DataSource.Dependencies.Add(foundDependency);
-        }
-        else
-        {
-            throw new Exception($"Dependency with ID={item.Id} already exist");
-        }
-        return item.Id;
+        int newId = DataSource.Config.NextIdDepency;
+        Dependency newDenendency = new Dependency(newId,item.DependentTask,item.DependenceOnTask);
+        DataSource.Dependencies.Add(newDenendency);
+        return newDenendency.Id;
     }
     
     /// <summary>
@@ -79,5 +71,13 @@ public class DependecyImplementation : IDependency
     {
         Delete(item.Id);
         Create(item);
+    }
+
+    /// <summary>
+    /// delete all items in the Dependency list
+    /// </summary>
+    public void Reset()
+    {
+        DataSource.Dependencies.Clear();
     }
 }

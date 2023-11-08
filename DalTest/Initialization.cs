@@ -224,6 +224,6 @@ public static class Initialization
         s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
         CreateTask();
         CreateDependency();
-        //CreateEngineer();
+        CreateEngineer();
     }
 }
