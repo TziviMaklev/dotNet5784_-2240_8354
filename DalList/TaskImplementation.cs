@@ -52,7 +52,7 @@ public class TaskImplementation : ITask
     /// <exception cref="Exception">the object is not exist</exception>
     public void Delete(int id)
     {
-        Task? taskFound = DataSource.Tasks.Find(x=> x.Id== id);
+        Task? taskFound = DataSource.Tasks.Find(x=> x!.Id== id);
         if(taskFound == null) {
             throw new Exception($"Task with ID={id} does Not exist");
         }
@@ -66,7 +66,7 @@ public class TaskImplementation : ITask
     /// <returns>return a reference to the task</returns>
     public Task? Read(int id)
     {
-        Task? taskFound = DataSource.Tasks.Find(x => x.Id == id);
+        Task? taskFound = DataSource.Tasks.Find(x => x!.Id == id);
         if (taskFound == null)
         {
             return null;
@@ -80,7 +80,7 @@ public class TaskImplementation : ITask
     /// <returns>return a new list that the same as the one exist</returns>
     public List<Task> ReadAll()
     {
-        return new List <Task> (DataSource.Tasks);
+        return new List <Task> (DataSource.Tasks!);
     }
 
     /// <summary>

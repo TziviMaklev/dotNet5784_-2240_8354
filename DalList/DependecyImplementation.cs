@@ -15,7 +15,7 @@ public class DependecyImplementation : IDependency
     public int Create(Dependency item)
     {
         int id;
-        Engineer? engineerF = DataSource.Engineers.Find(x => x.Id == item.Id);
+        Engineer? engineerF = DataSource.Engineers.Find(x => x!.Id == item.Id);
         if (engineerF == null && item.Id != 0 )
             id = item.Id;
         else
@@ -33,7 +33,7 @@ public class DependecyImplementation : IDependency
     public void Delete(int id)
 
     {
-        Dependency? foundDependency = DataSource.Dependencies.Find(x => x.Id == id);
+        Dependency? foundDependency = DataSource.Dependencies.Find(x => x!.Id == id);
         if (foundDependency != null)
         {
             DataSource.Dependencies.Remove(foundDependency);
@@ -51,7 +51,7 @@ public class DependecyImplementation : IDependency
     /// <returns>return a reference to the item</returns>
     public Dependency? Read(int id)
     {
-        Dependency? foundDependency = DataSource.Dependencies.Find(x => x.Id == id);
+        Dependency? foundDependency = DataSource.Dependencies.Find(x => x!.Id == id);
         if (foundDependency != null)
         {
             return foundDependency;
@@ -65,7 +65,7 @@ public class DependecyImplementation : IDependency
     /// <returns>a list that copied from the Dependency list</returns>
     public List<Dependency> ReadAll()
     {
-        return new List<Dependency>(DataSource.Dependencies);
+        return new List<Dependency>(DataSource.Dependencies!);
     }
 
     /// <summary>

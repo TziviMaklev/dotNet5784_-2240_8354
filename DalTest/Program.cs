@@ -19,7 +19,7 @@ internal class Program
         {
             Initialization.Do(s_dalTask, s_dalDependency, s_dalEngineer);
             int userChose;
-            string ans;
+            string? ans;
             do
             {
                 Console.WriteLine("Select an entity you want to check\n" +
@@ -53,7 +53,9 @@ internal class Program
         }
 
     }
-
+    /// <summary>
+    /// print all the menu of any entitety
+    /// </summary>
     internal static void printMenu()
     {
         Console.WriteLine("Select the method you want to perform\n" +
@@ -64,6 +66,11 @@ internal class Program
             "5. Update\n" +
             "6. Delete\n");
     }
+    /// <summary>
+    /// the method tht working with tasks
+    /// </summary>
+    /// <exception cref="NullReferenceException">did not type any value</exception>
+    /// <exception cref="Exception">a choise is not exist</exception>
     internal static void TaskMethod()
     {
         printMenu();
@@ -102,21 +109,21 @@ internal class Program
                     }
                     DO.Task task = new DO.Task(0, desc, alias, false, deliver, experience
                         , DateTime.Now, null);
-                    s_dalTask.Create(task);
+                    s_dalTask?.Create(task);
                 }
                 break;
             case 3:
                 {
                     Console.WriteLine("Enter the id of the Task to show: ");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    DO.Task task = s_dalTask.Read(id)!;
+                    DO.Task task = s_dalTask?.Read(id)!;
                     Console.WriteLine(task);
                 }
                 break;
             case 4:
                 {
-                    List<DO.Task?> tasks;
-                    tasks = s_dalTask.ReadAll();
+                    List<DO.Task> tasks;
+                    tasks = s_dalTask!.ReadAll();
                     Console.WriteLine(string.Join("\n", tasks));
                 }
                 break;
@@ -124,24 +131,20 @@ internal class Program
                 {
                     Console.WriteLine("enter task id:");
                     int id= Convert.ToInt32(Console.ReadLine());
-                    DO.Task taskFound =  s_dalTask.Read(id);
+                    DO.Task? taskFound =  s_dalTask?.Read(id);
                     if (taskFound == null)
                     {
                         throw new Exception($"Task with ID={id} does Not exist");
                     }
 
                     Console.WriteLine("if you want change the description enter:");
-                    string description = Console.ReadLine();
-                    if(description == "") 
-                        description=taskFound.Description;
+                    string description = Console.ReadLine() ?? taskFound.Description;
 
                     Console.WriteLine("if you want change the alias enter:");
-                    string alias = Console.ReadLine();
-                    if (alias == "") 
-                        alias = taskFound.Alias;
+                    string alias = Console.ReadLine() ?? taskFound.Alias;
 
                     Console.WriteLine("if you want change the milestone enter:");
-                    string milestoneI = Console.ReadLine();
+                    string milestoneI = Console.ReadLine() ?? "";
                     bool milestone;
                     if (milestoneI == "")
                         milestone = taskFound.Milestone;
@@ -149,16 +152,14 @@ internal class Program
                         milestone= milestoneI == "false" ?  false : true;
 
                     Console.WriteLine("if you want change the deliverables enter:");
-                    string deliverables = Console.ReadLine();
-                    if (deliverables == "") 
-                        deliverables = taskFound.Deliverables;
+                    string deliverables = Console.ReadLine() ?? taskFound.Deliverables;
 
                     Console.WriteLine("if you want change the complexityTask enter:(0-4)");
                     int engineerExperience;
                     ans = Console.ReadLine();
-                    int.TryParse(ans, out engineerExperience);
+                    bool check= int.TryParse(ans, out engineerExperience);
                     DO.EngineerExperience complexityTask;
-                    if (engineerExperience == null)
+                    if (!check)
                         complexityTask = taskFound.ComplexityTask;
                     else
                         switch (engineerExperience)
@@ -182,8 +183,8 @@ internal class Program
                     Console.WriteLine("if you want change the creationDate enter:");
                     DateTime creationDate;
                     ans = Console.ReadLine();
-                    DateTime.TryParse(ans, out creationDate);
-                    if (creationDate == null)
+                    check = DateTime.TryParse(ans, out creationDate);
+                    if (!check)
                         creationDate = taskFound.CreationDate;
 
                     Console.WriteLine("if you want change the startDate enter:");
@@ -231,7 +232,7 @@ internal class Program
                         deliverables,complexityTask , creationDate,startDate,scheduledDate,
                         forecastDate,deadlineDate,completionDate,remarks,engineerId);
                     Console.WriteLine(task.Id);
-                    s_dalTask.Update(task);
+                    s_dalTask?.Update(task);
                 }
 
                 break;
@@ -239,7 +240,7 @@ internal class Program
                 {
                     Console.WriteLine("enter id:");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    s_dalTask.Delete(id);
+                    s_dalTask?.Delete(id);
 
                 }
                 break;
@@ -248,7 +249,11 @@ internal class Program
 
         }
     }
-
+    /// <summary>
+    /// the method that working with Engineers
+    /// </summary>
+    /// <exception cref="NullReferenceException">typed nothing</exception>
+    /// <exception cref="Exception">unvalid chose</exception>
     internal static void EngineerMethod()
     {
         printMenu();
@@ -289,21 +294,21 @@ internal class Program
                             throw new Exception("This choice does not exist");
                     }
                     DO.Engineer engineer = new DO.Engineer(id, name, email, level, cost);
-                    s_dalEngineer.Create(engineer);
+                    s_dalEngineer?.Create(engineer);
                 }
                 break;
             case 3:
                 {
                     Console.WriteLine("Enter the id of the engineer to show: ");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    DO.Engineer engineer = s_dalEngineer.Read(id)!;
+                    DO.Engineer engineer = s_dalEngineer?.Read(id)!;
                     Console.WriteLine(engineer);
                 }
                 break;
             case 4:
                 {
-                    List<DO.Engineer?> engineerL;
-                    engineerL = s_dalEngineer.ReadAll();
+                    List<DO.Engineer> engineerL;
+                    engineerL = s_dalEngineer!.ReadAll();
                     Console.WriteLine(string.Join("\n", engineerL));
                 }
                 break;
@@ -312,26 +317,19 @@ internal class Program
                     Console.WriteLine("enter task id:");
                     int id;
                     int.TryParse(Console.ReadLine(), out id);
-                    DO.Engineer engineerFound = s_dalEngineer.Read(id);
-                    if (engineerFound == null)
-                    {
-                        throw new Exception($"Task with ID={id} does Not exist");
-                    }
+                    DO.Engineer engineerFound = s_dalEngineer?.Read(id) 
+                        ?? throw new Exception($"Task with ID={id} does Not exist");
                     Console.WriteLine("if you want change the name enter:");
-                    string? name = Console.ReadLine();
-                    if(name  == "")
-                        name = engineerFound.Name;
+                    string name = Console.ReadLine() ?? engineerFound.Name;
 
                     Console.WriteLine("if you want change the email enter:");
-                    string? email = Console.ReadLine();
-                    if (email == "")
-                        email = engineerFound.Email;
+                    string email = Console.ReadLine() ?? engineerFound.Email;
 
                     Console.WriteLine("if you want change the level enter:");
                     int engineerExperience;
-                    int.TryParse(Console.ReadLine(), out engineerExperience);
+                    bool check = int.TryParse(Console.ReadLine(), out engineerExperience);
                     DO.EngineerExperience level;
-                    if (engineerExperience == null)
+                    if (!check)
                         level = engineerFound.Level;
                     else
                         switch (engineerExperience)
@@ -360,7 +358,7 @@ internal class Program
                 {
                     Console.WriteLine("enter id:");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    s_dalEngineer.Delete(id);
+                    s_dalEngineer?.Delete(id);
                 }
                 break;
             default:
@@ -368,7 +366,11 @@ internal class Program
 
         }
     }
-
+    /// <summary>
+    /// the method that working with Dependency
+    /// </summary>
+    /// <exception cref="NullReferenceException">typed nothing</exception>
+    /// <exception cref="Exception">unvalid chose</exception>
     internal static void DependencyMethod()
     {
         printMenu();
@@ -388,21 +390,21 @@ internal class Program
                     Console.WriteLine("enter dependency dependenceOnTask");
                     int dependenceOnTask = Convert.ToInt32(Console.ReadLine() ?? throw new NullReferenceException());
                     DO.Dependency dependency = new DO.Dependency(id, dependentTask, dependenceOnTask);
-                    s_dalDependency.Create(dependency);
+                    s_dalDependency?.Create(dependency);
                 }
                 break;
             case 3:
                 {
                     Console.WriteLine("Enter the id of the dependency to show: ");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    DO.Dependency dependency = s_dalDependency.Read(id)!;
+                    DO.Dependency dependency = s_dalDependency?.Read(id)!;
                     Console.WriteLine(dependency);
                 }
                 break;
             case 4:
                 {
-                    List<DO.Dependency?> dependencyL;
-                    dependencyL = s_dalDependency.ReadAll();
+                    List<DO.Dependency> dependencyL;
+                    dependencyL = s_dalDependency!.ReadAll();
                     Console.WriteLine(string.Join("\n", dependencyL));
                 }
                 break;
@@ -410,7 +412,7 @@ internal class Program
                 {
                     Console.WriteLine("enter dependency id");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    DO.Dependency dependencyFound = s_dalDependency.Read(id);
+                    DO.Dependency? dependencyFound = s_dalDependency?.Read(id);
                     if (dependencyFound == null)
                     {
                         throw new Exception($"Task with ID={id} does Not exist");
@@ -420,14 +422,14 @@ internal class Program
                     Console.WriteLine("if you want change the dependenceOnTask enter:");
                     int dependenceOnTask = Convert.ToInt32(Console.ReadLine());
                     DO.Dependency dependency = new DO.Dependency(dependencyFound.Id, dependentTask, dependenceOnTask);
-                    s_dalDependency.Update(dependency);
+                    s_dalDependency?.Update(dependency);
                 }
                 break;
             case 6:
                 {
                     Console.WriteLine("enter id:");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    s_dalDependency.Delete(id);
+                    s_dalDependency?.Delete(id);
                 }
                 break;
             default:

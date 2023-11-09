@@ -123,7 +123,7 @@ public static class Initialization
             DO.Task newTask = new DO.Task(0, _taskDescriptions[i], _taskAliases[i],
             false, _taskDeliverables[i], _taskEngineerExperiences[i], creationDate,
             null, null, null, null, null, null, null);
-            s_dalTask.Create(newTask);
+            s_dalTask?.Create(newTask);
         }
     }
 
@@ -168,7 +168,7 @@ public static class Initialization
 
     private static void CreateDependency()
     {
-        s_dalDependency.Create(new Dependency(0, 2, 7));
+        s_dalDependency!.Create(new Dependency(0, 2, 7));
         s_dalDependency.Create(new Dependency(0, 2, 3));
         s_dalDependency.Create(new Dependency(0, 3, 7));
         s_dalDependency.Create(new Dependency(0, 4, 2));
@@ -217,7 +217,7 @@ public static class Initialization
     /// <param name="dalDependency">dependency list</param>
     /// <param name="dalEngineer">engineer list</param>
     /// <exception cref="NullReferenceException">there is no list like this</exception>
-    public static void Do(ITask? dalTask, IDependency? dalDependency, IEngineer dalEngineer)
+    public static void Do(ITask? dalTask, IDependency? dalDependency, IEngineer? dalEngineer)
     {
         s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
         s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
