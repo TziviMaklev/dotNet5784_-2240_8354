@@ -52,7 +52,7 @@ public class EngineerImplementation : IEngineer
     public Engineer? Read(int id)
     {
         Engineer? foundEngineer = DataSource.Engineers.Find(x => x.Id == id);
-        if (foundEngineer == null)
+        if (foundEngineer != null)
         {
             return foundEngineer;
         }

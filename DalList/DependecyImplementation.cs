@@ -14,8 +14,13 @@ public class DependecyImplementation : IDependency
     /// <returns>the id of the item we addad</returns>
     public int Create(Dependency item)
     {
-        int newId = DataSource.Config.NextIdDepency;
-        Dependency newDenendency = new Dependency(newId,item.DependentTask,item.DependenceOnTask);
+        int id;
+        Engineer? engineerF = DataSource.Engineers.Find(x => x.Id == item.Id);
+        if (engineerF == null && item.Id != 0 )
+            id = item.Id;
+        else
+            id = DataSource.Config.NextIdDepency;
+        Dependency newDenendency = new Dependency(id,item.DependentTask,item.DependenceOnTask);
         DataSource.Dependencies.Add(newDenendency);
         return newDenendency.Id;
     }
@@ -47,7 +52,7 @@ public class DependecyImplementation : IDependency
     public Dependency? Read(int id)
     {
         Dependency? foundDependency = DataSource.Dependencies.Find(x => x.Id == id);
-        if (foundDependency == null)
+        if (foundDependency != null)
         {
             return foundDependency;
         }

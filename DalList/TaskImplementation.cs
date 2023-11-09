@@ -17,7 +17,13 @@ public class TaskImplementation : ITask
     /// <returns>returns the id of the task that created</returns>
     public int Create(Task item)
     {
-        int id = DataSource.Config.NextIdTask;
+        int id;
+        Task? taskFound = DataSource.Tasks.Find(x => x!.Id == item.Id);
+        if (taskFound == null)
+            id = item.Id;
+        else
+            id = DataSource.Config.NextIdTask;
+
         Task newItem = new Task()
         {
             Id = id,
