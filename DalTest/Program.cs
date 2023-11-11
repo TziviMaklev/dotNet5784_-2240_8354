@@ -320,7 +320,8 @@ internal class Program
                     Console.WriteLine("enter task id:");
                     int id;
                     int.TryParse(Console.ReadLine(), out id);
-                    DO.Engineer engineerFound = s_dalEngineer?.Read(id) 
+
+                    DO.Engineer engineerFound = s_dal.Engineer?.Read(id) 
                         ?? throw new Exception($"Engineer with ID={id} does Not exist");
                     Console.WriteLine("if you want change the name enter:");
                     string name = Console.ReadLine() ?? engineerFound.Name;
