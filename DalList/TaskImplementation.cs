@@ -55,7 +55,7 @@ internal class TaskImplementation : ITask
     {
         Task? taskFound = DataSource.Tasks.Find(x=> x!.Id== id);
         if(taskFound == null) {
-            throw new Exception($"Task with ID={id} does Not exist");
+            throw new DalDoesNotExistException($"Task with ID={id} does Not exist");
         }
         DataSource.Tasks.Remove(taskFound);
     }
