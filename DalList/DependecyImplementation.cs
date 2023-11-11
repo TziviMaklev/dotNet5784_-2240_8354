@@ -5,7 +5,7 @@ using DO;
 using DalApi;
 using System.Collections.Generic;
 
-public class DependecyImplementation : IDependency
+internal class DependecyImplementation : IDependency
 {
     /// <summary>
     /// create a new item in the Dependency list

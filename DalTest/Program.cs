@@ -9,15 +9,15 @@ using System.Xml.Linq;
 namespace DalTest;
 internal class Program
 {
-    private static ITask? s_dalTask = new TaskImplementation();
-    private static IEngineer? s_dalEngineer = new EngineerImplementation();
-    private static IDependency? s_dalDependency = new DependecyImplementation();
+    private readonly static IDal s_dal = new DalList();
+
+
 
     private static void Main(string[] args)
     {
         try
         {
-            Initialization.Do(s_dalTask, s_dalDependency, s_dalEngineer);
+            Initialization.Do(s_dal);
             int userChose;
             string? ans;
             do
@@ -111,21 +111,21 @@ internal class Program
                     }
                     DO.Task task = new DO.Task(0, desc, alias, false, deliver, experience
                         , DateTime.Now, null);
-                    s_dalTask?.Create(task);
+                    s_dal!.Task.Create(task);
                 }
                 break;
             case 3:
                 {
                     Console.WriteLine("Enter the id of the Task to show: ");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    DO.Task task = s_dalTask?.Read(id)!;
+                    DO.Task task = s_dal!.Task.Read(id)!;
                     Console.WriteLine(task);
                 }
                 break;
             case 4:
                 {
                     List<DO.Task> tasks;
-                    tasks = s_dalTask!.ReadAll();
+                    tasks = s_dal.Task!.ReadAll();
                     Console.WriteLine(string.Join("\n", tasks));
                 }
                 break;
@@ -133,7 +133,7 @@ internal class Program
                 {
                     Console.WriteLine("enter task id:");
                     int id= Convert.ToInt32(Console.ReadLine());
-                    DO.Task? taskFound =  s_dalTask?.Read(id);
+                    DO.Task? taskFound =  s_dal!.Task.Read(id);
                     if (taskFound == null)
                     {
                         throw new Exception($"Task with ID={id} does Not exist");
@@ -234,7 +234,7 @@ internal class Program
                         deliverables,complexityTask , creationDate,startDate,scheduledDate,
                         forecastDate,deadlineDate,completionDate,remarks,engineerId);
                     Console.WriteLine(task.Id);
-                    s_dalTask?.Update(task);
+                    s_dal!.Task.Update(task);
                 }
 
                 break;
@@ -242,7 +242,7 @@ internal class Program
                 {
                     Console.WriteLine("enter id:");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    s_dalTask?.Delete(id);
+                    s_dal!.Task.Delete(id);
 
                 }
                 break;
@@ -297,21 +297,21 @@ internal class Program
                             throw new Exception("This choice does not exist");
                     }
                     DO.Engineer engineer = new DO.Engineer(id, name, email, level, cost);
-                    s_dalEngineer?.Create(engineer);
+                    s_dal.Engineer?.Create(engineer);
                 }
                 break;
             case 3:
                 {
                     Console.WriteLine("Enter the id of the engineer to show: ");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    DO.Engineer engineer = s_dalEngineer?.Read(id)!;
+                    DO.Engineer engineer = s_dal.Engineer?.Read(id)!;
                     Console.WriteLine(engineer);
                 }
                 break;
             case 4:
                 {
                     List<DO.Engineer> engineerL;
-                    engineerL = s_dalEngineer!.ReadAll();
+                    engineerL = s_dal.Engineer!.ReadAll();
                     Console.WriteLine(string.Join("\n", engineerL));
                 }
                 break;
@@ -354,14 +354,14 @@ internal class Program
                     double cost;
                     double.TryParse(Console.ReadLine(), out cost);
                     DO.Engineer engineer = new DO.Engineer(engineerFound.Id, name, email , level , cost);
-                    s_dalEngineer.Update(engineer);
+                    s_dal.Engineer.Update(engineer);
                 }
                 break;
             case 6:
                 {
                     Console.WriteLine("enter id:");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    s_dalEngineer?.Delete(id);
+                    s_dal.Engineer?.Delete(id);
                 }
                 break;
             default:
@@ -394,21 +394,21 @@ internal class Program
                     Console.WriteLine("enter dependency dependenceOnTask");
                     int dependenceOnTask = Convert.ToInt32(Console.ReadLine() ?? throw new NullReferenceException());
                     DO.Dependency dependency = new DO.Dependency(id, dependentTask, dependenceOnTask);
-                    s_dalDependency?.Create(dependency);
+                    s_dal.Dependency?.Create(dependency);
                 }
                 break;
             case 3:
                 {
                     Console.WriteLine("Enter the id of the dependency to show: ");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    DO.Dependency dependency = s_dalDependency?.Read(id)!;
+                    DO.Dependency dependency = s_dal.Dependency?.Read(id)!;
                     Console.WriteLine(dependency);
                 }
                 break;
             case 4:
                 {
                     List<DO.Dependency> dependencyL;
-                    dependencyL = s_dalDependency!.ReadAll();
+                    dependencyL = s_dal.Dependency!.ReadAll();
                     Console.WriteLine(string.Join("\n", dependencyL));
                 }
                 break;
@@ -416,7 +416,7 @@ internal class Program
                 {
                     Console.WriteLine("enter dependency id");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    DO.Dependency? dependencyFound = s_dalDependency?.Read(id);
+                    DO.Dependency? dependencyFound = s_dal.Dependency?.Read(id);
                     if (dependencyFound == null)
                     {
                         throw new Exception($"Task with ID={id} does Not exist");
@@ -426,14 +426,14 @@ internal class Program
                     Console.WriteLine("if you want change the dependenceOnTask enter:");
                     int dependenceOnTask = Convert.ToInt32(Console.ReadLine());
                     DO.Dependency dependency = new DO.Dependency(dependencyFound.Id, dependentTask, dependenceOnTask);
-                    s_dalDependency?.Update(dependency);
+                    s_dal.Dependency?.Update(dependency);
                 }
                 break;
             case 6:
                 {
                     Console.WriteLine("enter id:");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    s_dalDependency?.Delete(id);
+                    s_dal.Dependency?.Delete(id);
                 }
                 break;
             default:
