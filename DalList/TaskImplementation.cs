@@ -8,7 +8,7 @@ using System.Collections.Generic;
 /// <summary>
 /// class for woking with the list of the Tasks
 /// </summary>
-public class TaskImplementation : ITask
+internal class TaskImplementation : ITask
 {
     /// <summary>
     /// creates a new task in the list of tasks
@@ -41,7 +41,8 @@ public class TaskImplementation : ITask
             Remarks= item.Remarks,
             EngineerId = item.EngineerId,
         };
-        DataSource.Tasks.Add(newItem);
+        List<Task> newTasks = DataSource.Tasks.Append(newItem).ToList()!;
+       // DataSource.Tasks = newTasks;
         return id;
     }
 

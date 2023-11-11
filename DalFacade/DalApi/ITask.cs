@@ -8,6 +8,4 @@ using DO;
 /// </summary>
 public interface ITask : ICrud<Task>
 {
-
-
 }
