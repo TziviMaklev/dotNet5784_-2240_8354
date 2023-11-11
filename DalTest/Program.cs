@@ -43,7 +43,7 @@ internal class Program
                         DependencyMethod();
                         break;
                     default:
-                        throw new Exception("This choice does not exist");
+                        throw new ChoiseDoesNotExistException("This choice does not exist");
                 }
             } while (userChose != 0);
         }
@@ -107,7 +107,7 @@ internal class Program
                         case 4:
                             experience = EngineerExperience.Expert; break;
                         default:
-                            throw new Exception("This choice does not exist");
+                            throw new ChoiseDoesNotExistException("This choice does not exist");
                     }
                     DO.Task task = new DO.Task(0, desc, alias, false, deliver, experience
                         , DateTime.Now, null);
@@ -136,7 +136,7 @@ internal class Program
                     DO.Task? taskFound =  s_dal!.Task.Read(id);
                     if (taskFound == null)
                     {
-                        throw new Exception($"Task with ID={id} does Not exist");
+                        throw new DalDoesNotExistException($"Task with ID={id} does Not exist");
                     }
 
                     Console.WriteLine("if you want change the description enter:");
@@ -177,7 +177,7 @@ internal class Program
                             case 4:
                                 complexityTask = EngineerExperience.Expert; break;
                             default:
-                                throw new Exception("This choice does not exist");
+                                throw new ChoiseDoesNotExistException("This choice does not exist");
                         }
 
 
@@ -247,7 +247,7 @@ internal class Program
                 }
                 break;
             default:
-                throw new Exception("This choice does not exist");
+                throw new ChoiseDoesNotExistException("This choice does not exist");
 
         }
     }
@@ -294,7 +294,7 @@ internal class Program
                         case 4:
                             level = EngineerExperience.Expert; break;
                         default:
-                            throw new Exception("This choice does not exist");
+                            throw new ChoiseDoesNotExistException("This choice does not exist");
                     }
                     DO.Engineer engineer = new DO.Engineer(id, name, email, level, cost);
                     s_dal.Engineer?.Create(engineer);
@@ -320,8 +320,8 @@ internal class Program
                     Console.WriteLine("enter task id:");
                     int id;
                     int.TryParse(Console.ReadLine(), out id);
-                    DO.Engineer engineerFound = s_dalEngineer?.Read(id) 
-                        ?? throw new Exception($"Engineer with ID={id} does Not exist");
+                    DO.Engineer engineerFound = s_dal.Engineer?.Read(id) 
+                        ?? throw new DalDoesNotExistException($"Engineer with ID={id} does Not exist");
                     Console.WriteLine("if you want change the name enter:");
                     string name = Console.ReadLine() ?? engineerFound.Name;
 
@@ -348,7 +348,7 @@ internal class Program
                             case 4:
                                 level = EngineerExperience.Expert; break;
                             default:
-                                throw new Exception("This choice does not exist");
+                                throw new ChoiseDoesNotExistException("This choice does not exist");
                         }
                     Console.WriteLine("if you want change the cost enter:");
                     double cost;
@@ -365,7 +365,7 @@ internal class Program
                 }
                 break;
             default:
-                throw new Exception("This choice does not exist");
+                throw new ChoiseDoesNotExistException("This choice does not exist");
 
         }
     }
@@ -419,7 +419,7 @@ internal class Program
                     DO.Dependency? dependencyFound = s_dal.Dependency?.Read(id);
                     if (dependencyFound == null)
                     {
-                        throw new Exception($"Task with ID={id} does Not exist");
+                        throw new DalDoesNotExistException($"Task with ID={id} does Not exist");
                     }
                     Console.WriteLine("if you want change the dependentTask enter:");
                     int dependentTask = Convert.ToInt32(Console.ReadLine());
@@ -437,7 +437,7 @@ internal class Program
                 }
                 break;
             default:
-                throw new Exception("This choice does not exist");
+                throw new ChoiseDoesNotExistException("This choice does not exist");
 
         }
     }

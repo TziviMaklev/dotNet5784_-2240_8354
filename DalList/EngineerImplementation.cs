@@ -21,7 +21,7 @@ internal class EngineerImplementation : IEngineer
         }
         else
         {
-            throw new Exception($"Engineer with ID={item.Id} already exist");
+            throw new DalAlreadyExistsException($"Engineer with ID={item.Id} already exist");
         }
         return item.Id;
     }
@@ -40,7 +40,7 @@ internal class EngineerImplementation : IEngineer
         }
         else
         {
-            throw new Exception($"Engineer with ID={id} does Not exist");
+            throw new DalDoesNotExistException($"Engineer with ID={id} does Not exist");
         }
     }
 

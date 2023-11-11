@@ -40,7 +40,7 @@ internal class DependecyImplementation : IDependency
         }
         else
         {
-            throw new Exception($"Dependency with ID={id} does Not exist");
+            throw new DalDoesNotExistException($"Dependency with ID={id} does Not exist");
         }
     }
 
