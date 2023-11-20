@@ -17,7 +17,7 @@ internal class EngineerImplementation : IEngineer
     {
         var foundEngineer = DataSource.Engineers.FirstOrDefault(e=>e?.Id==item.Id);
         if (foundEngineer == null) {
-            DataSource.Engineers.Add(item);
+             DataSource.Engineers.Add(item);
         }
         else
         {
@@ -59,14 +59,27 @@ internal class EngineerImplementation : IEngineer
         return null;
     }
 
+    public Engineer? Read(Func<Engineer, bool> filter)
+    {
+        return DataSource.Engineers.FirstOrDefault(e => filter(e!));
+    }
+
     /// <summary>
     /// read all of the Dependency list
     /// </summary>
     /// <returns>a list that copied from the Dependency list</returns>
-    public List<Engineer> ReadAll()
+    public IEnumerable<Engineer?> ReadAll(Func<Engineer, bool>? filter = null)
     {
-        return new List<Engineer> (DataSource.Engineers!);
+            if (filter != null)
+            {
+                return from item in DataSource.Engineers
+                       where filter(item)
+                       select item;
+            }
+            return from item in DataSource.Engineers
+                   select item;
     }
+
 
     /// <summary>
     /// update one item in the Dependency list

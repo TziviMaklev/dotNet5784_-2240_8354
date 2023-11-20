@@ -18,8 +18,11 @@ internal class TaskImplementation : ITask
     public int Create(Task item)
     {
         int id;
-        var taskFound = DataSource.Tasks.FirstOrDefault(t=>t?.Id==item.Id);
-        if (taskFound == null)
+
+        var taskFound =(from e in DataSource.Tasks 
+                       where e.Id == item.Id
+                       select e).ToList();
+        if (taskFound.Count == 0)
             id = item.Id;
         else
             id = DataSource.Config.NextIdTask;
@@ -41,8 +44,7 @@ internal class TaskImplementation : ITask
             Remarks= item.Remarks,
             EngineerId = item.EngineerId,
         };
-        List<Task> newTasks = DataSource.Tasks.Append(newItem).ToList()!;
-       // DataSource.Tasks = newTasks;
+        DataSource.Tasks.Add(newItem);
         return id;
     }
 
@@ -74,15 +76,28 @@ internal class TaskImplementation : ITask
         }
         return taskFound;
     }
+    public Task? Read(Func<Task, bool> filter)
+    {
+        return DataSource.Tasks.FirstOrDefault(t => filter(t!));
+    }
 
     /// <summary>
     /// read all list of tasks
     /// </summary>
     /// <returns>return a new list that the same as the one exist</returns>
-    public List<Task> ReadAll()
+    public IEnumerable<Task> ReadAll(Func<Task, bool>? filter = null)
     {
-        return new List <Task> (DataSource.Tasks!);
+            if (filter != null)
+            {
+                return from item in DataSource.Tasks
+                       where filter(item)
+                       select item;
+            }
+            return from item in DataSource.Tasks
+                   select item;
+
     }
+
 
     /// <summary>
     /// delete one task from the list and add one with the same id

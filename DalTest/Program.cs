@@ -1,10 +1,6 @@
 ﻿using Dal;
 using DalApi;
 using DO;
-using System;
-using System.Reflection.Emit;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace DalTest;
 internal class Program
@@ -124,16 +120,16 @@ internal class Program
                 break;
             case 4:
                 {
-                    List<DO.Task> tasks;
-                    tasks = s_dal.Task!.ReadAll();
+                    List<DO.Task ? > tasks;
+                    tasks = s_dal.Task!.ReadAll().ToList();
                     Console.WriteLine(string.Join("\n", tasks));
                 }
                 break;
             case 5:
                 {
                     Console.WriteLine("enter task id:");
-                    int id= Convert.ToInt32(Console.ReadLine());
-                    DO.Task? taskFound =  s_dal!.Task.Read(id);
+                    int id = Convert.ToInt32(Console.ReadLine());
+                    DO.Task? taskFound = s_dal!.Task.Read(id);
                     if (taskFound == null)
                     {
                         throw new DalDoesNotExistException($"Task with ID={id} does Not exist");
@@ -151,7 +147,7 @@ internal class Program
                     if (milestoneI == "")
                         milestone = taskFound.Milestone;
                     else
-                        milestone= milestoneI == "false" ?  false : true;
+                        milestone = milestoneI == "false" ? false : true;
 
                     Console.WriteLine("if you want change the deliverables enter:");
                     string deliverables = Console.ReadLine() ?? taskFound.Deliverables;
@@ -159,7 +155,7 @@ internal class Program
                     Console.WriteLine("if you want change the complexityTask enter:(0-4)");
                     int engineerExperience;
                     ans = Console.ReadLine();
-                    bool check= int.TryParse(ans, out engineerExperience);
+                    bool check = int.TryParse(ans, out engineerExperience);
                     DO.EngineerExperience complexityTask;
                     if (!check)
                         complexityTask = taskFound.ComplexityTask;
@@ -198,7 +194,7 @@ internal class Program
                     Console.WriteLine("if you want change the scheduledDate enter:");
                     DateTime? scheduledDate = taskFound.ScheduledDate;
                     ans = Console.ReadLine();
-                    if (ans != "") 
+                    if (ans != "")
                         scheduledDate = Convert.ToDateTime(ans);
 
                     Console.WriteLine("if you want change the forecastDate enter:");
@@ -223,16 +219,16 @@ internal class Program
                     Console.WriteLine("if you want change the remarks enter:");
                     string? remarks = Console.ReadLine();
                     if (remarks == "")
-                         remarks = taskFound.Remarks;
+                        remarks = taskFound.Remarks;
 
                     Console.WriteLine("if you want change the engineerId enter:");
                     int? engineerId = taskFound.EngineerId;
                     ans = Console.ReadLine();
                     if (ans != "")
                         engineerId = Convert.ToInt32(ans);
-                    DO.Task task = new DO.Task(taskFound.Id, description ,alias , milestone ,
-                        deliverables,complexityTask , creationDate,startDate,scheduledDate,
-                        forecastDate,deadlineDate,completionDate,remarks,engineerId);
+                    DO.Task task = new DO.Task(taskFound.Id, description, alias, milestone,
+                        deliverables, complexityTask, creationDate, startDate, scheduledDate,
+                        forecastDate, deadlineDate, completionDate, remarks, engineerId);
                     Console.WriteLine(task.Id);
                     s_dal!.Task.Update(task);
                 }
@@ -310,8 +306,8 @@ internal class Program
                 break;//Object view
             case 4:
                 {
-                    List<DO.Engineer> engineerL;
-                    engineerL = s_dal.Engineer!.ReadAll();
+                    List<DO.Engineer ?> engineerL;
+                    engineerL = s_dal.Engineer!.ReadAll().ToList();
                     Console.WriteLine(string.Join("\n", engineerL));
                 }
                 break;//List view
@@ -321,7 +317,7 @@ internal class Program
                     int id;
                     int.TryParse(Console.ReadLine(), out id);
 
-                    DO.Engineer engineerFound = s_dal.Engineer?.Read(id) 
+                    DO.Engineer engineerFound = s_dal.Engineer?.Read(id)
                         ?? throw new Exception($"Engineer with ID={id} does Not exist");
                     Console.WriteLine("if you want change the name enter:");
                     string name = Console.ReadLine() ?? engineerFound.Name;
@@ -354,7 +350,7 @@ internal class Program
                     Console.WriteLine("if you want change the cost enter:");
                     double cost;
                     double.TryParse(Console.ReadLine(), out cost);
-                    DO.Engineer engineer = new DO.Engineer(engineerFound.Id, name, email , level , cost);
+                    DO.Engineer engineer = new DO.Engineer(engineerFound.Id, name, email, level, cost);
                     s_dal.Engineer.Update(engineer);
                 }
                 break;//Update
@@ -408,8 +404,8 @@ internal class Program
                 break;
             case 4:
                 {
-                    List<DO.Dependency> dependencyL;
-                    dependencyL = s_dal.Dependency!.ReadAll();
+                    List<DO.Dependency ?> dependencyL;
+                    dependencyL = s_dal.Dependency!.ReadAll().ToList();
                     Console.WriteLine(string.Join("\n", dependencyL));
                 }
                 break;

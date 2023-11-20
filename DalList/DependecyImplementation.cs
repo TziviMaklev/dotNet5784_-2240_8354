@@ -4,6 +4,7 @@ namespace Dal;
 using DO;
 using DalApi;
 using System.Collections.Generic;
+using System.Linq;
 
 internal class DependecyImplementation : IDependency
 {
@@ -15,13 +16,15 @@ internal class DependecyImplementation : IDependency
     public int Create(Dependency item)
     {
         int id;
-        Dependency? dependencyF = DataSource.Dependencies.FirstOrDefault(d => item.Id == d?.Id);
-        if (dependencyF == null && item.Id != 0 )
+        var dependencyF = (from e in DataSource.Dependencies
+                                   where e.Id == item.Id
+                                   select e).ToList();
+        if (dependencyF.Count == 0 && item.Id != 0 )
             id = item.Id;
         else
             id = DataSource.Config.NextIdDepency;
         Dependency newDenendency = new Dependency(id,item.DependentTask,item.DependenceOnTask);
-        DataSource.Dependencies.Add(newDenendency);
+        DataSource.Dependencies.Add(item);
         return newDenendency.Id;
     }
     
@@ -59,14 +62,27 @@ internal class DependecyImplementation : IDependency
         return null;
     }
 
+    public Dependency? Read(Func<Dependency, bool> filter)
+    {
+        return DataSource.Dependencies.FirstOrDefault( d => filter(d!) );
+    }
+
     /// <summary>
     /// read all of the Dependency list
     /// </summary>
     /// <returns>a list that copied from the Dependency list</returns>
-    public List<Dependency> ReadAll()
+    public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
     {
-        return new List<Dependency>(DataSource.Dependencies!);
-    }
+        if (filter != null)
+        {
+            return from item in DataSource.Dependencies
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Dependencies
+               select item;
+
+}
 
     /// <summary>
     /// update one item in the Dependency list
