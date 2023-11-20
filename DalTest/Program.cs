@@ -82,7 +82,7 @@ internal class Program
         switch (userChose)
         {
             case 1:
-                return;
+                return;//EXIT
             case 2:
                 {
                     Console.WriteLine("Enter task description: ");
@@ -113,7 +113,7 @@ internal class Program
                         , DateTime.Now, null);
                     s_dal!.Task.Create(task);
                 }
-                break;
+                break;//Add
             case 3:
                 {
                     Console.WriteLine("Enter the id of the Task to show: ");
@@ -266,7 +266,7 @@ internal class Program
             case 1:
                 {
                     return;
-                }
+                }//EXIT
             case 2:
                 {
                     Console.WriteLine("enter engineer id");
@@ -299,7 +299,7 @@ internal class Program
                     DO.Engineer engineer = new DO.Engineer(id, name, email, level, cost);
                     s_dal.Engineer?.Create(engineer);
                 }
-                break;
+                break;//Add
             case 3:
                 {
                     Console.WriteLine("Enter the id of the engineer to show: ");
@@ -307,14 +307,14 @@ internal class Program
                     DO.Engineer engineer = s_dal.Engineer?.Read(id)!;
                     Console.WriteLine(engineer);
                 }
-                break;
+                break;//Object view
             case 4:
                 {
                     List<DO.Engineer> engineerL;
                     engineerL = s_dal.Engineer!.ReadAll();
                     Console.WriteLine(string.Join("\n", engineerL));
                 }
-                break;
+                break;//List view
             case 5:
                 {
                     Console.WriteLine("enter task id:");
@@ -357,14 +357,14 @@ internal class Program
                     DO.Engineer engineer = new DO.Engineer(engineerFound.Id, name, email , level , cost);
                     s_dal.Engineer.Update(engineer);
                 }
-                break;
+                break;//Update
             case 6:
                 {
                     Console.WriteLine("enter id:");
                     int id = Convert.ToInt32(Console.ReadLine());
                     s_dal.Engineer?.Delete(id);
                 }
-                break;
+                break;//Delete
             default:
                 throw new ChoiseDoesNotExistException("This choice does not exist");
 

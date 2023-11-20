@@ -15,7 +15,7 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="Exception">the item with a same id of the parameter</exception>
     public int Create(Engineer item)
     {
-        Engineer? foundEngineer = DataSource.Engineers.Find(x => x!.Id == item.Id);
+        var foundEngineer = DataSource.Engineers.FirstOrDefault(e=>e?.Id==item.Id);
         if (foundEngineer == null) {
             DataSource.Engineers.Add(item);
         }
@@ -33,7 +33,7 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="Exception">this id is not exist</exception>
     public void Delete(int id)
     {
-        Engineer? foundEngineer = DataSource.Engineers.Find(x => x!.Id == id);
+        var foundEngineer = DataSource.Engineers.FirstOrDefault(e=>e?.Id==id);
         if (foundEngineer != null)
         {
             DataSource.Engineers.Remove(foundEngineer);
@@ -51,7 +51,7 @@ internal class EngineerImplementation : IEngineer
     /// <returns>return a reference to the item</returns>
     public Engineer? Read(int id)
     {
-        Engineer? foundEngineer = DataSource.Engineers.Find(x => x!.Id == id);
+        Engineer? foundEngineer= DataSource.Engineers.FirstOrDefault(e=>e?.Id ==id);
         if (foundEngineer != null)
         {
             return foundEngineer;

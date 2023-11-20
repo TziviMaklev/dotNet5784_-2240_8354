@@ -18,7 +18,7 @@ internal class TaskImplementation : ITask
     public int Create(Task item)
     {
         int id;
-        Task? taskFound = DataSource.Tasks.Find(x => x!.Id == item.Id);
+        var taskFound = DataSource.Tasks.FirstOrDefault(t=>t?.Id==item.Id);
         if (taskFound == null)
             id = item.Id;
         else
@@ -53,8 +53,8 @@ internal class TaskImplementation : ITask
     /// <exception cref="Exception">the object is not exist</exception>
     public void Delete(int id)
     {
-        Task? taskFound = DataSource.Tasks.Find(x=> x!.Id== id);
-        if(taskFound == null) {
+        var taskFound = DataSource.Tasks.FirstOrDefault(e => e?.Id == id);
+        if (taskFound == null) {
             throw new DalDoesNotExistException($"Task with ID={id} does Not exist");
         }
         DataSource.Tasks.Remove(taskFound);
@@ -67,7 +67,7 @@ internal class TaskImplementation : ITask
     /// <returns>return a reference to the task</returns>
     public Task? Read(int id)
     {
-        Task? taskFound = DataSource.Tasks.Find(x => x!.Id == id);
+        var taskFound = DataSource.Tasks.FirstOrDefault(t=>t?.Id==id);
         if (taskFound == null)
         {
             return null;
