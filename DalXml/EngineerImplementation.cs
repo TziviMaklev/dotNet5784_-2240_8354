@@ -107,12 +107,13 @@ internal class EngineerImplementation : IEngineer
     public void Reset()
     {
         XElement? engineers = XMLTools.LoadListFromXMLElement("engineers");
-        //לא גמור!!!!!!
+        engineers.Elements().Remove();
+        XMLTools.SaveListToXMLElement(engineers, "engineers");
     }
 
     public void Update(Engineer item)
     {
-        //צריך לשות!!!!!!!!
-        throw new NotImplementedException();
+        Delete(item.Id);
+        Create(item);
     }
 }
