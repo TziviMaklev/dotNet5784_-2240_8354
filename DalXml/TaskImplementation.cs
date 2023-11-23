@@ -36,7 +36,7 @@ internal class TaskImplementation : ITask
         else
         {
 
-            tasks?.Add(task);
+            tasks?.Remove(task);
             XMLTools.SaveListToXMLSerializer(tasks!, "tasks");
         }
     }

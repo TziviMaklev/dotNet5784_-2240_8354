@@ -1,14 +1,13 @@
-﻿using Dal;
-using DalApi;
-using DO;
-
+﻿
 namespace DalTest;
+using Dal;
+using DO;
+using DalApi;
 internal class Program
+
 {
-    private readonly static IDal s_dal = new DalList();
-
-
-
+    //private readonly static IDal s_dal = new DalList();// stage 2
+    private readonly static IDal s_dal = new DalXml(); //stage 3
     private static void Main(string[] args)
     {
         try
