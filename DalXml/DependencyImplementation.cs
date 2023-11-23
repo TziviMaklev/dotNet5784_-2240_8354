@@ -1,5 +1,4 @@
 ﻿
-
 namespace Dal;
 using DalApi;
 using DO;
@@ -38,7 +37,7 @@ internal class DependencyImplementation : IDependency
         else
         {
 
-            dependencies?.Add(dependency);
+            dependencies?.Remove(dependency);
             XMLTools.SaveListToXMLSerializer(dependencies!, "dependencies");
         }
     }

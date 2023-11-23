@@ -1,10 +1,9 @@
-﻿using Dal;
+﻿
 using DalApi;
 using DO;
-using System.Data;
 
 namespace DalTest;
-using Dal;
+
 
 /// <summary>
 /// initialize all of the lists with data
