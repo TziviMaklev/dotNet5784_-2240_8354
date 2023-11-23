@@ -37,14 +37,14 @@ internal class TaskImplementation : ITask
         {
 
             tasks?.Add(task);
-            XMLTools.SaveListToXMLSerializer(tasks!, "dependencies");
+            XMLTools.SaveListToXMLSerializer(tasks!, "tasks");
         }
     }
 
     public Task? Read(int id)
     {
         List<Task>? tasks = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
-        return tasks!.FirstOrDefault( t => t.Id == id);
+        return tasks!.FirstOrDefault(t => t.Id == id);
     }
 
     public Task? Read(Func<Task, bool> filter)
@@ -55,7 +55,7 @@ internal class TaskImplementation : ITask
 
     public IEnumerable<Task?> ReadAll(Func<Task, bool>? filter = null)
     {
-        if(filter == null)
+        if (filter == null)
         {
             return XMLTools.LoadListFromXMLSerializer<Task>("tasks").Select(item => item);
         }
@@ -67,11 +67,24 @@ internal class TaskImplementation : ITask
 
     public void Reset()
     {
-        throw new NotImplementedException();
+        List<Task>? tasks = new List<Task>();
+        XMLTools.SaveListToXMLSerializer(tasks, "tasks");
     }
 
     public void Update(Task item)
     {
-        throw new NotImplementedException();
+        List<Task>? tasks = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
+        Task? task = tasks.FirstOrDefault(d => item.Id == d.Id);
+        if (task == null)
+        {
+            throw new DalAlreadyExistsException("An task with this ID number already exists");
+
+        }
+        else
+        {
+            tasks.Remove(task);
+            tasks?.Add(item);
+            XMLTools.SaveListToXMLSerializer(tasks!, "tasks");
+        }
     }
 }

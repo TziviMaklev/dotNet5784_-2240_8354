@@ -11,13 +11,13 @@ internal class DependencyImplementation : IDependency
 {
     public int Create(Dependency item)
     {
-        List <Dependency>? Dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>("Dependencies");
-        Dependency? dependency = Dependencies.FirstOrDefault( d => item.Id == d.Id );
+        List <Dependency>? dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
+        Dependency? dependency = dependencies.FirstOrDefault( d => item.Id == d.Id );
         if (dependency == null)
         {
             Dependency newDependency = item;
-            Dependencies?.Add( newDependency );
-            XMLTools.SaveListToXMLSerializer(Dependencies!, "Dependencies");
+            dependencies?.Add( newDependency );
+            XMLTools.SaveListToXMLSerializer(dependencies!, "dependencies");
         }
         else
         {
@@ -28,8 +28,8 @@ internal class DependencyImplementation : IDependency
 
     public void Delete(int id)
     {
-        List<Dependency>? Dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
-        Dependency? dependency = Dependencies.FirstOrDefault(d => id == d.Id);
+        List<Dependency>? dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
+        Dependency? dependency = dependencies.FirstOrDefault(d => id == d.Id);
         if (dependency == null)
         {
             throw new DalAlreadyExistsException("An dependency with this ID number not exists");
@@ -38,8 +38,8 @@ internal class DependencyImplementation : IDependency
         else
         {
 
-            Dependencies?.Add(dependency);
-            XMLTools.SaveListToXMLSerializer(Dependencies!, "dependencies");
+            dependencies?.Add(dependency);
+            XMLTools.SaveListToXMLSerializer(dependencies!, "dependencies");
         }
     }
 
@@ -69,11 +69,25 @@ internal class DependencyImplementation : IDependency
 
     public void Reset()
     {
-        
+        List<Dependency>? dependencies = new List<Dependency> ();
+        XMLTools.SaveListToXMLSerializer(dependencies, "dependencies");
     }
 
     public void Update(Dependency item)
     {
-        throw new NotImplementedException();
+        List<Dependency>? dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
+        Dependency? dependency = dependencies.FirstOrDefault(d => item.Id == d.Id);
+        if (dependency == null)
+        {
+            throw new DalAlreadyExistsException("An dependency with this ID number already exists");
+
+        }
+        else
+        {
+            dependencies.Remove(dependency);
+            dependencies?.Add(item);
+            XMLTools.SaveListToXMLSerializer(dependencies!, "dependencies");
+        }
+
     }
 }
