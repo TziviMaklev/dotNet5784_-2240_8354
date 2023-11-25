@@ -11,10 +11,13 @@ internal class DependencyImplementation : IDependency
     public int Create(Dependency item)
     {
         List <Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
-        Dependency? dependency = dependencies.FirstOrDefault( d => item.Id == d.Id );
+        Dependency? dependency = null;
+        int id = Config.NextIdDepency;
+        if (dependencies.Count > 0)
+            dependency = dependencies.FirstOrDefault(d => item.Id == d.Id);
         if (dependency == null)
         {
-            Dependency newDependency = item;
+            Dependency newDependency = item with { Id = id };
             dependencies?.Add( newDependency );
             XMLTools.SaveListToXMLSerializer(dependencies!, "dependencies");
         }

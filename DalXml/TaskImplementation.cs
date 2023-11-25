@@ -10,10 +10,15 @@ internal class TaskImplementation : ITask
     public int Create(Task item)
     {
         List<Task>? tasksL = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
-        Task ? task = tasksL.First(d => item.Id == d.Id);
+        int id = Config.NextIdTask;
+        Task? task = null;
+        if (tasksL.Count > 0)
+        {
+            task = tasksL.FirstOrDefault(d => id == d.Id);
+        }
         if (task == null)
         {
-            Task newTask = item;
+            Task newTask = item with { Id = id};
             tasksL.Add(newTask);
             XMLTools.SaveListToXMLSerializer(tasksL!, "tasks");
         }
