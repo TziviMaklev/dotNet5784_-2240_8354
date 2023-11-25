@@ -10,7 +10,7 @@ internal class DependencyImplementation : IDependency
 {
     public int Create(Dependency item)
     {
-        List <Dependency>? dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
+        List <Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
         Dependency? dependency = dependencies.FirstOrDefault( d => item.Id == d.Id );
         if (dependency == null)
         {
@@ -37,7 +37,7 @@ internal class DependencyImplementation : IDependency
         else
         {
 
-            dependencies?.Remove(dependency);
+            dependencies?.Remove(dependency!);
             XMLTools.SaveListToXMLSerializer(dependencies!, "dependencies");
         }
     }

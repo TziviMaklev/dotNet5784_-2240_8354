@@ -9,19 +9,21 @@ internal class TaskImplementation : ITask
 {
     public int Create(Task item)
     {
-        List<Task>? tasks = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
-        Task? task = tasks.FirstOrDefault(d => item.Id == d.Id);
+        List<Task>? tasksL = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
+        Task ? task = tasksL.First(d => item.Id == d.Id);
         if (task == null)
         {
             Task newTask = item;
-            tasks?.Add(newTask);
-            XMLTools.SaveListToXMLSerializer(tasks!, "tasks");
+            tasksL.Add(newTask);
+            XMLTools.SaveListToXMLSerializer(tasksL!, "tasks");
         }
         else
         {
             throw new DalAlreadyExistsException("An task with this ID number already exists");
         }
         return item.Id;
+
+
     }
 
     public void Delete(int id)
@@ -39,6 +41,7 @@ internal class TaskImplementation : ITask
             tasks?.Remove(task);
             XMLTools.SaveListToXMLSerializer(tasks!, "tasks");
         }
+
     }
 
     public Task? Read(int id)

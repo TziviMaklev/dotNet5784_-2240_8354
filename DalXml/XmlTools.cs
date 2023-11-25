@@ -1,6 +1,7 @@
 ﻿namespace Dal;
 
 using DO;
+using System.Reflection.Metadata;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -60,6 +61,7 @@ static class XMLTools
         string filePath = $"{s_xml_dir + entity}.xml";
         try
         {
+            Console.WriteLine("try");
             if (File.Exists(filePath))
                 return XElement.Load(filePath);
             XElement rootElem = new(entity);
@@ -97,6 +99,7 @@ static class XMLTools
         string filePath = $"{s_xml_dir + entity}.xml";
         try
         {
+            bool p =File.Exists(filePath);
             if (!File.Exists(filePath)) return new();
             using FileStream file = new(filePath, FileMode.Open);
             XmlSerializer x = new(typeof(List<T>));
