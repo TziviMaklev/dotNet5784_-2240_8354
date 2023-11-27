@@ -16,7 +16,7 @@ internal class EngineerImplementation : IEngineer
     {
 
         XElement engineers = XMLTools.LoadListFromXMLElement("engineers");
-        var engineer = engineers.Descendants("engineer")
+        var engineer = engineers.Descendants("Engineer")
             .FirstOrDefault(e => e.Attribute("Id")!.Value.Equals(item.Id));
         XElement? returnEngineer = new XElement("Engineer",
                                                  new XAttribute("Id", item.Id),
@@ -38,8 +38,9 @@ internal class EngineerImplementation : IEngineer
 
     public void Delete(int id)
     {
-        List<Engineer>? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
-        Engineer? engineer = engineers.FirstOrDefault(d => id == d.Id);
+        XElement? engineers = XMLTools.LoadListFromXMLElement("engineers");
+        var engineer = engineers.Descendants("Engineer")
+            .FirstOrDefault(e => Convert.ToInt32(e.Attribute("Id")!.Value).Equals(id));
         if (engineer == null)
         {
             throw new DalAlreadyExistsException("An engineer with this ID number not exists");
@@ -48,8 +49,8 @@ internal class EngineerImplementation : IEngineer
         else
         {
 
-            engineers?.Remove(engineer);
-            XMLTools.SaveListToXMLSerializer(engineers!, "engineers");
+            engineer.Remove();
+            XMLTools.SaveListToXMLElement(engineers!, "engineers");
         }
     }
 

@@ -222,8 +222,8 @@ public static class Initialization
         //s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
         //s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
         s_dal = dal ?? throw new NullReferenceException("DAL can not be null!");
-        //CreateTask();
-        //CreateDependency();
+        CreateTask();
+        CreateDependency();
         CreateEngineer();
     }
 }
