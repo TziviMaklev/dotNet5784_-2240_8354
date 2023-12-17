@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+namespace BO;
 
-namespace BO
+internal class Milestone
 {
-    internal class Milestone
-    {
-    }
+    int Id;
+    string? Alias;
+    string? Description;
+    DateTime? ProductionDate;
+    Status status;
+    DateTime? StartDate;
+    DateTime? EstimatedCompletionDate;
+
 }

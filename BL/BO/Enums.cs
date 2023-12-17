@@ -8,3 +8,7 @@ public enum EngineerExperience
     Proficient,
     Expert
 }
+public enum Status
+{
+
+}
