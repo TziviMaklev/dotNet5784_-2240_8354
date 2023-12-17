@@ -3,8 +3,6 @@ using DalApi;
 using DO;
 
 namespace DalTest;
-
-
 /// <summary>
 /// initialize all of the lists with data
 /// </summary>
@@ -15,7 +13,6 @@ public static class Initialization
     //private static IEngineer? s_dalEngineer;
     //private static IDependency? s_dalDependency;
     private static IDal? s_dal;
-
     //use for making random numbers for the objects
     private static readonly Random s_rand = new();
     private const int MIN_ID = 100000000;
@@ -216,12 +213,15 @@ public static class Initialization
     /// <param name="dalDependency">dependency list</param>
     /// <param name="dalEngineer">engineer list</param>
     /// <exception cref="NullReferenceException">there is no list like this</exception>
-    public static void Do(IDal dal)
+    /// 
+    //public static void Do(IDal dal)
+    public static void Do() //stage 4
     {
         //s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
         //s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
         //s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
-        s_dal = dal ?? throw new NullReferenceException("DAL can not be null!");
+        //s_dal = dal ?? throw new NullReferenceException("DAL can not be null!");
+        s_dal = DalApi.Factory.Get; //stage 4
         CreateTask();
         CreateDependency();
         CreateEngineer();
