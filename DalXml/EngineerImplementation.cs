@@ -11,19 +11,24 @@ using System.Xml.Linq;
 
 internal class EngineerImplementation : IEngineer
 {
-    XDocument? doc;
+    /// <summary>
+    /// create a new item in the Engineer list
+    /// </summary>
+    /// <param name="item">the item to add</param>
+    /// <returns>the id of the item we addad</returns>
+    /// <exception cref="Exception">the item with a same id of the parameter</exception>
     public int Create(Engineer item)
     {
 
         XElement engineers = XMLTools.LoadListFromXMLElement("engineers");
         var engineer = engineers.Descendants("Engineer")
-            .FirstOrDefault(e => e.Attribute("Id")!.Value.Equals(item.Id));
+            .FirstOrDefault(e => e.Element("Id")!.Value.Equals(item.Id));
         XElement? returnEngineer = new XElement("Engineer",
-                                                 new XAttribute("Id", item.Id),
-                                                 new XAttribute("Name", item.Name),
-                                                 new XAttribute("Email", item.Email),
-                                                 new XAttribute("Level", item.Level),
-                                                 new XAttribute("Cost", item.Cost));
+                                                 new XElement("Id", item.Id),
+                                                 new XElement("Name", item.Name),
+                                                 new XElement("Email", item.Email),
+                                                 new XElement("Level", item.Level),
+                                                 new XElement("Cost", item.Cost));
         if (engineer == null)
         {
             engineers.Add(returnEngineer);
@@ -36,11 +41,16 @@ internal class EngineerImplementation : IEngineer
         }
     }
 
+    /// <summary>
+    /// delete a item from the Engineer list
+    /// </summary>
+    /// <param name="id">the id of the item to delete</param>
+    /// <exception cref="Exception">this id is not exist</exception>
     public void Delete(int id)
     {
         XElement? engineers = XMLTools.LoadListFromXMLElement("engineers");
         var engineer = engineers.Descendants("Engineer")
-            .FirstOrDefault(e => Convert.ToInt32(e.Attribute("Id")!.Value).Equals(id));
+            .FirstOrDefault(e => Convert.ToInt32(e.Element("Id")!.Value).Equals(id));
         if (engineer == null)
         {
             throw new DalAlreadyExistsException("An engineer with this ID number not exists");
@@ -54,21 +64,31 @@ internal class EngineerImplementation : IEngineer
         }
     }
 
+    /// <summary>
+    /// read an item from the Engineer list
+    /// </summary>
+    /// <param name="id">the id of the item to delete</param>
+    /// <returns>return a reference to the item</returns>
     public Engineer? Read(int id)
     {
         XElement? engineers = XMLTools.LoadListFromXMLElement("engineers");
         var engineer = (engineers.Elements("Engineer")
                                .Select(e => new Engineer
                                {
-                                   Id = Convert.ToInt32(e.Attribute("Id")!.Value),
-                                   Name = e.Attribute("Name")!.Value,
-                                   Email = e.Attribute("Email")!.Value,
-                                   Level = (EngineerExperience)Enum.Parse(typeof(EngineerExperience), e.Attribute("Level")!.Value),
-                                   Cost = Convert.ToDouble(e.Attribute("Cost")!.Value)
+                                   Id = Convert.ToInt32(e.Element("Id")!.Value),
+                                   Name = e.Element("Name")!.Value,
+                                   Email = e.Element("Email")!.Value,
+                                   Level = (EngineerExperience)Enum.Parse(typeof(EngineerExperience), e.Element("Level")!.Value),
+                                   Cost = Convert.ToDouble(e.Element("Cost")!.Value)
                                })).FirstOrDefault(e => e.Id == id);
         return engineer;
     }
 
+    /// <summary>
+    /// read an item from the Engineer list according to the filter function
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns>return a reference to the item</returns>
     public Engineer? Read(Func<Engineer, bool> filter)
     {
 
@@ -76,15 +96,19 @@ internal class EngineerImplementation : IEngineer
         var engineer = (engineers.Elements("Engineer")
                                .Select(e => new Engineer
                                {
-                                   Id = Convert.ToInt32(e.Attribute("Id")!.Value),
-                                   Name = e.Attribute("Name")!.Value,
-                                   Email = e.Attribute("Email")!.Value,
-                                   Level = (EngineerExperience)Enum.Parse(typeof(EngineerExperience), e.Attribute("Level")!.Value),
-                                   Cost = Convert.ToDouble(e.Attribute("Cost")!.Value)
+                                   Id = Convert.ToInt32(e.Element("Id")!.Value),
+                                   Name = e.Element("Name")!.Value,
+                                   Email = e.Element("Email")!.Value,
+                                   Level = (EngineerExperience)Enum.Parse(typeof(EngineerExperience), e.Element("Level")!.Value),
+                                   Cost = Convert.ToDouble(e.Element("Cost")!.Value)
                                })).FirstOrDefault(filter);
         return engineer;
     }
 
+    /// <summary>
+    /// read all of the Dependency list
+    /// </summary>
+    /// <returns>a list that copied from the Dependency list</returns>
     public IEnumerable<Engineer?> ReadAll(Func<Engineer, bool>? filter = null)
     {
         if (filter == null)
@@ -93,11 +117,11 @@ internal class EngineerImplementation : IEngineer
             var allEngineers = engineers.Elements("Engineer")
                                .Select(e => new Engineer
                                {
-                                   Id = Convert.ToInt32(e.Attribute("Id")!.Value),
-                                   Name = e.Attribute("Name")!.Value,
-                                   Email = e.Attribute("Email")!.Value,
-                                   Level = (EngineerExperience)Enum.Parse(typeof(EngineerExperience), e.Attribute("Level")!.Value),
-                                   Cost = Convert.ToDouble(e.Attribute("Cost")!.Value)
+                                   Id = Convert.ToInt32(e.Element("Id")!.Value),
+                                   Name = e.Element("Name")!.Value,
+                                   Email = e.Element("Email")!.Value,
+                                   Level = (EngineerExperience)Enum.Parse(typeof(EngineerExperience), e.Element("Level")!.Value),
+                                   Cost = Convert.ToDouble(e.Element("Cost")!.Value)
                                });
             return allEngineers;
         }
@@ -107,11 +131,11 @@ internal class EngineerImplementation : IEngineer
             IEnumerable<Engineer?> foundEngineer = engineers.Elements("Engineer")
                 .Select(e => new Engineer
                 {
-                    Id = Convert.ToInt32(e.Attribute("Id")!.Value),
-                    Name = e.Attribute("Name")!.Value,
-                    Email = e.Attribute("Email")!.Value,
-                    Level = (EngineerExperience)Enum.Parse(typeof(EngineerExperience), e.Attribute("Level")!.Value),
-                    Cost = Convert.ToDouble(e.Attribute("Cost")!.Value)
+                    Id = Convert.ToInt32(e.Element("Id")!.Value),
+                    Name = e.Element("Name")!.Value,
+                    Email = e.Element("Email")!.Value,
+                    Level = (EngineerExperience)Enum.Parse(typeof(EngineerExperience), e.Element("Level")!.Value),
+                    Cost = Convert.ToDouble(e.Element("Cost")!.Value)
                 })
                 .Where(filter);
             return foundEngineer;
@@ -119,6 +143,9 @@ internal class EngineerImplementation : IEngineer
 
     }
 
+    /// <summary>
+    /// delete all items in the Engineer list
+    /// </summary>
     public void Reset()
     {
         XElement? engineers = XMLTools.LoadListFromXMLElement("engineers");
@@ -126,120 +153,14 @@ internal class EngineerImplementation : IEngineer
         XMLTools.SaveListToXMLElement(engineers, "engineers");
     }
 
+    /// <summary>
+    /// update one item in the Dependency list
+    /// </summary>
+    /// <param name="item">the item to update</param>
     public void Update(Engineer item)
     {
         Delete(item.Id);
         Create(item);
     }
 }
-//namespace Dal;
-//using DalApi;
-//using DO;
-//using System;
-//using System.Collections.Generic;
-//using System.Reflection.PortableExecutable;
-//using System.Reflection;
-//using System.Text.Json;
-//using System.Xml.Linq;
-//using System.Xml.Serialization;
-//using System.Threading.Tasks;
 
-//internal class EngineerImplementation : IEngineer
-//{
-//    const string FILENAME = @"..\xml\engineers.xml";
-
-
-//    /// <summary>
-//    /// create a new engineer entity
-//    /// </summary>
-//    /// <param name="item">wanted engineer to add</param>
-//    /// <returns>new entity</returns>
-//    /// <exception cref="Exception">there's no such engineer with the wanted ID</exception>
-//    public int Create(Engineer item)
-//    {
-//        List<Engineer>? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
-//        Engineer? engineer = engineers?.FirstOrDefault(engineer => engineer.Id == item.Id);
-//        if (engineer != null)
-//            throw new DalAlreadyExistsException("An engineer with this ID number already exists");
-//        Engineer new_engineer = item with { };
-//        engineers?.Add(new_engineer);
-//        XMLTools.SaveListToXMLSerializer(engineers!, "engineers");
-//        return new_engineer.Id;
-//    }
-
-//    /// <summary>
-//    /// delete engineer entity
-//    /// </summary>
-//    /// <param name="id">wanted engineer to delete</param>
-//    /// <exception cref="Exception">there's no such engineer with the wanted ID</exception>
-//    public void Delete(int id)
-//    {
-//        List<Engineer>? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
-//        Engineer? engineer = engineers?.FirstOrDefault(engineer => engineer.Id == id);
-//        if (engineer is null)
-//            throw new DalDoesNotExistException($"engineer with ID={id} already not exists\n");
-//        engineers?.Remove(engineer);
-//        XMLTools.SaveListToXMLSerializer(engineers!, "engineers");
-//    }
-
-
-//    /// <summary>
-//    /// returns a Engineer by some kind attribute.
-//    /// </summary>
-//    /// <param name="filter">The attributethat the search works by</param>
-//    public Engineer? Read(Func<Engineer, bool> filter)
-//    {
-//        List<Engineer>? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
-//        return engineers!.FirstOrDefault(filter);
-//    }
-
-//    /// <summary>
-//    /// display one engineer
-//    /// </summary>
-//    /// <param name="id">the wanted engineer</param>
-//    /// <returns></returns>
-//    public Engineer? Read(int id)
-//    {
-//        List<Engineer>? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
-//        return (engineers!.Find(element => element!.Id == id));
-//    }
-
-//    /// <summary>
-//    /// return all the engineer's entities
-//    /// </summary>
-//    /// <returns></returns>
-//    public IEnumerable<Engineer?> ReadAll(Func<Engineer, bool>? filter = null)
-//    {
-//        List<Engineer>? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
-//        if (filter == null)
-//            return engineers!.Select(item => item);
-//        else
-//            return engineers!.Where(filter);
-//    }
-
-//    /// <summary>
-//    /// update specific engineer entity
-//    /// </summary>
-//    /// <param name="item">wanted engineer's</param>
-//    /// <exception cref="Exception">there's no such engineer with the wanted ID</exception>
-//    public void Update(Engineer item)
-//    {
-//        List<Engineer>? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
-//        Engineer? engineer = engineers?.FirstOrDefault(engineer => engineer.Id == item.Id);
-//        if (engineer == null)
-//            throw new DalDoesNotExistException($"engineer with ID={item.Id} already not exists\n");
-//        else
-//        {
-//            engineers?.Remove(engineer);
-//            engineers?.Add(item);
-//            XMLTools.SaveListToXMLSerializer(engineers!, "engineers");
-//        }
-
-//    }
-//    public void Reset()
-//    {
-//        XElement? engineers = XMLTools.LoadListFromXMLElement("engineers");
-//        engineers.Elements().Remove();
-//        XMLTools.SaveListToXMLElement(engineers, "engineers");
-//    }
-//}
