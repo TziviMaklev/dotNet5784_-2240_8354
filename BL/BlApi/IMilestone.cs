@@ -1,6 +1,9 @@
 ﻿
 namespace BlApi;
+/// <summary>
+/// 
+/// </summary>
 
-internal interface IMilestone
+public interface IMilestone
 {
 }

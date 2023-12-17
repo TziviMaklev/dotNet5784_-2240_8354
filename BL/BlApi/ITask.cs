@@ -1,6 +1,8 @@
 ﻿
 namespace BlApi;
-
-internal interface ITask
+/// <summary>
+/// 
+/// </summary>
+public interface ITask
 {
 }

@@ -1,6 +1,10 @@
 ﻿
 namespace BlApi;
 
-internal interface Engineer
+public interface Engineer
 {
+    public int GetEngineer(Engineer item)
+    {
+
+    }
 }
