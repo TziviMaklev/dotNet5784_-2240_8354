@@ -1,7 +1,7 @@
 ﻿
 namespace BO;
 
-internal class Task
+public class Task
 {
     int Id { get; init; }
     string? Alias { get; init; }
