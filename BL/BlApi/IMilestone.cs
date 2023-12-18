@@ -1,12 +1,9 @@
 ﻿
 namespace BlApi;
-/// <summary>
-/// 
-/// </summary>
 
 public interface IMilestone
 {
-    void CreatingTheMilestoneProjectSchedule() { }
-    BO.Milestone RequestMilestoneDetails() { return new BO.Milestone(); }
-    void UpdateMilestone() { }
+    void CreatingTheMilestoneProjectSchedule() ;
+    BO.Milestone RequestMilestoneDetails(int id) ;
+    void UpdateMilestone(BO.Milestone milestone) ;
 }
