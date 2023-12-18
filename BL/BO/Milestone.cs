@@ -1,7 +1,7 @@
 ﻿
 namespace BO;
 
-internal class Milestone
+public class Milestone
 {
     int Id { get; init; }
     string? Alias {  get; init; }
