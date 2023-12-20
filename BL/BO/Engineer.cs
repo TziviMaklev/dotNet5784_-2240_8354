@@ -3,9 +3,9 @@ namespace BO;
 
 public class Engineer
 {
-    int Id { get; init; }
-    string? Name { get; init; }
-    string? Email { get; set; }
-    EngineerExperience EngineerLevel { get; set; }
-    float cost {  get; set; }
+    internal int Id { get; init; }
+    internal string? Name { get; init; }
+    internal string? Email { get; set; }
+    internal EngineerExperience Level { get; set; }
+    internal float Cost {  get; set; }
 }
