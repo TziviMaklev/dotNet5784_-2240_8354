@@ -5,9 +5,9 @@ namespace BlApi;
 
 public interface ITask
 {
-    IEnumerable<BO.Task>? RequestTaskList(Func<BO.Task, bool> filter) ;
+    IEnumerable<BO.TaskInList>? RequestTaskList(Func<BO.TaskInList, bool> filter) ;
     BO.Task GetTask(int id);
-    void AddTask(BO.Task task);
+    int AddTask(BO.Task task);
     void RemoveTask(int id);
     void UpdateTask(BO.Task task);
 }

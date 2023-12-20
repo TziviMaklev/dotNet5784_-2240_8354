@@ -2,66 +2,105 @@
 namespace BlImplementation;
 using BlApi;
 using BO;
+using DalApi;
 using System;
 using System.Collections.Generic;
 
 internal class TaskImplementation : ITask
 {
-    public void AddTask(Task task)
+    private DalApi.IDal _dal = DalApi.Factory.Get;
+
+    public IEnumerable<BO.TaskInList>? RequestTaskList(Func<BO.TaskInList, bool>? filter)
     {
-        DO.Task doTask = new DO.Task(task.id, task.description,task.alias,task.estimatedCompletionDate,task.finalDateForCompletion,task.remarks);
-    /*    int Id,
-    string Description,
-    string Alias,
-    bool Milestone,
-    string Deliverables,
-    EngineerExperience ComplexityTask,
-    DateTime CreationDate,
-    DateTime? StartDate,
-    DateTime? ScheduledDate = null,
-    DateTime? ForecastDate = null,
-    DateTime? DeadlineDate = null,
-    int? EngineerId = null*/
+        var taskList = (from DO.Task doTask in _dal.Task.ReadAll()
+                        select new BO.TaskInList
+                        {
+                            Id = doTask.Id,
+                            Alias = doTask.Alias,
+                            Description = doTask.Description,
+                            Status = (BO.Status)(doTask.ScheduledDate is null ? 0
+                                               : doTask.StartDate is null ? 1
+                                               : doTask.CompletionDate is null ? 2
+                                               : 3)
+                        });
+        if (filter != null)
+        {
+            var taskListWhithFilter = (from item in taskList
+                                       where filter(item)
+                                       select item);
 
+            return taskListWhithFilter;
+        }
+        else
+        {
+            return taskList;
+        }
     }
-
-    public void AddTask(BO.Task task)
+    public BO.Task GetTask(int id)
     {
-        throw new NotImplementedException();
-    }
+        try
+        {
+            DO.Task? task = _dal.Task.Read(id);
+            /*var dependencies = (from DO.Dependency doDependency in _dal.Dependency.ReadAll()
+                                where doDependency.DependentTask == id
+                                select doDependency.DependenceOnTask).ToList()
+                                .ForEach(dep => dependencies.Add(dep));*/
+            return new BO.Task()
+            {
+                Id = task!.Id,
+                Alias = task!.Alias,
+                Description = task!.Description,
+                CreatedAtDate = task!.CreationDate,
+                Status = (BO.Status)(task.ScheduledDate is null ? 0
+                                               : task.StartDate is null ? 1
+                                               : task.CompletionDate is null ? 2
+                                               : 3),
+                /*Dependencies =*/
 
-    public Task GetTask(int id)
+        };
+
+        }
+        catch (DO.DalAlreadyExistsException ex)
+        {
+            throw new BO.BlDoesNotExistException($"Student with ID={id} does Not exist");
+        }
+    }
+    public int AddTask(BO.Task task)
     {
-        
+        DO.Task doTask = new DO.Task(
+            task.Id,
+            task.Description!,
+            task.Alias!,
+            false,
+            task.Deliverables!,
+            (DO.EngineerExperience)task.ComplexityTask,
+            task.CreatedAtDate,
+            task.StartDate,
+            task.EstimatedStartDate,
+            task.ForecastDate,
+            task.DeadlineDate,
+            task.CompleteDate,
+            task.Remarks,
+            task.Engineer!.Id);
+        try
+        {
+            int idNewTask = _dal.Task.Create(doTask);
+            return idNewTask;
+        }
+        catch (DO.DalAlreadyExistsException ex)
+        {
+            throw new BO.BlAlreadyExistsException($"Student with ID={task.Id} already exists", ex)
+    ;
+        }
     }
-
     public void RemoveTask(int id)
     {
-        
-    }
 
-    public IEnumerable<Task>? RequestTaskList(Func<Task, bool> filter)
-    {
-        
     }
-
-    public IEnumerable<BO.Task>? RequestTaskList(Func<BO.Task, bool> filter)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void UpdateTask(Task task)
-    {
-        
-    }
-
     public void UpdateTask(BO.Task task)
     {
-        throw new NotImplementedException();
+
     }
 
-    BO.Task ITask.GetTask(int id)
-    {
-        throw new NotImplementedException();
-    }
+
 }
