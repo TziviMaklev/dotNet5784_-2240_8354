@@ -3,18 +3,19 @@ namespace BO;
 
 public class Task
 {
-    int Id { get; init; }
-    string? Alias { get; init; }
-    string? Description { get; init; }
-    DateTime ProductionDate { get; init; }
-    Status Status { get;set; }
-    TaskInList? DependencyList { get; set; }
-    DateTime EstimatedStartDate { get; set; }
-    DateTime ActualStartDate { get; set; }
-    DateTime EstimatedCompletionDate { get; set; }
-    DateTime FinalDateForCompletion { get; set; }
-    DateTime ActualEndDate { get; set; }
-    string? Product { get; set; }
-    string? Remarks { get; set; }
-    EngineerExperience Difficulty { get; set; }
+    internal int Id { get; init; }
+    internal string? Alias { get; init; }
+    internal string? Description { get; init; }
+    internal DateTime CreatedAtDate { get; init; }
+    internal Status Status { get;set; }
+    internal TaskInList? Dependencies { get; set; }
+    internal DateTime EstimatedStartDate { get; set; }
+    internal DateTime StartDate { get; set; }
+    internal DateTime ForecastDate { get; set; }
+    internal DateTime DeadlineDate { get; set; }
+    internal DateTime CompleteDate { get; set; }
+    internal string? Deliverables { get; set; }
+    internal string? Remarks { get; set; }
+    internal EngineerExperience ComplexityTask { get; set; }
+    
 }
