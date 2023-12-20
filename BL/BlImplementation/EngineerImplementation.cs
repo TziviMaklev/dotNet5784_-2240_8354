@@ -9,6 +9,13 @@ internal class EngineerImplementation : IEngineer
 {
     public void AddEngineer(Engineer engineer)
     {
+        DO.Engineer engineer1 =
+            new DO.Engineer(engineer.Id, engineer.Name!, engineer.Email!,
+            (DO.EngineerExperience)engineer.Level, engineer.Cost);
+        try
+        {
+
+        }
         throw new NotImplementedException();
     }
 
