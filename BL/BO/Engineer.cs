@@ -7,5 +7,5 @@ public class Engineer
     internal string? Name { get; init; }
     internal string? Email { get; set; }
     internal EngineerExperience Level { get; set; }
-    internal float Cost {  get; set; }
+    internal double Cost {  get; set; }
 }

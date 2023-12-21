@@ -5,9 +5,12 @@ namespace BlImplementation;
 
 internal class MilestoneImplementation : IMilestone
 {
+    private DalApi.IDal _dal = DalApi.Factory.Get;
     public void CreatingTheMilestoneProjectSchedule()
     {
-        throw new NotImplementedException();
+        //creat taskes
+
+        
     }
 
     public Milestone RequestMilestoneDetails(int id)
