@@ -42,4 +42,16 @@ static internal class Tools
 
         return sb.ToString();
     }
+    internal static class Config
+    {   
+        // Define the running variable
+        private static int MilestoneId=0;
+
+        // Function that uses the running variable
+        public static void NextMilestoneId()
+        {
+            // Increment the running variable
+            MilestoneId++;
+        }
+    }
 }
