@@ -41,10 +41,6 @@ internal class TaskImplementation : ITask
         try
         {
             DO.Task? task = _dal.Task.Read(id);
-            /*var dependencies = (from DO.Dependency doDependency in _dal.Dependency.ReadAll()
-                                where doDependency.DependentTask == id
-                                select doDependency.DependenceOnTask).ToList()
-                                .ForEach(dep => dependencies.Add(dep));*/
             return new BO.Task()
             {
                 Id = task!.Id,
@@ -55,15 +51,52 @@ internal class TaskImplementation : ITask
                                                : task.StartDate is null ? 1
                                                : task.CompletionDate is null ? 2
                                                : 3),
-                /*Dependencies =*/
-
-
-        };
+                Dependencies = (from DO.Dependency doDependency in _dal.Dependency!.ReadAll(d => d.DependentTask == task!.Id)
+                                where true
+                                select new BO.TaskInList()
+                                {
+                                    Id = doDependency.DependenceOnTask,
+                                    Alias = _dal.Task!.Read(doDependency.DependenceOnTask)?.Alias,
+                                    Description = _dal.Task!.Read(doDependency.DependenceOnTask)?.Description,
+                                    Status = (BO.Status)(
+                                    _dal.Task!.Read(doDependency.DependenceOnTask)?.ScheduledDate is null ? 0
+                                    : _dal.Task!.Read(doDependency.DependenceOnTask)?.StartDate is null ? 1
+                                    : _dal.Task!.Read(doDependency.DependenceOnTask)?.CompletionDate is null ? 2
+                                    : 3)
+                                }).ToList(),
+                Milstone = new BO.MilstoneInTask()
+                {
+                    Id = _dal.Task!.Read(_dal.Dependency!.Read(dep =>
+                    {
+                        _dal.Task!.Read(task => task.Milestone && task.Id == dep.DependentTask);
+                        return dep.DependenceOnTask == task.Id;
+                    })!.DependentTask)!.Id,
+                    Alias = _dal.Task!.Read(_dal.Dependency!.Read(dep =>
+                    {
+                        _dal.Task!.Read(task => task.Milestone && task.Id == dep.DependentTask);
+                        return dep.DependenceOnTask == task.Id;
+                    })!.DependentTask)?.Alias
+                },
+                RequiredEffortTime = task.RequiredEffortTime,
+                ScheduledDate = task.ScheduledDate,
+                StartDate = task.StartDate,
+                ForecastDate = task.ForecastDate,
+                DeadlineDate = task.DeadlineDate,
+                CompleteDate = task.CompletionDate,
+                Deliverables = task.Deliverables,
+                Remarks = task.Remarks,
+                ComplexityTask = (BO.EngineerExperience)task.ComplexityTask,
+                Engineer = new EngineerInTask()
+                {
+                    Id = (int)task.EngineerId!,
+                    Name = _dal.Engineer.Read(id)!.Name
+                }
+            };
 
         }
         catch (DO.DalAlreadyExistsException ex)
         {
-            throw new BO.BlDoesNotExistException($"Student with ID={id} does Not exist");
+            throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist");
         }
     }
     public int AddTask(BO.Task task)
@@ -75,9 +108,10 @@ internal class TaskImplementation : ITask
             false,
             task.Deliverables!,
             (DO.EngineerExperience)task.ComplexityTask,
+            task.RequiredEffortTime,
             task.CreatedAtDate,
             task.StartDate,
-            task.EstimatedStartDate,
+            task.ScheduledDate,
             task.ForecastDate,
             task.DeadlineDate,
             task.CompleteDate,
@@ -96,7 +130,15 @@ internal class TaskImplementation : ITask
     }
     public void RemoveTask(int id)
     {
-
+        DO.Task? task = _dal.Task.Read(id);
+        if (task != null)
+        {
+            _dal.Task.Delete(id);
+        }
+        else
+        {
+            throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist");
+        }
     }
     public void UpdateTask(BO.Task task)
     {

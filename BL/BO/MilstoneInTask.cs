@@ -3,6 +3,6 @@ namespace BO;
 
 internal class MilstoneInTask
 {
-    int Id { get; init; }
-    string? Alias {  get; init; }
+    internal int Id { get; init; }
+    internal string? Alias {  get; init; }
 }

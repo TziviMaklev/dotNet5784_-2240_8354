@@ -10,8 +10,8 @@ public class Task
     internal Status Status { get;set; }
     internal List<TaskInList>? Dependencies { get; set; }
     internal BO.MilstoneInTask ?Milstone {  get; set; }
-    internal TimeSpan? RequiredEffortTime { get; set; }
-    internal DateTime? EstimatedStartDate { get; set; }
+    internal TimeSpan RequiredEffortTime { get; set; }
+    internal DateTime? ScheduledDate { get; set; }
     internal DateTime ?StartDate { get; set; }
     internal DateTime ?ForecastDate { get; set; }
     internal DateTime ?DeadlineDate { get; set; }

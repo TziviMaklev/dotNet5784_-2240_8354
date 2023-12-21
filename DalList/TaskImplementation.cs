@@ -43,6 +43,7 @@ internal class TaskImplementation : ITask
             CompletionDate = item.CompletionDate,
             Remarks= item.Remarks,
             EngineerId = item.EngineerId,
+            RequiredEffortTime= item.RequiredEffortTime,
         };
         DataSource.Tasks.Add(newItem);
         return id;

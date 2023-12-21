@@ -113,11 +113,15 @@ public static class Initialization
             EngineerExperience.AdvancedBeginner,
             EngineerExperience.Proficient
         };
+        int[] _taskDays =
+        {
+            20,14,23,14,18,28,30,12,9,24,20,10,19,28,26,16,30,21,17,15
+        };
         for (int i = 0; i < _taskAliases.Length; i++)
         {
             DateTime creationDate = DateTime.Now;
             DO.Task newTask = new DO.Task(0, _taskDescriptions[i], _taskAliases[i],
-            false, _taskDeliverables[i], _taskEngineerExperiences[i], creationDate,
+            false, _taskDeliverables[i], _taskEngineerExperiences[i], TimeSpan.FromDays(_taskDays[i]), creationDate,
             null, null, null, null, null, null, null);
             s_dal!.Task.Create(newTask);
         }
