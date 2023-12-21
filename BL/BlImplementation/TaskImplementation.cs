@@ -98,7 +98,7 @@ internal class TaskImplementation : ITask
         }
         catch (DO.DalAlreadyExistsException ex)
         {
-            throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist");
+            throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist",ex);
         }
     }
     public int AddTask(BO.Task task)
@@ -125,7 +125,7 @@ internal class TaskImplementation : ITask
         }
         catch (DO.DalAlreadyExistsException ex)
         {
-            throw new BO.BlAlreadyExistsException($"Task with ID={task.Id} already exists", ex)
+            throw new BO.BlAlreadyExistsException($"Task with ID={task.Id} already exists",ex)
     ;
         }
     }
@@ -150,7 +150,7 @@ internal class TaskImplementation : ITask
         }
         else
         {
-            throw new BO.BlDoesNotExistException($"engineer with ID={engineer.Id} does Not exist");
+            throw new BO.BlDoesNotExistException($"engineer with ID={task.Id} does Not exist");
         }
     }
 

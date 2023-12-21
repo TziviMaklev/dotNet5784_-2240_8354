@@ -23,7 +23,7 @@ internal class EngineerImplementation : IEngineer
             return idNewEngineer;
         }
         catch (DO.DalAlreadyExistsException ex) {
-            throw new BO.BlAlreadyExistsException($"Engineer with ID={engineer.Id} already exists", ex);
+            throw  new BO.BlAlreadyExistsException($"Engineer with ID={engineer.Id} already exists", ex);
         }
 
             ;
