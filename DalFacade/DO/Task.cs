@@ -33,7 +33,6 @@ public record Task
     DateTime CreationDate,
     DateTime? StartDate,
     DateTime? ScheduledDate = null,
-    DateTime? ForecastDate = null,
     DateTime? DeadlineDate = null,
     DateTime? CompletionDate = null,
     string? Remarks = null,

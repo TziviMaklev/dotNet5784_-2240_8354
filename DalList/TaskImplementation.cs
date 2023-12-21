@@ -38,7 +38,6 @@ internal class TaskImplementation : ITask
             CreationDate = item.CreationDate,
             StartDate = item.StartDate,
             ScheduledDate = item.ScheduledDate,
-            ForecastDate=item.ForecastDate,
             DeadlineDate = item.DeadlineDate,
             CompletionDate = item.CompletionDate,
             Remarks= item.Remarks,

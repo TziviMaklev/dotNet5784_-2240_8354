@@ -122,7 +122,7 @@ public static class Initialization
             DateTime creationDate = DateTime.Now;
             DO.Task newTask = new DO.Task(0, _taskDescriptions[i], _taskAliases[i],
             false, _taskDeliverables[i], _taskEngineerExperiences[i], TimeSpan.FromDays(_taskDays[i]), creationDate,
-            null, null, null, null, null, null, null);
+            null, null, null, null, null, null);
             s_dal!.Task.Create(newTask);
         }
     }

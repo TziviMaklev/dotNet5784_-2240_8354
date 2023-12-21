@@ -202,12 +202,6 @@ internal class Program
                     if (ans != "")
                         scheduledDate = Convert.ToDateTime(ans);
 
-                    Console.WriteLine("if you want change the forecastDate enter:");
-                    DateTime? forecastDate = taskFound.ForecastDate;
-                    ans = Console.ReadLine();
-                    if (ans != "")
-                        forecastDate = Convert.ToDateTime(ans);
-
                     Console.WriteLine("if you want change the deadLineDate enter:");
                     DateTime? deadlineDate = taskFound.DeadlineDate;
                     ans = Console.ReadLine();
@@ -233,7 +227,7 @@ internal class Program
                         engineerId = Convert.ToInt32(ans);
                     DO.Task task = new DO.Task(taskFound.Id, description, alias, milestone,
                         deliverables, complexityTask, RequiredEffortTime, creationDate, startDate, scheduledDate,
-                        forecastDate, deadlineDate, completionDate, remarks, engineerId);
+                        deadlineDate, completionDate, remarks, engineerId);
                     Console.WriteLine(task.Id);
                     s_dal!.Task.Update(task);
                 }

@@ -3,8 +3,10 @@ namespace BlImplementation;
 using BlApi;
 using BO;
 using DalApi;
+using DO;
 using System;
 using System.Collections.Generic;
+using ITask = BlApi.ITask;
 
 internal class TaskImplementation : ITask
 {
@@ -80,7 +82,7 @@ internal class TaskImplementation : ITask
                 RequiredEffortTime = task.RequiredEffortTime,
                 ScheduledDate = task.ScheduledDate,
                 StartDate = task.StartDate,
-                ForecastDate = task.ForecastDate,
+                ForecastDate = task.StartDate+task.RequiredEffortTime,
                 DeadlineDate = task.DeadlineDate,
                 CompleteDate = task.CompletionDate,
                 Deliverables = task.Deliverables,
@@ -112,7 +114,6 @@ internal class TaskImplementation : ITask
             task.CreatedAtDate,
             task.StartDate,
             task.ScheduledDate,
-            task.ForecastDate,
             task.DeadlineDate,
             task.CompleteDate,
             task.Remarks,
@@ -142,7 +143,15 @@ internal class TaskImplementation : ITask
     }
     public void UpdateTask(BO.Task task)
     {
-
+        DO.Task? doTask = _dal.Task.Read(task.Id);
+        if (doTask != null)
+        {
+            _dal.Task.Update(doTask);
+        }
+        else
+        {
+            throw new BO.BlDoesNotExistException($"engineer with ID={engineer.Id} does Not exist");
+        }
     }
 
 
