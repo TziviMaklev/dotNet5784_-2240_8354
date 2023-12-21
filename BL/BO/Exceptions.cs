@@ -36,3 +36,7 @@ public class BlXMLFileLoadCreateException : Exception
     public BlXMLFileLoadCreateException(string message, Exception innerException)
                 : base(message, innerException) { }
 }
+public class ChoiseDoesNotExistException : Exception//if the choise that the user chose is not exist
+{
+    public ChoiseDoesNotExistException(string? message) : base(message) { }
+}

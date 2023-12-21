@@ -24,7 +24,7 @@ internal class Program
                     "2. Engineer\n" +
                     "3. Dependency\n");
                 ans = Console.ReadLine();
-                int.TryParse(ans, out userChose); ;//ReadLine returns only string so we converted it to integer
+                int.TryParse(ans, out userChose) ;//ReadLine returns only string so we converted it to integer
                 switch (userChose)
                 {
                     case 0:
@@ -105,8 +105,7 @@ internal class Program
                         default:
                             throw new ChoiseDoesNotExistException("This choice does not exist");
                     }
-                    DO.Task task = new DO.Task(0, desc, alias, false, deliver, experience
-                        , DateTime.Now, null);
+                    DO.Task task = new DO.Task( 0, desc, alias, false, deliver, experience ,TimeSpan.FromDays(0), DateTime.Now, null);
                     s_dal!.Task.Create(task);
                 }
                 break;//Add

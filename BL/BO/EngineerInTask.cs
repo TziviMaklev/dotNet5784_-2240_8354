@@ -1,7 +1,7 @@
 ﻿
 namespace BO;
 
-internal class EngineerInTask
+public class EngineerInTask
 {
     internal int Id { get; init; }
     internal string? Name { get; init; } 

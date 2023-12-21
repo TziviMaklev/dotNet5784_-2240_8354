@@ -3,23 +3,23 @@ namespace BO;
 
 public class Task
 {
-    internal int Id { get; init; }
-    internal string? Alias { get; init; }
-    internal string? Description { get; init; }
-    internal DateTime CreatedAtDate { get; init; }
-    internal Status Status { get;set; }
-    internal List<TaskInList>? Dependencies { get; set; }
-    internal BO.MilstoneInTask ?Milstone {  get; set; }
-    internal TimeSpan RequiredEffortTime { get; set; }
-    internal DateTime? ScheduledDate { get; set; }
-    internal DateTime ?StartDate { get; set; }
-    internal DateTime ?ForecastDate { get; set; }
-    internal DateTime ?DeadlineDate { get; set; }
-    internal DateTime? CompleteDate { get; set; }
-    internal string? Deliverables{ get; set; }
-    internal string? Remarks { get; set; }
-    internal EngineerExperience ComplexityTask { get; set; }
-    internal BO.EngineerInTask? Engineer { get; set; }
+    public int Id { get; init; }
+    public string? Alias { get; init; }
+    public string? Description { get; init; }
+    public DateTime CreatedAtDate { get; init; }
+    public Status Status { get;set; }
+    public List<TaskInList>? Dependencies { get; set; }
+    public BO.MilstoneInTask ?Milstone {  get; set; }
+    public TimeSpan RequiredEffortTime { get; set; }
+    public DateTime? ScheduledDate { get; set; }
+    public DateTime ?StartDate { get; set; }
+    public DateTime ?ForecastDate { get; set; }
+    public DateTime ?DeadlineDate { get; set; }
+    public DateTime? CompleteDate { get; set; }
+    public string? Deliverables{ get; set; }
+    public string? Remarks { get; set; }
+    public EngineerExperience ComplexityTask { get; set; }
+    public BO.EngineerInTask? Engineer { get; set; }
 
     
 }
