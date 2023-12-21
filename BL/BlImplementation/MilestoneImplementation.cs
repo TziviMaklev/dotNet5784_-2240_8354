@@ -10,7 +10,7 @@ namespace BlImplementation;
 internal class MilestoneImplementation : IMilestone
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
-    public List<DO.Dependency> CreatingTheMilestoneProjectSchedule(List<DO.Dependency> recievedDeps)
+    public List<BO.Milestone> CreatingTheMilestoneProjectSchedule(List<DO.Dependency> recievedDeps)
     {
         List<DO.Dependency> newDependenceisList = new List<DO.Dependency>();
 
@@ -43,7 +43,7 @@ internal class MilestoneImplementation : IMilestone
 
 
         }
-        return newDependenceisList;
+
 
     }
 
