@@ -176,7 +176,12 @@ internal class Program
                                 throw new ChoiseDoesNotExistException("This choice does not exist");
                         }
 
-
+                    Console.WriteLine("if you want change the RequiredEffortTime enter:");
+                    TimeSpan RequiredEffortTime;
+                    ans = Console.ReadLine();
+                    check = TimeSpan.TryParse(ans, out RequiredEffortTime);
+                    if (!check)
+                        RequiredEffortTime = taskFound.RequiredEffortTime;
 
                     Console.WriteLine("if you want change the creationDate enter:");
                     DateTime creationDate;
@@ -227,7 +232,7 @@ internal class Program
                     if (ans != "")
                         engineerId = Convert.ToInt32(ans);
                     DO.Task task = new DO.Task(taskFound.Id, description, alias, milestone,
-                        deliverables, complexityTask, creationDate, startDate, scheduledDate,
+                        deliverables, complexityTask, RequiredEffortTime, creationDate, startDate, scheduledDate,
                         forecastDate, deadlineDate, completionDate, remarks, engineerId);
                     Console.WriteLine(task.Id);
                     s_dal!.Task.Update(task);
