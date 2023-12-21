@@ -20,7 +20,7 @@ internal class MilestoneImplementation : IMilestone
         internal IEnumerable<int> depList;
     }
     private DalApi.IDal _dal = DalApi.Factory.Get;
-    public void CreateProjectTimeline()
+    public void CreatingTheMilestoneProjectSchedule()
     {
 
     }
@@ -47,7 +47,7 @@ internal class MilestoneImplementation : IMilestone
             DO.Task milestone = new DO.Task
             {
                 Id = 0,
-                Alias= $"m{}"
+                Alias= $"M{BO.Tools.Config.NextMilestoneId}",
                 Milestone = true,
                 CreationDate = DateTime.Now
             };
@@ -79,6 +79,7 @@ internal class MilestoneImplementation : IMilestone
         int idFirstMileston = _dal.Task.Create(new DO.Task
         {
             Id = 0,
+            Alias="Start",
             Milestone = true,
             CreationDate = DateTime.Now
         });
