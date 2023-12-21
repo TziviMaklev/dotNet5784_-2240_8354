@@ -56,7 +56,8 @@ internal class EngineerImplementation : IEngineer
           Name = engineer.Name,
           Email = engineer.Email,
           Level = (BO.EngineerExperience)engineer.Level,
-          Cost = engineer.Cost,};
+          Cost = engineer.Cost,
+        };
         return boEngineer;
 
     }

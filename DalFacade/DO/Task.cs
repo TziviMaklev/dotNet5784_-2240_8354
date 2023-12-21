@@ -24,13 +24,13 @@ namespace DO;
 public record Task
 (
     int Id,
-    string Description,
-    string Alias,
+    string ?Description,
+    string ?Alias,
     bool Milestone,
     string Deliverables,
     EngineerExperience ComplexityTask,
     DateTime CreationDate,
-    DateTime? StartDate,
+    DateTime ?StartDate,
     DateTime? ScheduledDate = null,
     DateTime? ForecastDate = null,
     DateTime? DeadlineDate = null,
