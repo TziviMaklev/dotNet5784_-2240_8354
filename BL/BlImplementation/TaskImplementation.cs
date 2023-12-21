@@ -57,6 +57,7 @@ internal class TaskImplementation : ITask
                                                : 3),
                 /*Dependencies =*/
 
+
         };
 
         }
@@ -89,7 +90,7 @@ internal class TaskImplementation : ITask
         }
         catch (DO.DalAlreadyExistsException ex)
         {
-            throw new BO.BlAlreadyExistsException($"Student with ID={task.Id} already exists", ex)
+            throw new BO.BlAlreadyExistsException($"Task with ID={task.Id} already exists", ex)
     ;
         }
     }

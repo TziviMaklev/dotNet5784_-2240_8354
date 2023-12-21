@@ -5,9 +5,9 @@ namespace BlApi;
 
 public interface IEngineer
 {
-    IEnumerable<BO.Engineer>? RequestEngineersList(Func<BO.Engineer, bool> filter) ;
+    IEnumerable<BO.Engineer>? RequestEngineersList(Func<BO.Engineer, bool> ?filter) ;
     BO.Engineer RequestEngineerDetails(int id) ; 
-    void AddEngineer(BO.Engineer engineer) ;
+    int AddEngineer(BO.Engineer engineer) ;
     void RemoveEngineer(int id);
     void UpdateEngineerDetails(BO.Engineer engineer);
 }
