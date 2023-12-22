@@ -1,12 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using BlApi;
 using BO;
+using DalApi;
+using IoC;
 using System.Transactions;
 
 internal class Program
 
 {
-    static readonly IBl s_bl = BlApi.Factory.Get();
+    static readonly IBl s_bl = BlApi.Factory.Get;
     private static void Main(string[] args)
     {
 
@@ -69,32 +71,49 @@ internal class Program
             case 0:
                 return;
             case 1:
+                {
+                    IEnumerable<BO.TaskInList?> tasks;
+                    tasks = s_bl.Task!.RequestTaskList()!.ToList();
+                    Console.WriteLine(string.Join("\n", tasks));
+                }
+                break;
+            case 2:
+                break;
+            case 3:
                 Console.WriteLine("Enter task description: ");
-                string desc = Console.ReadLine() ?? throw new NullReferenceException();
+                string? desc = Console.ReadLine() ?? null;
                 Console.WriteLine("Enter task alias: ");
-                string alias = Console.ReadLine() ?? throw new NullReferenceException();
+                string? alias = Console.ReadLine() ?? null;
                 Console.WriteLine("Enter task deliverables: ");
-                string deliver = Console.ReadLine() ?? throw new NullReferenceException();
+                string? deliver = Console.ReadLine() ?? null;
+                Console.WriteLine("Enter task remarks: ");
+                string? remarks = Console.ReadLine() ?? null;
                 Console.WriteLine("Enter the engineer expirience (0-4): ");
                 int engineerExperience = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Does this task have a dependency? 0/1");
-                ans= Console.ReadLine();
+                List<TaskInList> depps = new List<TaskInList>();
                 int haveDependency;
-                int.TryParse(ans, out haveDependency);
-                List<int> depps = new List<int>();
-                 while (haveDependency == 1)
+                do
                 {
-                    Console.WriteLine("enter ID of dependency:");
+                    Console.WriteLine("Does this task have to add a dependency? 0/1");
                     ans = Console.ReadLine();
                     int.TryParse(ans, out haveDependency);
-                    if(ans != null)
+                    if (haveDependency == 1)
                     {
-                        depps.Add(ans);
+                        Console.WriteLine("enter ID of dependency:");
+                        ans = Console.ReadLine();
+                        int depId;
+                        bool succed = int.TryParse(ans, out depId);
+                        if (succed)
+                        {
+                            depps.Add(new TaskInList()
+                            {
+                                Id = depId,
+                                Status = 0,
+                            });
+                        }
                     }
-                   
-                }
 
-
+                } while (haveDependency == 1);
                 EngineerExperience experience;
                 switch (engineerExperience)
                 {
@@ -111,14 +130,34 @@ internal class Program
                     default:
                         throw new ChoiseDoesNotExistException("This choice does not exist");
                 }
-                BO.Task task = new BO.Task() 
+                Console.WriteLine("What is the task duration?");
+                ans = Console.ReadLine();
+                int taskDuration;
+                bool succesful = int.TryParse(ans, out taskDuration);
+                TimeSpan requiredEffortTime;
+                if (succesful)
                 {
-                    Id= 0,
+                    requiredEffortTime = TimeSpan.FromDays(taskDuration);
+                }
+                else
+                {
+                    requiredEffortTime = TimeSpan.FromDays(0);
+                }
+                BO.Task task = new BO.Task()
+                {
+                    Id = 0,
                     Alias = alias,
                     Description = desc,
                     CreatedAtDate = DateTime.Now,
                     Status = 0,
-                    Dependencies = 
+                    Dependencies = depps,
+                    Milstone = null,
+                    RequiredEffortTime = requiredEffortTime,
+                    ScheduledDate = null,
+                    StartDate = null,
+                    ForecastDate = null,
+                    DeadlineDate = null,
+                    CompleteDate = null,
                     Deliverables = deliver,
                     ComplexityTask= experience, 
                     RequiredEffortTime= TimeSpan.FromDays(0),
@@ -126,9 +165,6 @@ internal class Program
                     StartDate=null,
                 };
                 break;
-            case 2:
-                break;
-            case 3:
                 break;
             case 4:
                 break;

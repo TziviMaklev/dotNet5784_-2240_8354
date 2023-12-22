@@ -18,7 +18,7 @@ static internal class Tools
 
             if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) && property.PropertyType != typeof(string))
             {
-                IEnumerable collection = (IEnumerable)property.GetValue(obj);
+                IEnumerable collection = (IEnumerable)property.GetValue(obj)!;
                 sb.Append("[ ");
                 foreach (var item in collection!)
                 {

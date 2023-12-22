@@ -40,3 +40,7 @@ public class ChoiseDoesNotExistException : Exception//if the choise that the use
 {
     public ChoiseDoesNotExistException(string? message) : base(message) { }
 }
+public class ThePogramNotSuccedToConvert : Exception//if the pograme not succed to convert
+{
+    public ThePogramNotSuccedToConvert(string? message) : base(message) { }
+}

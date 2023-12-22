@@ -12,7 +12,7 @@ internal class TaskImplementation : ITask
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
 
-    public IEnumerable<BO.TaskInList>? RequestTaskList(Func<BO.TaskInList, bool>? filter)
+    public IEnumerable<BO.TaskInList>? RequestTaskList(Func<BO.TaskInList, bool>? filter = null)
     {
         var taskList = (from DO.Task doTask in _dal.Task.ReadAll()
                         select new BO.TaskInList

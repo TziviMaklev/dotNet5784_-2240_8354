@@ -135,11 +135,10 @@ internal class Program
                     }
 
                     Console.WriteLine("if you want change the description enter:");
-                    string description = Console.ReadLine() ?? taskFound.Description;
+                    string description = Console.ReadLine() ?? taskFound.Description !;
 
                     Console.WriteLine("if you want change the alias enter:");
-                    string alias = Console.ReadLine() ?? taskFound.Alias;
-
+                    string alias = Console.ReadLine() ?? taskFound.Alias !;
                     Console.WriteLine("if you want change the milestone enter:");
                     string milestoneI = Console.ReadLine() ?? "";
                     bool milestone;
