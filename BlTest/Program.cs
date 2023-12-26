@@ -408,9 +408,10 @@ internal class Program
                 break;
             case 5:
                 Console.WriteLine("enter task id:");
+                
                 int.TryParse(Console.ReadLine(), out id);
 
-                BO.Engineer engineerFound = s_bl.Engineer?.UpdateEngineerDetails(id)
+                BO.Engineer engineerFound = s_bl.Engineer?.RequestEngineerDetails(id)
                     ?? throw new Exception($"Engineer with ID={id} does Not exist");
                 Console.WriteLine("if you want change the name enter:");
                 name = Console.ReadLine() ?? engineerFound.Name!;
