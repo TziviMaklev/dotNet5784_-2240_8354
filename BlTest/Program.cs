@@ -1,9 +1,5 @@
 ﻿using BlApi;
 using BO;
-
-
-
-
 internal class Program
 
 {
@@ -474,10 +470,55 @@ internal class Program
             case 0:
                 return;
             case 1:
+                s_bl.Milestone.CreatingTheMilestoneProjectSchedule();
                 break;
             case 2:
+                Console.WriteLine("enter id of milstone:");
+                ans = Console.ReadLine();
+                int id; 
+                int.TryParse(ans, out id);
+                s_bl.Milestone.Read(id);
                 break;
             case 3:
+                Console.WriteLine("enter the id of the milstone to chane");
+                ans = Console.ReadLine();
+                int.TryParse(ans,out id);
+                Milestone milestone = s_bl.Milestone.Read(id);
+                Console.WriteLine("enter the alias to change:");
+                string? alias = Console.ReadLine();
+                bool susecful;
+                Status newStatus;
+                Console.WriteLine("choice num of statuse:\n " +
+                    " 0 = Unscheduled,\r\n " +
+                    " 1 = Scheduled,\r\n " +
+                    " 2 = OnTrack,\r\n  " +
+                    " 3 = InJeopardy,\r\n " +
+                    " 4 = Done");
+                ans = Console.ReadLine();
+                int statueNum;
+                susecful =int.TryParse(ans, out statueNum);
+                if (!susecful)
+                {
+                    throw new ThePogramNotSuccedToConvert("the pograme does not succed to convert");
+                }
+                newStatus = (Status)statueNum;
+                Console.WriteLine("enter the forecast date to change:");
+                ans= Console.ReadLine();
+                DateTime forecastDate= DateTime.Now;
+                susecful=DateTime.TryParse(ans, out forecastDate);
+                if(!susecful)
+                {
+                    throw new ThePogramNotSuccedToConvert("the pograme does not succed to convert");
+                }
+                Console.WriteLine("enter the remarks to change:");
+                string? remarks= Console.ReadLine();
+                Milestone milestone1 = new Milestone();
+                s_bl.Milestone.UpdateMilestone()
+
+
+
+
+
                 break;
             default:
                 throw new ChoiseDoesNotExistException("This choice does not exist");

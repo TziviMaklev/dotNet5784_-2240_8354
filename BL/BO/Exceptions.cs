@@ -44,3 +44,11 @@ public class BlTimeSurfing:Exception
 {
     public BlTimeSurfing(string? message) : base(message) { }
 }
+public class ChoiseDoesNotExistException : Exception
+{
+    public ChoiseDoesNotExistException(string? message) : base(message) { }
+}
+public class ThePogramNotSuccedToConvert : Exception
+{
+    public ThePogramNotSuccedToConvert(string? message) : base(message) { }
+}
