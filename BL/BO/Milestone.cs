@@ -3,16 +3,16 @@ namespace BO;
 
 public class Milestone
 {
-    int Id { get; init; }
-    string? Alias {  get; init; } 
-    string? Description {  get; init; }
-    DateTime? ProductionDate {  get; init; }
-    Status Status{ get; set; }
-    DateTime? StartDate { get; set; }
-    DateTime? EstimatedCompletionDate {  get; set; }
-    DateTime? FinalDateForCompletion { get; set; }
-    DateTime? ActualEndDate { get; set; }
-    float ProgressPercentage {  get; set; }
-    string? Remarks { get; set; }
-    TaskInList? DependencyList { get; set; }
+    internal int Id { get; init; }
+    internal string? Alias {  get; init; } 
+    internal string? Description {  get; init; }
+    internal DateTime? CreateDate {  get; init; }
+    internal Status Status { get; set; }
+    internal DateTime? StartDate { get; set; }
+    internal DateTime? ForecastDate {  get; set; }
+    internal DateTime? Deadline { get; set; }
+    internal DateTime? ActualEndDate { get; set; }
+    internal float ProgressPercentage {  get; set; }
+    internal string? Remarks { get; set; }
+    internal TaskInList? DependencyList { get; set; }
 }

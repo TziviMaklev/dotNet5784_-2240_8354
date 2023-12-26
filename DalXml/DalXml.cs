@@ -2,7 +2,9 @@
 
 namespace Dal;
 using DalApi;
+using DO;
 using System.Diagnostics;
+using System.Xml.Linq;
 
 sealed internal class DalXml : IDal
 {
