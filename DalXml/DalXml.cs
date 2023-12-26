@@ -15,6 +15,6 @@ sealed internal class DalXml : IDal
     public IEngineer Engineer =>  new EngineerImplementation();
 
     public ITask Task =>  new TaskImplementation();
-    DateTime? StartProject { get; init; }
-    DateTime? EndProject { get; init; }
+    public DateTime? StartProject { get; init; }
+    public DateTime? EndProject { get; init; }
 }
