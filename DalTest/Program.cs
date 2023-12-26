@@ -154,7 +154,7 @@ internal class Program
                     int engineerExperience;
                     ans = Console.ReadLine();
                     bool check = int.TryParse(ans, out engineerExperience);
-                    DO.EngineerExperience complexityTask;
+                    DO.EngineerExperience ?complexityTask;
                     if (!check)
                         complexityTask = taskFound.ComplexityTask;
                     else
