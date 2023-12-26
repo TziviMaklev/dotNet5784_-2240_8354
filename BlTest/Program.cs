@@ -487,21 +487,8 @@ internal class Program
                 Console.WriteLine("enter the alias to change:");
                 string? alias = Console.ReadLine();
                 bool susecful;
-                Status newStatus;
-                Console.WriteLine("choice num of statuse:\n " +
-                    " 0 = Unscheduled,\r\n " +
-                    " 1 = Scheduled,\r\n " +
-                    " 2 = OnTrack,\r\n  " +
-                    " 3 = InJeopardy,\r\n " +
-                    " 4 = Done");
-                ans = Console.ReadLine();
-                int statueNum;
-                susecful =int.TryParse(ans, out statueNum);
-                if (!susecful)
-                {
-                    throw new ThePogramNotSuccedToConvert("the pograme does not succed to convert");
-                }
-                newStatus = (Status)statueNum;
+                Console.WriteLine("enter the Description to change");
+                string ? description = Console.ReadLine();
                 Console.WriteLine("enter the forecast date to change:");
                 ans= Console.ReadLine();
                 DateTime forecastDate= DateTime.Now;
@@ -512,13 +499,22 @@ internal class Program
                 }
                 Console.WriteLine("enter the remarks to change:");
                 string? remarks= Console.ReadLine();
-                Milestone milestone1 = new Milestone();
-                s_bl.Milestone.UpdateMilestone()
-
-
-
-
-
+                Milestone milestone1 = new Milestone()
+                {
+                    Id = milestone.Id,
+                    Alias = alias ?? milestone.Alias,
+                    Description = description ?? milestone.Description,
+                    CreateDate = milestone.CreateDate,
+                    Status = milestone.Status,
+                    StartDate = milestone.StartDate,
+                    ForecastDate = milestone.ForecastDate,
+                    Deadline = milestone.Deadline,
+                    ActualEndDate = milestone.ActualEndDate,
+                    ProgressPercentage = milestone.ProgressPercentage,
+                    Remarks = remarks ?? milestone.Remarks,
+                    DependencyList = milestone.DependencyList,
+                };
+                s_bl.Milestone.UpdateMilestone(milestone1);
                 break;
             default:
                 throw new ChoiseDoesNotExistException("This choice does not exist");
