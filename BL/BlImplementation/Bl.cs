@@ -3,6 +3,9 @@
 namespace BlImplementation;
 
 using BlApi;
+/// <summary>
+/// call all the defenitions of the interfaces
+/// </summary>
 internal class Bl : IBl
 {
     public IEngineer Engineer =>  new EngineerImplementation();

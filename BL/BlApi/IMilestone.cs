@@ -1,6 +1,9 @@
 ﻿
 namespace BlApi;
 
+/// <summary>
+/// interface for the milestone in the BL
+/// </summary>
 public interface IMilestone
 {
     void CreatingTheMilestoneProjectSchedule();

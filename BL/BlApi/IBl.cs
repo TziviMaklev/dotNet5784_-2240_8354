@@ -1,6 +1,9 @@
 ﻿
 namespace BlApi;
 
+/// <summary>
+/// logic interface that has the whole interfaces in that
+/// </summary>
 public interface IBl
 {
     public IEngineer Engineer { get; }

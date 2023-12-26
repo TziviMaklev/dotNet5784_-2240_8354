@@ -4,9 +4,16 @@ using BlApi;
 using System;
 using System.Collections.Generic;
 
+
 internal class EngineerImplementation : IEngineer
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
+    /// <summary>
+    /// add engineer to the DB
+    /// </summary>
+    /// <param name="engineer">engineer to add</param>
+    /// <returns>id of the engineer that added</returns>
+    /// <exception cref="BO.BlAlreadyExistsException">this id is already exist</exception>
     public int AddEngineer(BO.Engineer engineer)
     {
         DO.Engineer doEngineer = new DO.Engineer() 
@@ -24,11 +31,13 @@ internal class EngineerImplementation : IEngineer
         }
         catch (DO.DalAlreadyExistsException ex) {
             throw  new BO.BlAlreadyExistsException($"Engineer with ID={engineer.Id} already exists", ex);
-        }
-
-            ;
+        };
     }
-
+    /// <summary>
+    /// delete an engineer
+    /// </summary>
+    /// <param name="id">id of the engineer to delete</param>
+    /// <exception cref="BO.BlDoesNotExistException">this engineer is not exist</exception>
     public void RemoveEngineer(int id)
     {
         DO.Engineer? engineer = _dal.Engineer.Read(id);
@@ -40,9 +49,13 @@ internal class EngineerImplementation : IEngineer
         {
             throw new BO.BlDoesNotExistException($"Student with ID={id} does Not exist");
         }
-
     }
-
+    /// <summary>
+    /// read detailes of an engineer
+    /// </summary>
+    /// <param name="id">id of engineer to return</param>
+    /// <returns>engineer delailes</returns>
+    /// <exception cref="BO.BlDoesNotExistException">this engineer is not exist</exception>
     public BO.Engineer RequestEngineerDetails(int id)
     {
         DO.Engineer? engineer = _dal.Engineer.Read(id);
@@ -61,7 +74,11 @@ internal class EngineerImplementation : IEngineer
         return boEngineer;
 
     }
-
+    /// <summary>
+    /// read all engineer details
+    /// </summary>
+    /// <param name="filter">an option for sorting the list</param>
+    /// <returns>list of all the engineers</returns>
     public IEnumerable<BO.Engineer>? RequestEngineersList(Func<BO.Engineer, bool>? filter = null)
     {
         var engineers = (from DO.Engineer doEngineer in _dal.Engineer.ReadAll()
@@ -78,14 +95,17 @@ internal class EngineerImplementation : IEngineer
             IEnumerable<BO.Engineer> engineersFilter = (from item in engineers
                                    where filter(item)
                                        select item);
-
             return engineersFilter;
         }
 
         return engineers;
 
     }
-
+    /// <summary>
+    /// update detales of an engineer
+    /// </summary>
+    /// <param name="engineer">the engineer with the new detailes</param>
+    /// <exception cref="BO.BlDoesNotExistException">the id of this engineer is not exist</exception>
     public void UpdateEngineerDetails(BO.Engineer engineer)
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(engineer.Id);
