@@ -1,9 +1,5 @@
 ﻿using BlApi;
 using BO;
-
-
-
-
 internal class Program
 
 {
@@ -412,9 +408,10 @@ internal class Program
                 break;
             case 5:
                 Console.WriteLine("enter task id:");
+                
                 int.TryParse(Console.ReadLine(), out id);
 
-                BO.Engineer engineerFound = s_bl.Engineer?.UpdateEngineerDetails(id)
+                BO.Engineer engineerFound = s_bl.Engineer?.RequestEngineerDetails(id)
                     ?? throw new Exception($"Engineer with ID={id} does Not exist");
                 Console.WriteLine("if you want change the name enter:");
                 name = Console.ReadLine() ?? engineerFound.Name!;
@@ -474,10 +471,51 @@ internal class Program
             case 0:
                 return;
             case 1:
+                s_bl.Milestone.CreatingTheMilestoneProjectSchedule();
                 break;
             case 2:
+                Console.WriteLine("enter id of milstone:");
+                ans = Console.ReadLine();
+                int id; 
+                int.TryParse(ans, out id);
+                s_bl.Milestone.Read(id);
                 break;
             case 3:
+                Console.WriteLine("enter the id of the milstone to chane");
+                ans = Console.ReadLine();
+                int.TryParse(ans,out id);
+                Milestone milestone = s_bl.Milestone.Read(id);
+                Console.WriteLine("enter the alias to change:");
+                string? alias = Console.ReadLine();
+                bool susecful;
+                Console.WriteLine("enter the Description to change");
+                string ? description = Console.ReadLine();
+                Console.WriteLine("enter the forecast date to change:");
+                ans= Console.ReadLine();
+                DateTime forecastDate= DateTime.Now;
+                susecful=DateTime.TryParse(ans, out forecastDate);
+                if(!susecful)
+                {
+                    throw new ThePogramNotSuccedToConvert("the pograme does not succed to convert");
+                }
+                Console.WriteLine("enter the remarks to change:");
+                string? remarks= Console.ReadLine();
+                Milestone milestone1 = new Milestone()
+                {
+                    Id = milestone.Id,
+                    Alias = alias ?? milestone.Alias,
+                    Description = description ?? milestone.Description,
+                    CreateDate = milestone.CreateDate,
+                    Status = milestone.Status,
+                    StartDate = milestone.StartDate,
+                    ForecastDate = milestone.ForecastDate,
+                    Deadline = milestone.Deadline,
+                    ActualEndDate = milestone.ActualEndDate,
+                    ProgressPercentage = milestone.ProgressPercentage,
+                    Remarks = remarks ?? milestone.Remarks,
+                    DependencyList = milestone.DependencyList,
+                };
+                s_bl.Milestone.UpdateMilestone(milestone1);
                 break;
             default:
                 throw new ChoiseDoesNotExistException("This choice does not exist");
