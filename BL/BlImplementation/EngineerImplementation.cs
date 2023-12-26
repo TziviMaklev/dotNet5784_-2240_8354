@@ -62,7 +62,7 @@ internal class EngineerImplementation : IEngineer
 
     }
 
-    public IEnumerable<BO.Engineer>? RequestEngineersList(Func<BO.Engineer, bool>? filter )
+    public IEnumerable<BO.Engineer>? RequestEngineersList(Func<BO.Engineer, bool>? filter = null)
     {
         var engineers = (from DO.Engineer doEngineer in _dal.Engineer.ReadAll()
                         select new BO.Engineer
