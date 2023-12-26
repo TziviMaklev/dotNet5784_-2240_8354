@@ -9,6 +9,8 @@ sealed internal class DalList : IDal
     public IEngineer Engineer => new EngineerImplementation();
 
     public ITask Task => new TaskImplementation();
+    DateTime? StartProject { get; init; }
+    DateTime? EndProject { get; init; }
 }
 
 
