@@ -87,7 +87,7 @@ internal class TaskImplementation : ITask
                 CompleteDate = task.CompletionDate,
                 Deliverables = task.Deliverables,
                 Remarks = task.Remarks,
-                ComplexityTask = (BO.EngineerExperience)task.ComplexityTask,
+                ComplexityTask = (BO.EngineerExperience)task.ComplexityTask!,
                 Engineer = new EngineerInTask()
                 {
                     Id = (int)task.EngineerId!,
