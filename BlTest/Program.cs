@@ -9,10 +9,12 @@ internal class Program
 
         try
         {
-            Console.Write("Would you like to create Initial data? (Y/N)");
+            Console.Write("Would you like to create Initial data? (Y/N)\n");
             string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
             if (ans == "Y")
                 DalTest.Initialization.Do();
+            else
+                return;
             int userChose;
             do
             {
