@@ -13,4 +13,5 @@ public class MilestoneInList
     DateTime? CreateDate { get; set; }
     Status? Status { get;set; }
     float ProgressPercentage { get; set; }
+    public override string ToString() => this.ToStringProperty();
 }

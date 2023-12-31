@@ -298,7 +298,7 @@ internal class Program
                     Console.WriteLine("Enter the id of the engineer to show: ");
                     int id = Convert.ToInt32(Console.ReadLine());
                     DO.Engineer engineer = s_dal.Engineer?.Read(id)!;
-                    Console.WriteLine(engineer);
+                    Console.WriteLine(engineer.ToString());
                 }
                 break;//Object view
             case 4:

@@ -59,7 +59,7 @@ internal class EngineerImplementation : IEngineer
     public BO.Engineer RequestEngineerDetails(int id)
     {
         DO.Engineer? engineer = _dal.Engineer.Read(id);
-        if(engineer != null)
+        if(engineer == null)
         {
             throw new BO.BlDoesNotExistException($"engineer.Id with ID={id} does Not exist");
         }

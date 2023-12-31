@@ -15,4 +15,5 @@ public class Milestone
     public float ProgressPercentage {  get; set; }
     public string? Remarks { get; set; }
     public TaskInList? DependencyList { get; set; }
+    public override string ToString() => this.ToStringProperty();
 }

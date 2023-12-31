@@ -118,6 +118,7 @@ internal class MilestoneImplementation : IMilestone
                                          select dep.DependentTask).ToList();
         DateTime? deadline = null;
         //check for each task what about it's deadline and update that
+
         foreach (var dep in DepentOnCurrentTask)
         {
             DO.Task readTsk = _dal.Task.Read(dep)!;

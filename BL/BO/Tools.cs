@@ -9,32 +9,38 @@ static internal class Tools
     public static string ToStringProperty<T>(this T obj)
     {
         StringBuilder sb = new StringBuilder();
-        Type objType = obj!.GetType();
+        Type objType = obj.GetType();
         PropertyInfo[] properties = objType.GetProperties();
 
         foreach (PropertyInfo property in properties)
         {
+            object? propertyValue = property.GetValue(obj);
+
+            if (propertyValue == null || (propertyValue is IEnumerable<object> collection && !collection.Any()))
+                continue;
+
             sb.Append($"{property.Name}: ");
 
             if (typeof(IEnumerable).IsAssignableFrom(property.PropertyType) && property.PropertyType != typeof(string))
             {
-                IEnumerable collection = (IEnumerable)property.GetValue(obj)!;
+                IEnumerable<object> collection1 = (IEnumerable<object>)propertyValue;
                 sb.Append("[ ");
-                foreach (var item in collection!)
+
+                foreach (var item in collection1)
                 {
                     sb.Append(item.ToString() + ", ");
                 }
 
                 if (sb.Length > 2)
                 {
-                    sb.Length -= 2; // Remove the trailing comma and space
+                    sb.Length -= 2;
                 }
 
                 sb.Append(" ]");
             }
             else
             {
-                sb.Append(property.GetValue(obj)?.ToString());
+                sb.Append(propertyValue.ToString());
             }
 
             sb.AppendLine();
@@ -42,6 +48,7 @@ static internal class Tools
 
         return sb.ToString();
     }
+
     internal static class Config
     {   
         // Define the running variable

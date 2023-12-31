@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BO;
+using System;
 internal class Program
 
 {
@@ -13,8 +14,6 @@ internal class Program
             string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
             if (ans == "Y")
                 DalTest.Initialization.Do();
-            else
-                return;
             int userChose;
             do
             {
@@ -74,7 +73,10 @@ internal class Program
                 {
                     IEnumerable<BO.TaskInList?> tasks;
                     tasks = s_bl.Task!.RequestTaskList()!.ToList();
-                    Console.WriteLine(string.Join("\n", tasks));
+                    foreach (var item in tasks)
+                    {
+                        Console.WriteLine(item!.ToString()+'\n');
+                    }
                 }
                 break;
             case 2:
@@ -84,7 +86,7 @@ internal class Program
                 if (succesfull)
                 {
                     BO.Task task1 = s_bl!.Task.GetTask(id)!;
-                    Console.WriteLine(task1);
+                    Console.WriteLine(task1.ToString());
                 }
                 break;
             case 3:
@@ -170,6 +172,7 @@ internal class Program
                     ComplexityTask = experience,
                     Engineer = null,
                 };
+                s_bl.Task.AddTask(task);
                 break;
             case 4:
                 Console.WriteLine("enter id:");
@@ -198,17 +201,14 @@ internal class Program
                 string? description = Console.ReadLine() ?? taskFound.Description;
 
                 Console.WriteLine("if you want change the alias enter:");
-                alias = Console.ReadLine() ?? taskFound.Alias;
+                string ? ansAlias = Console.ReadLine();
+                alias = ansAlias != "" ? ansAlias : taskFound.Alias;
 
                 Console.WriteLine("if you want change the milestone enter:");
-                Console.Write("di:");
+                Console.Write("id:");
                 BO.MilstoneInTask milestone;
-                ans = Console.ReadLine() ?? null;
-                if (ans == null)
-                {
-                    milestone = taskFound.Milstone!;
-                }
-                else
+                ans = Console.ReadLine();
+                if (ans != "")
                 {
                     succesfull = int.TryParse(ans, out id);
                     if (succesfull)
@@ -225,8 +225,10 @@ internal class Program
                     {
                         throw new ThePogramNotSuccedToConvert("the convertof  the id not succed");
                     }
-
-
+                }
+                else
+                {
+                    milestone = taskFound.Milstone!;
                 }
 
 
@@ -338,7 +340,7 @@ internal class Program
                     Remarks = remarks,
                     Engineer = engineer
                 };
-                Console.WriteLine(boTask.Id);
+                Console.WriteLine(boTask.Id);   
                 s_bl!.Task.UpdateTask(boTask);
                 break;
             default:
@@ -357,13 +359,15 @@ internal class Program
                 return;
             case 1:
                 List<BO.Engineer> engineerL = s_bl.Engineer.RequestEngineersList()!.ToList();
-                Console.WriteLine(string.Join("\n", engineerL));
+                foreach (var item in engineerL)
+                    Console.WriteLine(item.ToString()+'\n');
+                //Console.WriteLine(string.Join("\n", engineerL.ToString()));
                 break;
             case 2:
                 Console.WriteLine("Enter the id of the engineer to show: ");
                 int id = Convert.ToInt32(Console.ReadLine());
                 BO.Engineer engineer = s_bl.Engineer?.RequestEngineerDetails(id)!;
-                Console.WriteLine(engineer);
+                Console.WriteLine(engineer.ToString());
                 break;
             case 3:
                 Console.WriteLine("enter engineer id");
@@ -416,10 +420,14 @@ internal class Program
                 BO.Engineer engineerFound = s_bl.Engineer?.RequestEngineerDetails(id)
                     ?? throw new Exception($"Engineer with ID={id} does Not exist");
                 Console.WriteLine("if you want change the name enter:");
-                name = Console.ReadLine() ?? engineerFound.Name!;
+                ans = Console.ReadLine();
+                string ? nameE;
+                nameE = ans =="" ? engineerFound.Name! : ans;
 
                 Console.WriteLine("if you want change the email enter:");
-                email = Console.ReadLine() ?? engineerFound.Email!;
+                ans = Console.ReadLine();
+                string ?emailE;
+                emailE = ans == "" ? engineerFound.Email! : ans;
 
                 Console.WriteLine("if you want change the level enter:");
                 bool check = int.TryParse(Console.ReadLine(), out engineerExperience);
@@ -446,8 +454,8 @@ internal class Program
                 engineer1 = new BO.Engineer()
                 {
                     Id = engineerFound.Id,
-                    Name = name,
-                    Email = email,
+                    Name = nameE,
+                    Email = emailE,
                     Level = level,
                     Cost = cost
                 };
