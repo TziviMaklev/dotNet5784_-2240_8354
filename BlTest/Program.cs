@@ -1,6 +1,9 @@
 ﻿using BlApi;
 using BO;
 using System;
+using System.Globalization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 internal class Program
 
 {
@@ -14,6 +17,21 @@ internal class Program
             string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
             if (ans == "Y")
                 DalTest.Initialization.Do();
+            Console.Write("Please enter the start project date (MM/dd/yyyy): ");
+            string startDateInput = Console.ReadLine()?? "";
+            DateTime startDate;
+            if (!DateTime.TryParseExact(startDateInput, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate))
+            {
+                throw new BlTimeSurfing("Invalid date format!");
+            }
+            Console.Write("Please enter the end project date (MM/dd/yyyy): ");
+            string endDateInput = Console.ReadLine() ?? "";
+            DateTime endDate;
+            if (!DateTime.TryParseExact(endDateInput, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out endDate))
+            {
+                throw new BlTimeSurfing("Invalid date format!");
+            }
+            s_bl.Milestone.SetDates(startDate, endDate);
             int userChose;
             do
             {
@@ -488,7 +506,7 @@ internal class Program
                 ans = Console.ReadLine();
                 int id; 
                 int.TryParse(ans, out id);
-                s_bl.Milestone.Read(id);
+                Console.WriteLine(s_bl.Milestone.Read(id).ToString());
                 break;
             case 3:
                 Console.WriteLine("enter the id of the milstone to chane");
