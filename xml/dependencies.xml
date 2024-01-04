@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfDependency xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Dependency>
-    <Id>1</Id>
+    <Id>2</Id>
+    <DependentTask>3</DependentTask>
+    <DependenceOnTask>4</DependenceOnTask>
+  </Dependency>
+  <Dependency>
+    <Id>3</Id>
+    <DependentTask>4</DependentTask>
+    <DependenceOnTask>1</DependenceOnTask>
+  </Dependency>
+  <Dependency>
+    <Id>4</Id>
     <DependentTask>1</DependentTask>
+    <DependenceOnTask>5</DependenceOnTask>
+  </Dependency>
+  <Dependency>
+    <Id>5</Id>
+    <DependentTask>2</DependentTask>
+    <DependenceOnTask>5</DependenceOnTask>
+  </Dependency>
+  <Dependency>
+    <Id>6</Id>
+    <DependentTask>6</DependentTask>
     <DependenceOnTask>2</DependenceOnTask>
   </Dependency>
   <Dependency>
-    <Id>2</Id>
-    <DependentTask>3</DependentTask>
-    <DependenceOnTask>1</DependenceOnTask>
+    <Id>7</Id>
+    <DependentTask>6</DependentTask>
+    <DependenceOnTask>3</DependenceOnTask>
   </Dependency>
 </ArrayOfDependency>

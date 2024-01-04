@@ -31,6 +31,10 @@ internal class Program
             {
                 throw new BlTimeSurfing("Invalid date format!");
             }
+            if (endDate <= startDate)
+            {
+                throw new BlTimeSurfing("The start date is after the end date");
+            }
             s_bl.Milestone.SetDates(startDate, endDate);
             int userChose;
             do

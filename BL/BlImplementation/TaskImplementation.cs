@@ -56,7 +56,6 @@ internal class TaskImplementation : ITask
                                                : task.CompletionDate is null ? 2
                                                : 3),
                 Dependencies = (from DO.Dependency doDependency in _dal.Dependency!.ReadAll(d => d.DependentTask == task!.Id)
-                                where true
                                 select new BO.TaskInList()
                                 {
                                     Id = doDependency.DependenceOnTask,
@@ -89,7 +88,7 @@ internal class TaskImplementation : ITask
                 CompleteDate = task.CompletionDate,
                 Deliverables = task.Deliverables,
                 Remarks = task.Remarks,
-                ComplexityTask = (BO.EngineerExperience)task.ComplexityTask,
+                ComplexityTask = (BO.EngineerExperience)task.ComplexityTask!,
                 Engineer = new EngineerInTask()
                 {
                     Id = (int)task.EngineerId!,
@@ -122,7 +121,14 @@ internal class TaskImplementation : ITask
             task.Engineer?.Id);
         try
         {
-            int idNewTask = _dal.Task.Create(doTask);
+            int idNewTask = _dal.Task.Create(doTask); 
+            if (task.Dependencies != null)
+            {
+                foreach (var dep in task.Dependencies)
+                {
+                    _dal.Dependency.Create(new DO.Dependency(0, idNewTask, dep.Id));
+                }
+            }
             return idNewTask;
         }
         catch (DO.DalAlreadyExistsException ex)
