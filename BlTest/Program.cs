@@ -50,7 +50,7 @@ internal class Program
             Console.WriteLine(ex.ToString());//throw an exeption is there is any error...
         }
     }
-    
+
     /// <summary>
     /// Prints the menu options for the user to select from.
     /// </summary>
@@ -65,9 +65,9 @@ internal class Program
                           "4. Delete\n" +
                           "5. Update\n");
     }
-    
+
     /// <summary>
-    ///this function is if the user chose to enter the task 
+    ///this function is if the user chose to enter the task
     ///the function print the menu
     ///and do what the user ask
     /// </summary>
@@ -82,7 +82,7 @@ internal class Program
         {
             case 0://Exit
                 return;
-            case 1: // List view 
+            case 1: // List view
                 {
                     IEnumerable<BO.TaskInList?> tasks; // Declare a variable to hold a collection of nullable BO.TaskInList objects
                     tasks = s_bl.Task!.RequestTaskList()!.ToList(); // Call the RequestTaskList() method on the s_bl.Task object and convert the result to a list. The '!' operator is used to assert that s_bl.Task is not null.
@@ -255,7 +255,7 @@ internal class Program
 
                 // Prompt the user to change the alias
                 Console.WriteLine("if you want change the alias enter:");
-                string ? ansAlias = Console.ReadLine();
+                string? ansAlias = Console.ReadLine();
                 alias = ansAlias != "" ? ansAlias : taskFound.Alias;
                 // Read the input from the user and assign it to the alias variable.
                 // If the user does not enter anything (empty string), the taskFound.Alias value is used.
@@ -381,7 +381,7 @@ internal class Program
                 if (ans != "")
                 {
                     succesfull = int.TryParse(ans, out id);// Try to parse the input as an integer
-                        if (succesfull)
+                    if (succesfull)
                     {
                         Console.WriteLine("name:");
                         ans = Console.ReadLine() ?? taskFound.Engineer!.Name;// Use the original name if no new input is provided
@@ -415,14 +415,14 @@ internal class Program
                     Remarks = remarks,
                     Engineer = engineer
                 };
-                Console.WriteLine(boTask.Id);   
+                Console.WriteLine(boTask.Id);
                 s_bl!.Task.UpdateTask(boTask);
                 break;
             default:
                 throw new ChoiseDoesNotExistException("This choice does not exist");
         }
     }
-    
+
     /// <summary>
     ///this function is if the user chose to enter the   Engineer
     ///the function print the menu
@@ -438,7 +438,7 @@ internal class Program
         {
             case 0://exit
                 return;
-            case 1: // List view 
+            case 1: // List view
                 {
                     List<BO.Engineer> engineerL = s_bl.Engineer.RequestEngineersList()!.ToList(); // Declare a list variable to hold a collection of Engineer objects. Call the RequestEngineersList() method on the s_bl.Engineer object and convert the result to a list. The '!' operator is used to assert that s_bl.Engineer is not null.
                     foreach (var item in engineerL) // Iterate over each item in the engineerL list
@@ -459,35 +459,35 @@ internal class Program
                 }
                 break; // Exit the switch or case statement
             case 3: // Add
-                    Console.WriteLine("enter engineer id"); // Prompt the user to enter the ID of the engineer
-                    int id1 = Convert.ToInt32(Console.ReadLine() ?? throw new NullReferenceException()); // Read the user input and convert it to an integer. If the input is null, throw a NullReferenceException.
+                Console.WriteLine("enter engineer id"); // Prompt the user to enter the ID of the engineer
+                int id1 = Convert.ToInt32(Console.ReadLine() ?? throw new NullReferenceException()); // Read the user input and convert it to an integer. If the input is null, throw a NullReferenceException.
 
-                    Console.WriteLine("enter engineer name"); // Prompt the user to enter the name of the engineer
-                    string name = Console.ReadLine() ?? throw new NullReferenceException(); // Read the user input for the name. If the input is null, throw a NullReferenceException.
+                Console.WriteLine("enter engineer name"); // Prompt the user to enter the name of the engineer
+                string name = Console.ReadLine() ?? throw new NullReferenceException(); // Read the user input for the name. If the input is null, throw a NullReferenceException.
 
-                    Console.WriteLine("enter engineer email"); // Prompt the user to enter the email of the engineer
-                    string email = Console.ReadLine() ?? throw new NullReferenceException(); // Read the user input for the email. If the input is null, throw a NullReferenceException.
+                Console.WriteLine("enter engineer email"); // Prompt the user to enter the email of the engineer
+                string email = Console.ReadLine() ?? throw new NullReferenceException(); // Read the user input for the email. If the input is null, throw a NullReferenceException.
 
-                    Console.WriteLine("enter engineer engineerExperience"); // Prompt the user to enter the engineer experience level
-                    int engineerExperience = Convert.ToInt32(Console.ReadLine()); // Read the user input for the engineer experience and convert it to an integer
+                Console.WriteLine("enter engineer engineerExperience"); // Prompt the user to enter the engineer experience level
+                int engineerExperience = Convert.ToInt32(Console.ReadLine()); // Read the user input for the engineer experience and convert it to an integer
 
-                    BO.EngineerExperience level; // Declare a variable to hold the engineer experience level
+                BO.EngineerExperience level; // Declare a variable to hold the engineer experience level
 
-                    Console.WriteLine("enter engineer cost"); // Prompt the user to enter the cost of the engineer
-                    double cost = Convert.ToInt32(Console.ReadLine() ?? throw new NullReferenceException()); // Read the user input for the cost. If the input is null, throw a NullReferenceException.
+                Console.WriteLine("enter engineer cost"); // Prompt the user to enter the cost of the engineer
+                double cost = Convert.ToInt32(Console.ReadLine() ?? throw new NullReferenceException()); // Read the user input for the cost. If the input is null, throw a NullReferenceException.
 
-                    switch (engineerExperience) // Use a switch statement to determine the engineer experience level based on the user input
-                    {
-                        case 0:
-                            level = BO.EngineerExperience.Novice; break; // If engineerExperience is 0, set level to Novice
-                        case 1:
-                            level = BO.EngineerExperience.AdvancedBeginner; break; // If engineerExperience is 1, set level to AdvancedBeginner
-                        case 2:
-                            level = BO.EngineerExperience.Competent; break; // If engineerExperience is 2, set level to Competent
-                        case 3:
-                            level = BO.EngineerExperience.Proficient; break; // If engineerExperience is 3, set level to Proficient
-                        case 4:
-                            level = BO.EngineerExperience.Expert; break; // If engineerExperience is 4, set level to Expert
+                switch (engineerExperience) // Use a switch statement to determine the engineer experience level based on the user input
+                {
+                    case 0:
+                        level = BO.EngineerExperience.Novice; break; // If engineerExperience is 0, set level to Novice
+                    case 1:
+                        level = BO.EngineerExperience.AdvancedBeginner; break; // If engineerExperience is 1, set level to AdvancedBeginner
+                    case 2:
+                        level = BO.EngineerExperience.Competent; break; // If engineerExperience is 2, set level to Competent
+                    case 3:
+                        level = BO.EngineerExperience.Proficient; break; // If engineerExperience is 3, set level to Proficient
+                    case 4:
+                        level = BO.EngineerExperience.Expert; break; // If engineerExperience is 4, set level to Expert
                     default:
                         throw new ChoiseDoesNotExistException("This choice does not exist"); // If engineerExperience is not 0, 1, 2, 3, or 4, throw a ChoiseDoesNotExistException with the specified message
                 }
@@ -518,15 +518,15 @@ internal class Program
 
                 BO.Engineer engineerFound = s_bl.Engineer?.RequestEngineerDetails(id3)// Call the RequestEngineerDetails() method on the s_bl.Engineer object and pass in the id2 as a parameter. The '?' operator is used to check if s_bl.Engineer is not null before calling the method.
                     ?? throw new Exception($"Engineer with ID={id3} does Not exist");// If engineerFound is null, throw an Exception with the specified message.
-                
+
                 Console.WriteLine("if you want change the name enter:");
                 ans = Console.ReadLine();
-                string ? nameE;
-                nameE = ans =="" ? engineerFound.Name! : ans;// If ans is an empty string, use the original name of the engineer (engineerFound.Name), otherwise use the value of ans.
+                string? nameE;
+                nameE = ans == "" ? engineerFound.Name! : ans;// If ans is an empty string, use the original name of the engineer (engineerFound.Name), otherwise use the value of ans.
 
                 Console.WriteLine("if you want change the email enter:");
                 ans = Console.ReadLine();
-                string ?emailE;
+                string? emailE;
                 emailE = ans == "" ? engineerFound.Email! : ans;// If ans is an empty string, use the original email of the engineer (engineerFound.Email), otherwise use the value of ans.
 
                 Console.WriteLine("if you want change the level enter:");
@@ -567,7 +567,7 @@ internal class Program
                 throw new ChoiseDoesNotExistException("This choice does not exist"); // If none of the cases match, throw a ChoiseDoesNotExistException with the specified message
         }
     }
-    
+
     /// <summary>
     ///this function is if the user chose to enter the Milestone  
     ///the function print the menu
@@ -595,25 +595,25 @@ internal class Program
             case 2:
                 Console.WriteLine("enter id of milstone:");
                 ans = Console.ReadLine();
-                int id; 
+                int id;
                 int.TryParse(ans, out id);
                 s_bl.Milestone.Read(id);
                 break;
             case 3:
                 Console.WriteLine("enter the id of the milstone to chane");
                 ans = Console.ReadLine();
-                int.TryParse(ans,out id);
+                int.TryParse(ans, out id);
                 Milestone milestone = s_bl.Milestone.Read(id);
                 Console.WriteLine("enter the alias to change:");
                 string? alias = Console.ReadLine();
                 bool susecful;
                 Console.WriteLine("enter the Description to change");
-                string ? description = Console.ReadLine();
+                string? description = Console.ReadLine();
                 Console.WriteLine("enter the forecast date to change:");
-                ans= Console.ReadLine();
-                DateTime forecastDate= DateTime.Now;
-                susecful=DateTime.TryParse(ans, out forecastDate);
-                if(!susecful)
+                ans = Console.ReadLine();
+                DateTime forecastDate = DateTime.Now;
+                susecful = DateTime.TryParse(ans, out forecastDate);
+                if (!susecful)
                 {
                     throw new ThePogramNotSuccedToConvert("the program does not succeed to convert"); // If the parsing fails, throw a ThePogramNotSuccedToConvert exception with the specified message
                 }
