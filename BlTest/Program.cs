@@ -15,7 +15,7 @@ internal class Program
             Console.Write("Would you like to create Initial data? (Y/N)\n");
             string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
             if (ans == "Y")
-                DalTest.Initialization.Do();
+                DalTest.Initialization.Do();//jkjkp[
             int userChose;
             do
             {
