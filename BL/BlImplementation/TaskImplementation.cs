@@ -67,7 +67,6 @@ internal class TaskImplementation : ITask
                                                : task.CompletionDate is null ? 2
                                                : 3),
                 Dependencies = (from DO.Dependency doDependency in _dal.Dependency!.ReadAll(d => d.DependentTask == task!.Id)
-                                where true
                                 select new BO.TaskInList()
                                 {
                                     Id = doDependency.DependenceOnTask,// Set the Id property of the BO.TaskInList object to the DependenceOnTask value of the dependency

@@ -31,7 +31,7 @@ internal class TaskImplementation : ITask
         {
             throw new DalAlreadyExistsException("An task with this ID number already exists");
         }
-        return item.Id;
+        return id;
 
 
     }

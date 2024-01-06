@@ -27,7 +27,7 @@ public record Task
     string ?Description,
     string ?Alias,
     bool Milestone,
-    string Deliverables,
+    string? Deliverables,
     EngineerExperience? ComplexityTask,
     TimeSpan RequiredEffortTime,
     DateTime CreationDate,

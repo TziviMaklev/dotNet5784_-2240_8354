@@ -17,52 +17,44 @@ internal class MilestoneImplementation : IMilestone
     internal List<DO.Dependency> creatingMilestones(List<DO.Dependency> recievedDeps)
     {
         #region declares of help IEnumerables
+        List<DO.Task> allOldTasks = _dal.Task.ReadAll().ToList()!;
         // A grouped list so that the key is a dependent task and the value is a list of previous tasks
-        var groupByTaskDependency = (from dependency in recievedDeps
-                                     where dependency?.DependentTask != null && dependency?.DependenceOnTask != null
-                                     group dependency by dependency.DependentTask
-                                     into dependencyListAfterGrouping
-                                     let dependencyList = (from dependency in dependencyListAfterGrouping
-                                                           select dependency.DependenceOnTask).Order()
-                                     select new { _key = dependencyListAfterGrouping.Key, _value = dependencyList }).ToList();
+        var groupByTaskDependency = (from dep in recievedDeps
+                                     group dep by dep.DependentTask into groupByDependentTask
+                                     let depList = (from dep in groupByDependentTask
+                                                    select dep.DependenceOnTask).Order()
+                                     select new { _key = groupByDependentTask.Key, _value = depList });
 
         // Another filtered list of the list of values so that each value appears once
-        var taskDependencyWhithoutDuplicate = (from dependency in groupByTaskDependency
-                                               select dependency._value).Distinct();
+        var taskDependencyWhithoutDuplicate = (from dep in groupByTaskDependency
+                                               select dep._value.ToList()).Distinct().ToList();
         #endregion
         List<DO.Dependency> newDependendiesList = new List<DO.Dependency>();
         // Go through all the elements in the list taskDependencyWhithoutDuplicate
         // and create a milestone for each value
-        foreach (var dep in taskDependencyWhithoutDuplicate)
-        {
-            DO.Task milestone = new DO.Task()
-            {
-                Id = 0,
-                Alias = $"M{BO.Tools.Config.NextMilestoneId}",
-                Description = "description",
-                Milestone = true,
-                Deliverables = "",
-                ComplexityTask = DO.EngineerExperience.Expert,
-                CreationDate = DateTime.Now,
-                RequiredEffortTime = TimeSpan.FromDays(0)
-            };
-            //create a new milestone
-            int idNewMilestone = _dal.Task.Create(milestone);
-            //making deps for the all tasks that right after the milestones
-            foreach (var milestonDep in groupByTaskDependency)
-            {
-                if (milestonDep._value == dep)
-                    recievedDeps.Add(new Dependency(0, milestonDep._key, idNewMilestone));
+        int i = 1;
+        foreach (var groupOfDepentOnTasks in taskDependencyWhithoutDuplicate)
+        {   //create milstone for each one
+            DO.Task milestone = new DO.Task(-1, "milestone description", $"M{i}",
+                true, null, null, TimeSpan.FromDays(0), DateTime.Now, null);
+            int idMilestone = _dal.Task.Create(milestone);
+
+            foreach (var taskListwithDeps in groupByTaskDependency)
+            {   //set each task that depent on this milestone
+                var t = taskListwithDeps._value.ToList();
+                if (t.SequenceEqual(groupOfDepentOnTasks))
+                    newDependendiesList.Add(new DO.Dependency(-1, taskListwithDeps._key!, idMilestone));
             }
-            //add the dependencies of the milestone to the new list
-            foreach (var p in dep)
-            {
-                recievedDeps.Add(new Dependency(0, idNewMilestone, p));
+
+            foreach (var dep in groupOfDepentOnTasks)
+            {   //set each task that this milestone depent on it
+                newDependendiesList.Add(new DO.Dependency(-1, idMilestone, dep));
             }
+            i++;
         }
 
         #region make the start milestone
-        int idFirstMileston = _dal.Task.Create(new DO.Task
+        int idStartMileston = _dal.Task.Create(new DO.Task
         {
             Id = 0,
             Alias = $"start",
@@ -74,13 +66,13 @@ internal class MilestoneImplementation : IMilestone
             RequiredEffortTime = TimeSpan.FromDays(0)
         });
         //find the tasks that not dependnce on anything
-        var independentTasks = (from t in _dal.Task.ReadAll().ToList()
-                                join d in _dal.Dependency.ReadAll() on t.Id equals d.DependentTask into dependentTasks
-                                where dependentTasks.Count() == 0
-                                select t).ToList();
+        var independentTasks = (from task in allOldTasks
+                                where !(from taskDep in groupByTaskDependency
+                                        select taskDep._key).Any(t => t == task.Id)
+                                select task.Id);
         foreach (var task in independentTasks)
         {
-            recievedDeps.Add(new Dependency(0, task.Id, idFirstMileston));
+            newDependendiesList.Add(new Dependency(0, task, idStartMileston));
         }
         #endregion
         #region make the end milestone
@@ -96,7 +88,7 @@ internal class MilestoneImplementation : IMilestone
             RequiredEffortTime = TimeSpan.FromDays(0)
         });
         //find tasks that no task depends on them
-        var endDepTasks = (from task in _dal.Task.ReadAll().ToList()
+        var endDepTasks = (from task in allOldTasks
                            where !(from dep in recievedDeps
                                    select dep.DependenceOnTask).Distinct().Any(t => t == task.Id)
                            select task.Id);
@@ -116,12 +108,12 @@ internal class MilestoneImplementation : IMilestone
         List<int> DepentOnCurrentTask = (from dep in depList
                                          where dep.DependenceOnTask == taskId
                                          select dep.DependentTask).ToList();
-        DateTime? deadline = null;
+        DateTime? deadline = currTask.DeadlineDate;
         //check for each task what about it's deadline and update that
 
         foreach (var dep in DepentOnCurrentTask)
         {
-            DO.Task readTsk = _dal.Task.Read(dep)!;
+            DO.Task readTsk = _dal.Task.Read(dep) ?? throw new BlNullPropertyException($"Task with Id {dep} does not exists");
             if (readTsk.DeadlineDate is null)//no deadline yet
                 readTsk = readTsk with { DeadlineDate = updateDeadlines(dep, endMilestoneId, depList) };
             else if (deadline is null
@@ -137,19 +129,19 @@ internal class MilestoneImplementation : IMilestone
 
     private DateTime? updateScheduledDates(int taskId, int startMilestoneId, List<DO.Dependency> depList)
     {
-        if (taskId == startMilestoneId)
+        if (taskId == startMilestoneId)//the start milestone - stop the recorse
             return _dal.StartProject;
         DO.Task currTask = _dal.Task.Read(taskId)
             ?? throw new BO.BlNullPropertyException($"Task with Id {taskId} does not exists");
         var tasksCurrTaskDependndsOn = (from dep in depList
                                         where dep.DependentTask == taskId
                                         select dep.DependenceOnTask).ToList();
-        DateTime? scheduledDate = null;
+        DateTime? scheduledDate = currTask.ScheduledDate;
         foreach (int deps in tasksCurrTaskDependndsOn)
         {
             DO.Task readTask = _dal.Task.Read(deps) ?? throw new BO.BlNullPropertyException($"Task with Id {taskId} does not exists");
             if (readTask.ScheduledDate is null)
-                readTask = readTask with { ScheduledDate = updateScheduledDates(taskId, startMilestoneId, depList) };
+                readTask = readTask with { ScheduledDate = updateScheduledDates(deps, startMilestoneId, depList) };
             if (scheduledDate is null || readTask.ScheduledDate + readTask.RequiredEffortTime > scheduledDate)
                 scheduledDate = readTask.ScheduledDate + readTask.RequiredEffortTime;
         }
@@ -164,31 +156,32 @@ internal class MilestoneImplementation : IMilestone
     public void CreatingTheMilestoneProjectSchedule()
     {
         List<DO.Dependency?> depnedencs = _dal.Dependency.ReadAll().ToList();
-        List<DO.Dependency> newDependecyList = creatingMilestones(depnedencs!);
+        List<DO.Dependency> newDependecyList = creatingMilestones(depnedencs);
         //Replace all dependencies in a milestone task's dependencies
+
         _dal.Dependency.Reset();
         foreach (var dep in newDependecyList)
         {
-            _dal.Dependency.Create(dep);
+            _dal.Dependency.Create(dep!);
         }
-        List<DO.Task> allTasks = _dal.Task.ReadAll().ToList()!;
-        //find the start milestone and update it's schedual date
-        int startMilestoneId = allTasks.Where(t => t.Alias == "start").Select(t => t.Id).FirstOrDefault();
+        List<DO.Task?> allTasks = _dal.Task.ReadAll().ToList();
+        int startMilestoneId = allTasks.Where(task => task!.Alias == "start").Select(task => task!.Id).First();//get the milestone of start project
+
         DO.Task startMilestone = _dal.Task.Read(startMilestoneId)!;
         if (startMilestone is not null)
-            startMilestone = startMilestone with { ScheduledDate = _dal.StartProject };
-        //find the end milestone and update it's schedual date
-        int endMilestonId = allTasks.Where(t => t.Alias == "end").Select(t => t.Id).FirstOrDefault();
-        DO.Task endMilestone = _dal.Task.Read(endMilestonId)!;
-        if (endMilestone is not null)
-            endMilestone = endMilestone with { DeadlineDate = _dal.EndProject };
+            startMilestone = startMilestone with { ScheduledDate = _dal.StartProject };//set the start project date
 
-        //update all deadlines and schedual dates
-        startMilestone = startMilestone! with
-        { DeadlineDate = updateDeadlines(startMilestoneId, endMilestonId, newDependecyList) };
-        _dal.Task.Update(startMilestone);
-        endMilestone = endMilestone! with
-        { ScheduledDate = updateScheduledDates(endMilestonId, startMilestoneId, newDependecyList) };
+        int endMilestoneId = allTasks.Where(task => task!.Alias == "end").Select(task => task!.Id).First();//get the milestone of end project
+
+        DO.Task endMilestone = _dal.Task.Read(endMilestoneId)!;
+        if (endMilestone is not null)
+            endMilestone = endMilestone with { DeadlineDate = _dal.EndProject };//set the deadline project date
+
+        startMilestone = startMilestone! with { DeadlineDate = updateDeadlines(startMilestoneId, endMilestoneId, newDependecyList) };
+        _dal.Task.Update(startMilestone!);
+
+        endMilestone = endMilestone! with { ScheduledDate = updateScheduledDates(endMilestoneId, startMilestoneId, newDependecyList) };
+        _dal.Task.Update(endMilestone);
     }
 
     public Milestone Read(int id)
@@ -230,13 +223,20 @@ internal class MilestoneImplementation : IMilestone
     {
         DO.Task doTask = new DO.Task(milestone.Id,milestone.Description
             ,milestone.Alias,true, "",null,new TimeSpan(0), (DateTime)milestone.CreateDate!,
-            milestone.StartDate,null,milestone.Deadline,milestone.ActualEndDate,milestone.Remarks, null);
+            milestone.StartDate,null,milestone.Deadline,milestone.ActualEndDate,milestone.Remarks,null);
         try
         {
             _dal.Task.Update(doTask);
-        }catch (DO.DalDoesNotExistException ex)
+        }
+        catch (DO.DalDoesNotExistException ex)
         {
             throw new BlDoesNotExistException($"An object of type Task with ID {doTask.Id} does not exist", ex);
         }
+    }
+
+    public void SetDates(DateTime start, DateTime end)
+    {
+        _dal.StartProject = start;
+        _dal.EndProject = end;
     }
 }

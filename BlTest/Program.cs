@@ -1,6 +1,9 @@
 ﻿using BlApi;
 using BO;
 using System;
+using System.Globalization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 internal class Program
 
 {
@@ -9,11 +12,11 @@ internal class Program
     {
         try
         {
-            Console.Write("Would you like to create Initial data? (Y/N)\n"); // Prompt the user to enter if they want to create initial data
-            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); // Read the user input and store it in the ans variable. If the input is null, throw a FormatException with the specified message
-            if (ans == "Y") // Check if the user input is equal to "Y"
-                DalTest.Initialization.Do(); // Call the Do() method on the DalTest.Initialization object to create initial data
-            int userChose; // Declare a variable to store the user's choice
+            Console.Write("Would you like to create Initial data? (Y/N)\n");
+            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
+            if (ans == "Y")
+                DalTest.Initialization.Do();
+            int userChose;
             do
             {
                 Console.WriteLine("Select an entity you want to check\n" + // Prompt the user to select an entity they want to check
@@ -589,31 +592,28 @@ internal class Program
             case 1://creating the milestone project schedule
                 s_bl.Milestone.CreatingTheMilestoneProjectSchedule();
                 break;
-            case 2://request milestone details
-                Console.WriteLine("enter id of milestone:"); // Prompt the user to enter the ID of the milestone
-                ans = Console.ReadLine(); // Read the user input and store it in the ans variable
-                int id;
-                int.TryParse(ans, out id); // Try to parse the value of ans to an integer and store the result in the id variable
-
-                s_bl.Milestone.Read(id); // Call the Read() method on the s_bl.Milestone object and pass in the id as a parameter to read the milestone with the specified id
-                break; // Exit the switch or case statement
-            case 3://Update
-                Console.WriteLine("enter the id of the milestone to change"); // Prompt the user to enter the ID of the milestone to be changed
-                ans = Console.ReadLine(); // Read the user input and store it in the ans variable
-                int.TryParse(ans, out id); // Try to parse the value of ans to an integer and store the result in the id variable
-                Milestone milestone = s_bl.Milestone.Read(id); // Call the Read() method on the s_bl.Milestone object and pass in the id as a parameter to read the milestone with the specified id
-
-                Console.WriteLine("enter the alias to change:"); // Prompt the user to enter the new alias
-                string? alias = Console.ReadLine(); // Read the user input and store it in the alias variable
-
-                Console.WriteLine("enter the Description to change:"); // Prompt the user to enter the new description
-                string? description = Console.ReadLine(); // Read the user input and store it in the description variable
-
-                Console.WriteLine("enter the forecast date to change:"); // Prompt the user to enter the new forecast date
-                ans = Console.ReadLine(); // Read the user input and store it in the ans variable
-                DateTime forecastDate = DateTime.Now; // Initialize forecastDate with the current date and time
-                bool susecful = DateTime.TryParse(ans, out forecastDate); // Try to parse the value of ans to a DateTime and store the result in the forecastDate variable. If successful, susecful is set to true.
-                if (!susecful)
+            case 2:
+                Console.WriteLine("enter id of milstone:");
+                ans = Console.ReadLine();
+                int id; 
+                int.TryParse(ans, out id);
+                s_bl.Milestone.Read(id);
+                break;
+            case 3:
+                Console.WriteLine("enter the id of the milstone to chane");
+                ans = Console.ReadLine();
+                int.TryParse(ans,out id);
+                Milestone milestone = s_bl.Milestone.Read(id);
+                Console.WriteLine("enter the alias to change:");
+                string? alias = Console.ReadLine();
+                bool susecful;
+                Console.WriteLine("enter the Description to change");
+                string ? description = Console.ReadLine();
+                Console.WriteLine("enter the forecast date to change:");
+                ans= Console.ReadLine();
+                DateTime forecastDate= DateTime.Now;
+                susecful=DateTime.TryParse(ans, out forecastDate);
+                if(!susecful)
                 {
                     throw new ThePogramNotSuccedToConvert("the program does not succeed to convert"); // If the parsing fails, throw a ThePogramNotSuccedToConvert exception with the specified message
                 }
