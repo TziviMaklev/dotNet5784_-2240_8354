@@ -52,7 +52,7 @@ internal class EngineerImplementation : IEngineer
         }
     }
     /// <summary>
-    /// read detailes of an engineer
+    /// read specipic engineer
     /// </summary>
     /// <param name="id">id of engineer to return</param>
     /// <returns>engineer delailes</returns>
@@ -75,8 +75,9 @@ internal class EngineerImplementation : IEngineer
         return boEngineer;
 
     }
+    
     /// <summary>
-    /// read all engineer details
+    /// read all engineeres
     /// </summary>
     /// <param name="filter">an option for sorting the list</param>
     /// <returns>list of all the engineers</returns>
@@ -102,6 +103,7 @@ internal class EngineerImplementation : IEngineer
         return engineers;
 
     }
+    
     /// <summary>
     /// update detales of an engineer
     /// </summary>
