@@ -24,8 +24,8 @@ namespace DO;
 public record Task
 (
     int Id,
-    string ?Description,
-    string ?Alias,
+    string? Description,
+    string? Alias,
     bool Milestone,
     string? Deliverables,
     EngineerExperience? ComplexityTask,
@@ -39,7 +39,7 @@ public record Task
     int? EngineerId = null
 )
 {
-    public Task() : this(0,"","",false,"", 0,TimeSpan.FromDays(0),DateTime.Now,DateTime.Now) { } 
+    public Task() : this(0, "", "", false, "", 0, TimeSpan.FromDays(0), DateTime.Now, DateTime.Now) { }
 
     //empty ctor for stage 3
 

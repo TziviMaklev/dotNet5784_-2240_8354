@@ -8,9 +8,9 @@ using BlApi;
 /// </summary>
 internal class Bl : IBl
 {
-    public IEngineer Engineer =>  new EngineerImplementation();
+    public IEngineer Engineer => new EngineerImplementation();
 
-    public IMilestone Milestone =>  new MilestoneImplementation();
+    public IMilestone Milestone => new MilestoneImplementation();
 
-    public ITask Task =>  new TaskImplementation();
+    public ITask Task => new TaskImplementation();
 }

@@ -40,7 +40,7 @@ public class BlChoiseDoesNotExistException : Exception//if the choise that the u
 {
     public BlChoiseDoesNotExistException(string? message) : base(message) { }
 }
-public class BlTimeSurfing:Exception
+public class BlTimeSurfing : Exception
 {
     public BlTimeSurfing(string? message) : base(message) { }
 }

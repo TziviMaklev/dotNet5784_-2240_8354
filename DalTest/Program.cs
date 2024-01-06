@@ -24,7 +24,7 @@ internal class Program
                     "2. Engineer\n" +
                     "3. Dependency\n");
                 ans = Console.ReadLine();
-                int.TryParse(ans, out userChose) ;//ReadLine returns only string so we converted it to integer
+                int.TryParse(ans, out userChose);//ReadLine returns only string so we converted it to integer
                 switch (userChose)
                 {
                     case 0:
@@ -105,7 +105,7 @@ internal class Program
                         default:
                             throw new ChoiseDoesNotExistException("This choice does not exist");
                     }
-                    DO.Task task = new DO.Task( 0, desc, alias, false, deliver, experience ,TimeSpan.FromDays(0), DateTime.Now, null);
+                    DO.Task task = new DO.Task(0, desc, alias, false, deliver, experience, TimeSpan.FromDays(0), DateTime.Now, null);
                     s_dal!.Task.Create(task);
                 }
                 break;//Add
@@ -119,7 +119,7 @@ internal class Program
                 break;
             case 4:
                 {
-                    List<DO.Task ? > tasks;
+                    List<DO.Task?> tasks;
                     tasks = s_dal.Task!.ReadAll().ToList();
                     Console.WriteLine(string.Join("\n", tasks));
                 }
@@ -135,10 +135,10 @@ internal class Program
                     }
 
                     Console.WriteLine("if you want change the description enter:");
-                    string description = Console.ReadLine() ?? taskFound.Description !;
+                    string description = Console.ReadLine() ?? taskFound.Description!;
 
                     Console.WriteLine("if you want change the alias enter:");
-                    string alias = Console.ReadLine() ?? taskFound.Alias !;
+                    string alias = Console.ReadLine() ?? taskFound.Alias!;
                     Console.WriteLine("if you want change the milestone enter:");
                     string milestoneI = Console.ReadLine() ?? "";
                     bool milestone;
@@ -154,7 +154,7 @@ internal class Program
                     int engineerExperience;
                     ans = Console.ReadLine();
                     bool check = int.TryParse(ans, out engineerExperience);
-                    DO.EngineerExperience ?complexityTask;
+                    DO.EngineerExperience? complexityTask;
                     if (!check)
                         complexityTask = taskFound.ComplexityTask;
                     else
@@ -303,7 +303,7 @@ internal class Program
                 break;//Object view
             case 4:
                 {
-                    List<DO.Engineer ?> engineerL;
+                    List<DO.Engineer?> engineerL;
                     engineerL = s_dal.Engineer!.ReadAll().ToList();
                     Console.WriteLine(string.Join("\n", engineerL));
                 }
@@ -401,7 +401,7 @@ internal class Program
                 break;
             case 4:
                 {
-                    List<DO.Dependency ?> dependencyL;
+                    List<DO.Dependency?> dependencyL;
                     dependencyL = s_dal.Dependency!.ReadAll().ToList();
                     Console.WriteLine(string.Join("\n", dependencyL));
                 }

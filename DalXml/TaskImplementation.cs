@@ -23,7 +23,7 @@ internal class TaskImplementation : ITask
         }
         if (task == null)
         {
-            Task newTask = item with { Id = id};
+            Task newTask = item with { Id = id };
             tasksL.Add(newTask);
             XMLTools.SaveListToXMLSerializer(tasksL!, "tasks");
         }

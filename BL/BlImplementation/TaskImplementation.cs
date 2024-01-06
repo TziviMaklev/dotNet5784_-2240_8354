@@ -144,8 +144,15 @@ internal class TaskImplementation : ITask
             task.Engineer?.Id); // Set the EngineerId property of the DO.Task object to the Id property of the task.Engineer object if it is not null, otherwise set it to null
         try
         {
-            int idNewTask = _dal.Task.Create(doTask); // Call the Create() method of _dal.Task object and pass in the doTask object as a parameter to create a new task and get the new task's id
-            return idNewTask; // Return the new task's id
+            int idNewTask = _dal.Task.Create(doTask); 
+            if (task.Dependencies != null)
+            {
+                foreach (var dep in task.Dependencies)
+                {
+                    _dal.Dependency.Create(new DO.Dependency(0, idNewTask, dep.Id));
+                }
+            }
+            return idNewTask;
         }
         catch (DO.DalAlreadyExistsException ex) // Catch the DalAlreadyExistsException
         {

@@ -15,9 +15,10 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="Exception">the item with a same id of the parameter</exception>
     public int Create(Engineer item)
     {
-        var foundEngineer = DataSource.Engineers.FirstOrDefault(e=>e?.Id==item.Id);
-        if (foundEngineer == null) {
-             DataSource.Engineers.Add(item);
+        var foundEngineer = DataSource.Engineers.FirstOrDefault(e => e?.Id == item.Id);
+        if (foundEngineer == null)
+        {
+            DataSource.Engineers.Add(item);
         }
         else
         {
@@ -33,7 +34,7 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="Exception">this id is not exist</exception>
     public void Delete(int id)
     {
-        var foundEngineer = DataSource.Engineers.FirstOrDefault(e=>e?.Id==id);
+        var foundEngineer = DataSource.Engineers.FirstOrDefault(e => e?.Id == id);
         if (foundEngineer != null)
         {
             DataSource.Engineers.Remove(foundEngineer);
@@ -51,7 +52,7 @@ internal class EngineerImplementation : IEngineer
     /// <returns>return a reference to the item</returns>
     public Engineer? Read(int id)
     {
-        Engineer? foundEngineer= DataSource.Engineers.FirstOrDefault(e=>e?.Id ==id);
+        Engineer? foundEngineer = DataSource.Engineers.FirstOrDefault(e => e?.Id == id);
         if (foundEngineer != null)
         {
             return foundEngineer;
@@ -70,14 +71,14 @@ internal class EngineerImplementation : IEngineer
     /// <returns>a list that copied from the Dependency list</returns>
     public IEnumerable<Engineer?> ReadAll(Func<Engineer, bool>? filter = null)
     {
-            if (filter != null)
-            {
-                return from item in DataSource.Engineers
-                       where filter(item)
-                       select item;
-            }
+        if (filter != null)
+        {
             return from item in DataSource.Engineers
+                   where filter(item)
                    select item;
+        }
+        return from item in DataSource.Engineers
+               select item;
     }
 
 
