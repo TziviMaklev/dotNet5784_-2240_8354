@@ -19,9 +19,9 @@ internal class TaskImplementation : ITask
     {
         int id;
 
-        var taskFound =(from e in DataSource.Tasks 
-                       where e.Id == item.Id
-                       select e).ToList();
+        var taskFound = (from e in DataSource.Tasks
+                         where e.Id == item.Id
+                         select e).ToList();
         if (taskFound.Count == 0)
             id = item.Id;
         else
@@ -31,7 +31,7 @@ internal class TaskImplementation : ITask
         {
             Id = id,
             Description = item.Description,
-            Alias=item.Alias,
+            Alias = item.Alias,
             Milestone = item.Milestone,
             Deliverables = item.Deliverables,
             ComplexityTask = item.ComplexityTask,
@@ -40,9 +40,9 @@ internal class TaskImplementation : ITask
             ScheduledDate = item.ScheduledDate,
             DeadlineDate = item.DeadlineDate,
             CompletionDate = item.CompletionDate,
-            Remarks= item.Remarks,
+            Remarks = item.Remarks,
             EngineerId = item.EngineerId,
-            RequiredEffortTime= item.RequiredEffortTime,
+            RequiredEffortTime = item.RequiredEffortTime,
         };
         DataSource.Tasks.Add(newItem);
         return id;
@@ -56,7 +56,8 @@ internal class TaskImplementation : ITask
     public void Delete(int id)
     {
         var taskFound = DataSource.Tasks.FirstOrDefault(e => e?.Id == id);
-        if (taskFound == null) {
+        if (taskFound == null)
+        {
             throw new DalDoesNotExistException($"Task with ID={id} does Not exist");
         }
         DataSource.Tasks.Remove(taskFound);
@@ -69,7 +70,7 @@ internal class TaskImplementation : ITask
     /// <returns>return a reference to the task</returns>
     public Task? Read(int id)
     {
-        var taskFound = DataSource.Tasks.FirstOrDefault(t=>t?.Id==id);
+        var taskFound = DataSource.Tasks.FirstOrDefault(t => t?.Id == id);
         if (taskFound == null)
         {
             return null;
@@ -87,14 +88,14 @@ internal class TaskImplementation : ITask
     /// <returns>return a new list that the same as the one exist</returns>
     public IEnumerable<Task> ReadAll(Func<Task, bool>? filter = null)
     {
-            if (filter != null)
-            {
-                return from item in DataSource.Tasks
-                       where filter(item)
-                       select item;
-            }
+        if (filter != null)
+        {
             return from item in DataSource.Tasks
+                   where filter(item)
                    select item;
+        }
+        return from item in DataSource.Tasks
+               select item;
 
     }
 

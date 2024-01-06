@@ -17,17 +17,17 @@ internal class DependecyImplementation : IDependency
     {
         int id;
         var dependencyF = (from e in DataSource.Dependencies
-                                   where e.Id == item.Id
-                                   select e).ToList();
-        if (dependencyF.Count == 0 && item.Id != 0 )
+                           where e.Id == item.Id
+                           select e).ToList();
+        if (dependencyF.Count == 0 && item.Id != 0)
             id = item.Id;
         else
             id = DataSource.Config.NextIdDepency;
-        Dependency newDenendency = new Dependency(id,item.DependentTask,item.DependenceOnTask);
+        Dependency newDenendency = new Dependency(id, item.DependentTask, item.DependenceOnTask);
         DataSource.Dependencies.Add(item);
         return newDenendency.Id;
     }
-    
+
     /// <summary>
     /// delete a item from the Dependency list
     /// </summary>
@@ -36,7 +36,7 @@ internal class DependecyImplementation : IDependency
     public void Delete(int id)
 
     {
-        Dependency? foundDependency = DataSource.Dependencies.FirstOrDefault(d=>d?.Id ==id);
+        Dependency? foundDependency = DataSource.Dependencies.FirstOrDefault(d => d?.Id == id);
         if (foundDependency != null)
         {
             DataSource.Dependencies.Remove(foundDependency);
@@ -54,7 +54,7 @@ internal class DependecyImplementation : IDependency
     /// <returns>return a reference to the item</returns>
     public Dependency? Read(int id)
     {
-        Dependency? foundDependency = DataSource.Dependencies.FirstOrDefault(d=>d?.Id ==id);
+        Dependency? foundDependency = DataSource.Dependencies.FirstOrDefault(d => d?.Id == id);
         if (foundDependency != null)
         {
             return foundDependency;
@@ -64,7 +64,7 @@ internal class DependecyImplementation : IDependency
 
     public Dependency? Read(Func<Dependency, bool> filter)
     {
-        return DataSource.Dependencies.FirstOrDefault( d => filter(d!) );
+        return DataSource.Dependencies.FirstOrDefault(d => filter(d!));
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ internal class DependecyImplementation : IDependency
         return from item in DataSource.Dependencies
                select item;
 
-}
+    }
 
     /// <summary>
     /// update one item in the Dependency list

@@ -18,7 +18,7 @@ internal class Program
             if (ans == "Y")
                 DalTest.Initialization.Do();
             Console.Write("Please enter the start project date (MM/dd/yyyy): ");
-            string startDateInput = Console.ReadLine()?? "";
+            string startDateInput = Console.ReadLine() ?? "";
             DateTime startDate;
             if (!DateTime.TryParseExact(startDateInput, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate))
             {
@@ -97,7 +97,7 @@ internal class Program
                     tasks = s_bl.Task!.RequestTaskList()!.ToList();
                     foreach (var item in tasks)
                     {
-                        Console.WriteLine(item!.ToString()+'\n');
+                        Console.WriteLine(item!.ToString() + '\n');
                     }
                 }
                 break;
@@ -223,7 +223,7 @@ internal class Program
                 string? description = Console.ReadLine() ?? taskFound.Description;
 
                 Console.WriteLine("if you want change the alias enter:");
-                string ? ansAlias = Console.ReadLine();
+                string? ansAlias = Console.ReadLine();
                 alias = ansAlias != "" ? ansAlias : taskFound.Alias;
 
                 Console.WriteLine("if you want change the milestone enter:");
@@ -362,7 +362,7 @@ internal class Program
                     Remarks = remarks,
                     Engineer = engineer
                 };
-                Console.WriteLine(boTask.Id);   
+                Console.WriteLine(boTask.Id);
                 s_bl!.Task.UpdateTask(boTask);
                 break;
             default:
@@ -382,7 +382,7 @@ internal class Program
             case 1:
                 List<BO.Engineer> engineerL = s_bl.Engineer.RequestEngineersList()!.ToList();
                 foreach (var item in engineerL)
-                    Console.WriteLine(item.ToString()+'\n');
+                    Console.WriteLine(item.ToString() + '\n');
                 //Console.WriteLine(string.Join("\n", engineerL.ToString()));
                 break;
             case 2:
@@ -436,19 +436,19 @@ internal class Program
                 break;
             case 5:
                 Console.WriteLine("enter task id:");
-                
+
                 int.TryParse(Console.ReadLine(), out id);
 
                 BO.Engineer engineerFound = s_bl.Engineer?.RequestEngineerDetails(id)
                     ?? throw new Exception($"Engineer with ID={id} does Not exist");
                 Console.WriteLine("if you want change the name enter:");
                 ans = Console.ReadLine();
-                string ? nameE;
-                nameE = ans =="" ? engineerFound.Name! : ans;
+                string? nameE;
+                nameE = ans == "" ? engineerFound.Name! : ans;
 
                 Console.WriteLine("if you want change the email enter:");
                 ans = Console.ReadLine();
-                string ?emailE;
+                string? emailE;
                 emailE = ans == "" ? engineerFound.Email! : ans;
 
                 Console.WriteLine("if you want change the level enter:");
@@ -508,30 +508,30 @@ internal class Program
             case 2:
                 Console.WriteLine("enter id of milstone:");
                 ans = Console.ReadLine();
-                int id; 
+                int id;
                 int.TryParse(ans, out id);
                 Console.WriteLine(s_bl.Milestone.Read(id).ToString());
                 break;
             case 3:
                 Console.WriteLine("enter the id of the milstone to chane");
                 ans = Console.ReadLine();
-                int.TryParse(ans,out id);
+                int.TryParse(ans, out id);
                 Milestone milestone = s_bl.Milestone.Read(id);
                 Console.WriteLine("enter the alias to change:");
                 string? alias = Console.ReadLine();
                 bool susecful;
                 Console.WriteLine("enter the Description to change");
-                string ? description = Console.ReadLine();
+                string? description = Console.ReadLine();
                 Console.WriteLine("enter the forecast date to change:");
-                ans= Console.ReadLine();
-                DateTime forecastDate= DateTime.Now;
-                susecful=DateTime.TryParse(ans, out forecastDate);
-                if(!susecful)
+                ans = Console.ReadLine();
+                DateTime forecastDate = DateTime.Now;
+                susecful = DateTime.TryParse(ans, out forecastDate);
+                if (!susecful)
                 {
                     throw new ThePogramNotSuccedToConvert("the pograme does not succed to convert");
                 }
                 Console.WriteLine("enter the remarks to change:");
-                string? remarks= Console.ReadLine();
+                string? remarks = Console.ReadLine();
                 Milestone milestone1 = new Milestone()
                 {
                     Id = milestone.Id,

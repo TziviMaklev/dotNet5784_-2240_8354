@@ -16,21 +16,22 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="BO.BlAlreadyExistsException">this id is already exist</exception>
     public int AddEngineer(BO.Engineer engineer)
     {
-        DO.Engineer doEngineer = new DO.Engineer() 
-        { 
-          Id = engineer.Id,
-          Name = engineer.Name!,
-          Email = engineer.Email!,
-          Level = (DO.EngineerExperience)engineer.Level,
-          Cost = engineer.Cost,
+        DO.Engineer doEngineer = new DO.Engineer()
+        {
+            Id = engineer.Id,
+            Name = engineer.Name!,
+            Email = engineer.Email!,
+            Level = (DO.EngineerExperience)engineer.Level,
+            Cost = engineer.Cost,
         };
         try
         {
             int idNewEngineer = _dal.Engineer.Create(doEngineer);
             return idNewEngineer;
         }
-        catch (DO.DalAlreadyExistsException ex) {
-            throw  new BO.BlAlreadyExistsException($"Engineer with ID={engineer.Id} already exists", ex);
+        catch (DO.DalAlreadyExistsException ex)
+        {
+            throw new BO.BlAlreadyExistsException($"Engineer with ID={engineer.Id} already exists", ex);
         };
     }
     /// <summary>
@@ -59,17 +60,17 @@ internal class EngineerImplementation : IEngineer
     public BO.Engineer RequestEngineerDetails(int id)
     {
         DO.Engineer? engineer = _dal.Engineer.Read(id);
-        if(engineer == null)
+        if (engineer == null)
         {
             throw new BO.BlDoesNotExistException($"engineer.Id with ID={id} does Not exist");
         }
-        BO.Engineer boEngineer = new BO.Engineer() 
+        BO.Engineer boEngineer = new BO.Engineer()
         {
-          Id = engineer!.Id,
-          Name = engineer.Name,
-          Email = engineer.Email,
-          Level = (BO.EngineerExperience)engineer.Level,
-          Cost = engineer.Cost,
+            Id = engineer!.Id,
+            Name = engineer.Name,
+            Email = engineer.Email,
+            Level = (BO.EngineerExperience)engineer.Level,
+            Cost = engineer.Cost,
         };
         return boEngineer;
 
@@ -82,19 +83,19 @@ internal class EngineerImplementation : IEngineer
     public IEnumerable<BO.Engineer>? RequestEngineersList(Func<BO.Engineer, bool>? filter = null)
     {
         var engineers = (from DO.Engineer doEngineer in _dal.Engineer.ReadAll()
-                        select new BO.Engineer
-                        {
-                            Id = doEngineer.Id,
-                            Name = doEngineer.Name,
-                            Email = doEngineer.Email,
-                            Level = (BO.EngineerExperience)doEngineer.Level,
-                            Cost = doEngineer.Cost,
-                        });
-        if(filter != null)
+                         select new BO.Engineer
+                         {
+                             Id = doEngineer.Id,
+                             Name = doEngineer.Name,
+                             Email = doEngineer.Email,
+                             Level = (BO.EngineerExperience)doEngineer.Level,
+                             Cost = doEngineer.Cost,
+                         });
+        if (filter != null)
         {
             IEnumerable<BO.Engineer> engineersFilter = (from item in engineers
-                                   where filter(item)
-                                       select item);
+                                                        where filter(item)
+                                                        select item);
             return engineersFilter;
         }
 
@@ -109,7 +110,7 @@ internal class EngineerImplementation : IEngineer
     public void UpdateEngineerDetails(BO.Engineer engineer)
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(engineer.Id);
-        if(doEngineer != null)
+        if (doEngineer != null)
         {
             _dal.Engineer.Update(doEngineer);
         }

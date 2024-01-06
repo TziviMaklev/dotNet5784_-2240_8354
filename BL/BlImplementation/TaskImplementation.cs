@@ -55,46 +55,46 @@ internal class TaskImplementation : ITask
                                                : task.StartDate is null ? 1
                                                : task.CompletionDate is null ? 2
                                                : 3),
-                Dependencies = (from DO.Dependency doDependency in _dal.Dependency!.ReadAll(d => d.DependentTask == task!.Id)
-                                select new BO.TaskInList()
-                                {
-                                    Id = doDependency.DependenceOnTask,
-                                    Alias = _dal.Task!.Read(doDependency.DependenceOnTask)?.Alias,
-                                    Description = _dal.Task!.Read(doDependency.DependenceOnTask)?.Description,
-                                    Status = (BO.Status)(
-                                    _dal.Task!.Read(doDependency.DependenceOnTask)?.ScheduledDate is null ? 0
-                                    : _dal.Task!.Read(doDependency.DependenceOnTask)?.StartDate is null ? 1
-                                    : _dal.Task!.Read(doDependency.DependenceOnTask)?.CompletionDate is null ? 2
-                                    : 3)
-                                }).ToList(),
-                Milstone = new BO.MilstoneInTask()
-                {
-                    Id = _dal.Task!.Read(_dal.Dependency!.Read(dep =>
+                    Dependencies = (from DO.Dependency doDependency in _dal.Dependency!.ReadAll(d => d.DependentTask == task!.Id)
+                                    select new BO.TaskInList()
+                                    {
+                                        Id = doDependency.DependenceOnTask,
+                                        Alias = _dal.Task!.Read(doDependency.DependenceOnTask)?.Alias,
+                                        Description = _dal.Task!.Read(doDependency.DependenceOnTask)?.Description,
+                                        Status = (BO.Status)(
+                                        _dal.Task!.Read(doDependency.DependenceOnTask)?.ScheduledDate is null ? 0
+                                        : _dal.Task!.Read(doDependency.DependenceOnTask)?.StartDate is null ? 1
+                                        : _dal.Task!.Read(doDependency.DependenceOnTask)?.CompletionDate is null ? 2
+                                        : 3)
+                                    }).ToList(),
+                    Milstone = new BO.MilstoneInTask()
                     {
-                        _dal.Task!.Read(task => task.Milestone && task.Id == dep.DependentTask);
-                        return dep.DependenceOnTask == task.Id;
-                    })!.DependentTask)!.Id,
-                    Alias = _dal.Task!.Read(_dal.Dependency!.Read(dep =>
+                        Id = _dal.Task!.Read(_dal.Dependency!.Read(dep =>
+                        {
+                            _dal.Task!.Read(task => task.Milestone && task.Id == dep.DependentTask);
+                            return dep.DependenceOnTask == task.Id;
+                        })!.DependentTask)!.Id,
+                        Alias = _dal.Task!.Read(_dal.Dependency!.Read(dep =>
+                        {
+                            _dal.Task!.Read(task => task.Milestone && task.Id == dep.DependentTask);
+                            return dep.DependenceOnTask == task.Id;
+                        })!.DependentTask)?.Alias
+                    },
+                    RequiredEffortTime = task.RequiredEffortTime,
+                    ScheduledDate = task.ScheduledDate,
+                    StartDate = task.StartDate,
+                    ForecastDate = task.StartDate + task.RequiredEffortTime,
+                    DeadlineDate = task.DeadlineDate,
+                    CompleteDate = task.CompletionDate,
+                    Deliverables = task.Deliverables,
+                    Remarks = task.Remarks,
+                    ComplexityTask = (BO.EngineerExperience)task.ComplexityTask!,
+                    Engineer = new EngineerInTask()
                     {
-                        _dal.Task!.Read(task => task.Milestone && task.Id == dep.DependentTask);
-                        return dep.DependenceOnTask == task.Id;
-                    })!.DependentTask)?.Alias
-                },
-                RequiredEffortTime = task.RequiredEffortTime,
-                ScheduledDate = task.ScheduledDate,
-                StartDate = task.StartDate,
-                ForecastDate = task.StartDate+task.RequiredEffortTime,
-                DeadlineDate = task.DeadlineDate,
-                CompleteDate = task.CompletionDate,
-                Deliverables = task.Deliverables,
-                Remarks = task.Remarks,
-                ComplexityTask = (BO.EngineerExperience)task.ComplexityTask!,
-                Engineer = new EngineerInTask()
-                {
-                    Id = (int)task.EngineerId!,
-                    Name = _dal.Engineer.Read(id)!.Name
-                }
-            };
+                        Id = (int)task.EngineerId!,
+                        Name = _dal.Engineer.Read(id)!.Name
+                    }
+                };
 
         }
         catch (DO.DalAlreadyExistsException ex)
@@ -121,7 +121,7 @@ internal class TaskImplementation : ITask
             task.Engineer?.Id);
         try
         {
-            int idNewTask = _dal.Task.Create(doTask); 
+            int idNewTask = _dal.Task.Create(doTask);
             if (task.Dependencies != null)
             {
                 foreach (var dep in task.Dependencies)

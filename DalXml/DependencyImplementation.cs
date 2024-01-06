@@ -12,7 +12,7 @@ internal class DependencyImplementation : IDependency
 
 
 
-    
+
 
     /// <summary>
     /// create a new item in the Dependency list
@@ -21,7 +21,7 @@ internal class DependencyImplementation : IDependency
     /// <returns>the id of the item we addad</returns>
     public int Create(Dependency item)
     {
-        List <Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
+        List<Dependency> dependencies = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
         Dependency? dependency = null;
         int id = Config.NextIdDepency;
         if (dependencies.Count > 0)
@@ -29,7 +29,7 @@ internal class DependencyImplementation : IDependency
         if (dependency == null)
         {
             Dependency newDependency = item with { Id = id };
-            dependencies?.Add( newDependency );
+            dependencies?.Add(newDependency);
             XMLTools.SaveListToXMLSerializer(dependencies!, "dependencies");
         }
         else
@@ -104,7 +104,7 @@ internal class DependencyImplementation : IDependency
     /// </summary>
     public void Reset()
     {
-        List<Dependency>? dependencies = new List<Dependency> ();
+        List<Dependency>? dependencies = new List<Dependency>();
         XMLTools.SaveListToXMLSerializer(dependencies, "dependencies");
     }
 
