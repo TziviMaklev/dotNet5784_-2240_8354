@@ -220,8 +220,8 @@ internal class MilestoneImplementation : IMilestone
             ForecastDate = forcadeDate,
             Deadline = doMilestoneTask.DeadlineDate,
             ActualEndDate = doMilestoneTask.CompletionDate,
-            ProgressPercentage=progressPercentage,
-            Remarks=doMilestoneTask.Remarks,
+            ProgressPercentage = progressPercentage,
+            Remarks = doMilestoneTask.Remarks,
         };
         return milestone;
     }
@@ -230,7 +230,7 @@ internal class MilestoneImplementation : IMilestone
     {
         DO.Task doTask = new DO.Task(milestone.Id,milestone.Description
             ,milestone.Alias,true, "",null,new TimeSpan(0), (DateTime)milestone.CreateDate!,
-            milestone.StartDate,null,milestone.Deadline,milestone.ActualEndDate,milestone.Remarks,null);
+            milestone.StartDate,null,milestone.Deadline,milestone.ActualEndDate,milestone.Remarks, null);
         try
         {
             _dal.Task.Update(doTask);
