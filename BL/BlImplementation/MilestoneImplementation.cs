@@ -221,9 +221,9 @@ internal class MilestoneImplementation : IMilestone
 
     public void UpdateMilestone(Milestone milestone)
     {
-        DO.Task doTask = new DO.Task(milestone.Id, milestone.Description
-            , milestone.Alias, true, "", null, new TimeSpan(0), (DateTime)milestone.CreateDate!,
-            milestone.StartDate, null, milestone.Deadline, milestone.ActualEndDate, milestone.Remarks, null);
+        DO.Task doTask = new DO.Task(milestone.Id,milestone.Description
+            ,milestone.Alias,true, "",null,new TimeSpan(0), (DateTime)milestone.CreateDate!,
+            milestone.StartDate,null,milestone.Deadline,milestone.ActualEndDate,milestone.Remarks,null);
         try
         {
             _dal.Task.Update(doTask);
