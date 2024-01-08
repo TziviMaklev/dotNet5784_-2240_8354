@@ -15,7 +15,26 @@ internal class Program
             Console.Write("Would you like to create Initial data? (Y/N)\n");
             string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
             if (ans == "Y")
-                DalTest.Initialization.Do();//jkjkp[
+                DalTest.Initialization.Do();//
+            Console.Write("Please enter the start project date (MM/dd/yyyy): ");
+            string startDateInput = Console.ReadLine() ?? "";
+            DateTime startDate;
+            if (!DateTime.TryParseExact(startDateInput, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate))
+            {
+                throw new BlTimeSurfing("Invalid date format!");
+            }
+            Console.Write("Please enter the end project date (MM/dd/yyyy): ");
+            string endDateInput = Console.ReadLine() ?? "";
+            DateTime endDate;
+            if (!DateTime.TryParseExact(endDateInput, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out endDate))
+            {
+                throw new BlTimeSurfing("Invalid date format!");
+            }
+            if (endDate <= startDate)
+            {
+                throw new BlTimeSurfing("The start date is after the end date");
+            }
+            s_bl.Milestone.SetDates(startDate, endDate);
             int userChose;
             do
             {
