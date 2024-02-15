@@ -13,4 +13,6 @@ internal class Bl : IBl
     public IMilestone Milestone => new MilestoneImplementation();
 
     public ITask Task => new TaskImplementation();
+
+    public void InitializeDB() => DalTest.Initialization.Do();
 }
