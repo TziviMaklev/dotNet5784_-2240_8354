@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BO;
+using BlImplementation;
 using PL.Engineer;
 using System;
 using System.Collections.Generic;
@@ -36,8 +37,17 @@ namespace PL
             if (MessageBox.Show
                 ("Do you really want to initialize the database?", "Agreement", MessageBoxButton.YesNo)==MessageBoxResult.Yes)
             {
-                IBl blInstance = new Bl();
+                //IBl blInstance = new Bl();
                 blInstance.InitializeDB();
+            };
+        }
+        private void rst_db(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show
+                ("Do you really want to initialize the database?", "Agreement", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                IBl blInstance = new Bl();
+                blInstance.ResetDB();
             };
         }
     }

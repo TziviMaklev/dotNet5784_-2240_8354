@@ -9,7 +9,7 @@
     <Grid>
         <Button Content="Handle Engineer" Click="btnEngineer_Click" HorizontalAlignment="Left" Margin="138,155,0,0" VerticalAlignment="Top" Height="83" Width="132" Background="#FFE4AB10"/>
         <Button Content="Database initialization" Click="init_db" HorizontalAlignment="Center" Margin="0,155,0,0" VerticalAlignment="Top" Height="83" Width="152"/>
-        <Button Content="Reset database" HorizontalAlignment="Left" Margin="531,155,0,0" VerticalAlignment="Top" Height="83" Width="132" Background="#FFE4AB10"/>
+        <Button Content="Reset database" Click="rst_db" HorizontalAlignment="Left" Margin="531,155,0,0" VerticalAlignment="Top" Height="83" Width="132" Background="#FFE4AB10"/>
 
     </Grid>
 </Window>

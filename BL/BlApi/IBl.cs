@@ -10,4 +10,6 @@ public interface IBl
     public IMilestone Milestone { get; }
     public ITask Task { get; }
     public void InitializeDB();
+    public void ResetDB();
+
 }
