@@ -1,2 +1,603 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+<ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Task>
+    <Id>46</Id>
+    <Description>Write and test code for new features or bug fixes.</Description>
+    <Alias>Writing and testing code</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>It is the code itself, which is a functional and reliable software solution.</Deliverables>
+    <ComplexityTask>AdvancedBeginner</ComplexityTask>
+    <RequiredEffortTime>P20D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.3395242+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>47</Id>
+    <Description>Collaborate with team members to discuss requirements and solutions.</Description>
+    <Alias>Collaboration and discussion of requirements</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>It is a clear understanding and agreement about the project requirements and its goals among the team members.</Deliverables>
+    <ComplexityTask>Competent</ComplexityTask>
+    <RequiredEffortTime>P14D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.4578288+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>48</Id>
+    <Description>Review and provide feedback on code written by other team members.</Description>
+    <Alias>Code review and feedback</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The improved code quality and efficiency, as well as shared knowledge and expertise among the team.</Deliverables>
+    <ComplexityTask>Proficient</ComplexityTask>
+    <RequiredEffortTime>P23D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.4712979+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>49</Id>
+    <Description>Solving and debugging problems reported by users or identified through testing.</Description>
+    <Alias>Troubleshooting and debugging</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The identifying and fixing software problems, resulting in a more stable and functional application.</Deliverables>
+    <ComplexityTask>Proficient</ComplexityTask>
+    <RequiredEffortTime>P14D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.4768666+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>50</Id>
+    <Description>Attend team meetings to discuss project progress and plan future work.</Description>
+    <Alias>Participation in team meetings and project planning</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The a well-coordinated team, effective project planning and effective task allocation.</Deliverables>
+    <ComplexityTask>Novice</ComplexityTask>
+    <RequiredEffortTime>P18D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.4841259+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>51</Id>
+    <Description>Research new technologies and coding best practices to stay current.</Description>
+    <Alias>Research and continuous learning</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The acquisition of new knowledge, skills and insights that can be applied to improve software development methods.</Deliverables>
+    <ComplexityTask>Expert</ComplexityTask>
+    <RequiredEffortTime>P28D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.4954446+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>52</Id>
+    <Description>Write and maintain technical documentation for code and projects.</Description>
+    <Alias>Documentation of technical information</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The comprehensive and accessible documentation that helps team members and stakeholders understand the software system.</Deliverables>
+    <ComplexityTask>Competent</ComplexityTask>
+    <RequiredEffortTime>P30D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.5051092+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>53</Id>
+    <Description>Conduct code reviews and improve existing code to improve efficiency and maintainability.</Description>
+    <Alias>Code review and modification</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>It is an optimized and maintainable code, leading to improved performance, readability and scalability.</Deliverables>
+    <ComplexityTask>Proficient</ComplexityTask>
+    <RequiredEffortTime>P12D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.5124759+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>54</Id>
+    <Description>Collaboration with QA teams to ensure software quality and perform necessary tests.</Description>
+    <Alias>Quality assurance and testing</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>A reliable and high-quality software product that meets the detailed requirements and user expectations.</Deliverables>
+    <ComplexityTask>Proficient</ComplexityTask>
+    <RequiredEffortTime>P9D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.5204336+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>55</Id>
+    <Description>Work with project managers to estimate the time and effort required to complete tasks and meet project schedules.</Description>
+    <Alias>Task evaluation and project management</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The realistic project schedules, efficient resource allocation and successful completion of a project within specified constraints.</Deliverables>
+    <ComplexityTask>Competent</ComplexityTask>
+    <RequiredEffortTime>P24D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.5275675+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>56</Id>
+    <Description>Performance Optimization: Identifying and improving code performance, analyzing bottlenecks and optimizing algorithms or code snippets to improve insurance.</Description>
+    <Alias>Performance optimization</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>Improving the performance and efficiency of the code or system, resulting in faster execution, reduced resource consumption, and improved user experience.</Deliverables>
+    <ComplexityTask>Novice</ComplexityTask>
+    <RequiredEffortTime>P20D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.5428079+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>57</Id>
+    <Description>Database management: designing and maintaining databases, creating tables, writing complex queries and ensuring integrity and security.</Description>
+    <Alias>Database management</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>A well-designed and efficiently structured database that stores and manages data efficiently, ensuring data integrity, security and easy retrieval.</Deliverables>
+    <ComplexityTask>Expert</ComplexityTask>
+    <RequiredEffortTime>P10D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.5556242+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>58</Id>
+    <Description>User interface (UI) design: collaboration with designers to create really visually appealing and user-friendly, implementing user interface elements and ensuring responsive design.</Description>
+    <Alias>User interface (UI) design</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>An intuitive and visually appealing user interface that enhances the user experience, promotes user engagement, and makes the software application easy to navigate and interact with.</Deliverables>
+    <ComplexityTask>Competent</ComplexityTask>
+    <RequiredEffortTime>P19D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.5688205+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>59</Id>
+    <Description>Security testing: performing security assessments, vulnerability scanning and penetration testing to identify and address potential security risks in software applications.</Description>
+    <Alias>Security checks</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>A secure software application with identified vulnerabilities and weaknesses, which reduces the risk of unauthorized access, data breaches and other security threats.</Deliverables>
+    <ComplexityTask>Expert</ComplexityTask>
+    <RequiredEffortTime>P28D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.5816638+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>60</Id>
+    <Description>Version control management: using version control systems (such as Git) to manage and track code changes, communicate with team members and resolve merger conflicts.</Description>
+    <Alias>Version control management</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>A well-maintained and organized code base, with changes tracked, consolidated and documented effectively, which enables collaboration between team members and facilitates code stability.</Deliverables>
+    <ComplexityTask>AdvancedBeginner</ComplexityTask>
+    <RequiredEffortTime>P26D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.6033931+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>61</Id>
+    <Description>API integration: development and integration of application programming interfaces (API), the possibilities of communication and data exchange between different software systems.</Description>
+    <Alias>API integration</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The successful integration of different software systems, allowing them to communicate and share data seamlessly, enabling improved functionality and interoperability.</Deliverables>
+    <ComplexityTask>Proficient</ComplexityTask>
+    <RequiredEffortTime>P16D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.616681+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>62</Id>
+    <Description>Continuous integration and deployment: Implementing CI/CD pipelines to automate the build, test and deployment processes, while ensuring fast and efficient software delivery.</Description>
+    <Alias>Continuous integration and deployment</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>An automated and efficient software development process, enabling frequent and reliable releases of software, reducing manual errors and improving overall development efficiency.</Deliverables>
+    <ComplexityTask>Competent</ComplexityTask>
+    <RequiredEffortTime>P30D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.6343943+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>63</Id>
+    <Description>Machine learning and data analysis: Building and training machine learning models, analyzing large data sets and generating valuable insights for informed decision-making.</Description>
+    <Alias>For machine and data analysis</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The development and deployment of accurate machine learning models, which can provide valuable insights and predictions from large data sets, enabling data-driven decision making.</Deliverables>
+    <ComplexityTask>Proficient</ComplexityTask>
+    <RequiredEffortTime>P21D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.6484761+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>64</Id>
+    <Description>Technical support: assisting users in solving technical problems, providing instructions regarding the use of the software and solving problems related to the software.</Description>
+    <Alias>Technical support</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>A quick and efficient solution of technical problems, providing assistance and guidance to users, ensuring smooth use of the software and maximizing user satisfaction.</Deliverables>
+    <ComplexityTask>Novice</ComplexityTask>
+    <RequiredEffortTime>P17D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.6644119+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>65</Id>
+    <Description>Code Optimization and Recovery: Reviewing existing code bases, identifying areas for improvement, and modifying code to improve readability, maintainability, and performance</Description>
+    <Alias>Code Optimization and Recovery</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>Optimized, clean, and maintainable code with improved performance, readability, and scalability, making it easier to maintain, modify, and improve the software application in the future.</Deliverables>
+    <ComplexityTask>AdvancedBeginner</ComplexityTask>
+    <RequiredEffortTime>P15D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:18:33.6838865+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>66</Id>
+    <Description>Write and test code for new features or bug fixes.</Description>
+    <Alias>Writing and testing code</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>It is the code itself, which is a functional and reliable software solution.</Deliverables>
+    <ComplexityTask>AdvancedBeginner</ComplexityTask>
+    <RequiredEffortTime>P20D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.5000528+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>67</Id>
+    <Description>Collaborate with team members to discuss requirements and solutions.</Description>
+    <Alias>Collaboration and discussion of requirements</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>It is a clear understanding and agreement about the project requirements and its goals among the team members.</Deliverables>
+    <ComplexityTask>Competent</ComplexityTask>
+    <RequiredEffortTime>P14D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.7308488+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>68</Id>
+    <Description>Review and provide feedback on code written by other team members.</Description>
+    <Alias>Code review and feedback</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The improved code quality and efficiency, as well as shared knowledge and expertise among the team.</Deliverables>
+    <ComplexityTask>Proficient</ComplexityTask>
+    <RequiredEffortTime>P23D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.7481397+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>69</Id>
+    <Description>Solving and debugging problems reported by users or identified through testing.</Description>
+    <Alias>Troubleshooting and debugging</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The identifying and fixing software problems, resulting in a more stable and functional application.</Deliverables>
+    <ComplexityTask>Proficient</ComplexityTask>
+    <RequiredEffortTime>P14D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.7682895+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>70</Id>
+    <Description>Attend team meetings to discuss project progress and plan future work.</Description>
+    <Alias>Participation in team meetings and project planning</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The a well-coordinated team, effective project planning and effective task allocation.</Deliverables>
+    <ComplexityTask>Novice</ComplexityTask>
+    <RequiredEffortTime>P18D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.7863532+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>71</Id>
+    <Description>Research new technologies and coding best practices to stay current.</Description>
+    <Alias>Research and continuous learning</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The acquisition of new knowledge, skills and insights that can be applied to improve software development methods.</Deliverables>
+    <ComplexityTask>Expert</ComplexityTask>
+    <RequiredEffortTime>P28D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.8032243+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>72</Id>
+    <Description>Write and maintain technical documentation for code and projects.</Description>
+    <Alias>Documentation of technical information</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The comprehensive and accessible documentation that helps team members and stakeholders understand the software system.</Deliverables>
+    <ComplexityTask>Competent</ComplexityTask>
+    <RequiredEffortTime>P30D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.8283068+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>73</Id>
+    <Description>Conduct code reviews and improve existing code to improve efficiency and maintainability.</Description>
+    <Alias>Code review and modification</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>It is an optimized and maintainable code, leading to improved performance, readability and scalability.</Deliverables>
+    <ComplexityTask>Proficient</ComplexityTask>
+    <RequiredEffortTime>P12D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.8917259+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>74</Id>
+    <Description>Collaboration with QA teams to ensure software quality and perform necessary tests.</Description>
+    <Alias>Quality assurance and testing</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>A reliable and high-quality software product that meets the detailed requirements and user expectations.</Deliverables>
+    <ComplexityTask>Proficient</ComplexityTask>
+    <RequiredEffortTime>P9D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.9106115+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>75</Id>
+    <Description>Work with project managers to estimate the time and effort required to complete tasks and meet project schedules.</Description>
+    <Alias>Task evaluation and project management</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The realistic project schedules, efficient resource allocation and successful completion of a project within specified constraints.</Deliverables>
+    <ComplexityTask>Competent</ComplexityTask>
+    <RequiredEffortTime>P24D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.9279144+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>76</Id>
+    <Description>Performance Optimization: Identifying and improving code performance, analyzing bottlenecks and optimizing algorithms or code snippets to improve insurance.</Description>
+    <Alias>Performance optimization</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>Improving the performance and efficiency of the code or system, resulting in faster execution, reduced resource consumption, and improved user experience.</Deliverables>
+    <ComplexityTask>Novice</ComplexityTask>
+    <RequiredEffortTime>P20D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.9412229+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>77</Id>
+    <Description>Database management: designing and maintaining databases, creating tables, writing complex queries and ensuring integrity and security.</Description>
+    <Alias>Database management</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>A well-designed and efficiently structured database that stores and manages data efficiently, ensuring data integrity, security and easy retrieval.</Deliverables>
+    <ComplexityTask>Expert</ComplexityTask>
+    <RequiredEffortTime>P10D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.9596895+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>78</Id>
+    <Description>User interface (UI) design: collaboration with designers to create really visually appealing and user-friendly, implementing user interface elements and ensuring responsive design.</Description>
+    <Alias>User interface (UI) design</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>An intuitive and visually appealing user interface that enhances the user experience, promotes user engagement, and makes the software application easy to navigate and interact with.</Deliverables>
+    <ComplexityTask>Competent</ComplexityTask>
+    <RequiredEffortTime>P19D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.9777395+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>79</Id>
+    <Description>Security testing: performing security assessments, vulnerability scanning and penetration testing to identify and address potential security risks in software applications.</Description>
+    <Alias>Security checks</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>A secure software application with identified vulnerabilities and weaknesses, which reduces the risk of unauthorized access, data breaches and other security threats.</Deliverables>
+    <ComplexityTask>Expert</ComplexityTask>
+    <RequiredEffortTime>P28D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:47.9939759+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>80</Id>
+    <Description>Version control management: using version control systems (such as Git) to manage and track code changes, communicate with team members and resolve merger conflicts.</Description>
+    <Alias>Version control management</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>A well-maintained and organized code base, with changes tracked, consolidated and documented effectively, which enables collaboration between team members and facilitates code stability.</Deliverables>
+    <ComplexityTask>AdvancedBeginner</ComplexityTask>
+    <RequiredEffortTime>P26D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:48.0191968+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>81</Id>
+    <Description>API integration: development and integration of application programming interfaces (API), the possibilities of communication and data exchange between different software systems.</Description>
+    <Alias>API integration</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The successful integration of different software systems, allowing them to communicate and share data seamlessly, enabling improved functionality and interoperability.</Deliverables>
+    <ComplexityTask>Proficient</ComplexityTask>
+    <RequiredEffortTime>P16D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:48.0394858+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>82</Id>
+    <Description>Continuous integration and deployment: Implementing CI/CD pipelines to automate the build, test and deployment processes, while ensuring fast and efficient software delivery.</Description>
+    <Alias>Continuous integration and deployment</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>An automated and efficient software development process, enabling frequent and reliable releases of software, reducing manual errors and improving overall development efficiency.</Deliverables>
+    <ComplexityTask>Competent</ComplexityTask>
+    <RequiredEffortTime>P30D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:48.0620868+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>83</Id>
+    <Description>Machine learning and data analysis: Building and training machine learning models, analyzing large data sets and generating valuable insights for informed decision-making.</Description>
+    <Alias>For machine and data analysis</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>The development and deployment of accurate machine learning models, which can provide valuable insights and predictions from large data sets, enabling data-driven decision making.</Deliverables>
+    <ComplexityTask>Proficient</ComplexityTask>
+    <RequiredEffortTime>P21D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:48.0884746+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>84</Id>
+    <Description>Technical support: assisting users in solving technical problems, providing instructions regarding the use of the software and solving problems related to the software.</Description>
+    <Alias>Technical support</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>A quick and efficient solution of technical problems, providing assistance and guidance to users, ensuring smooth use of the software and maximizing user satisfaction.</Deliverables>
+    <ComplexityTask>Novice</ComplexityTask>
+    <RequiredEffortTime>P17D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:48.1169684+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>85</Id>
+    <Description>Code Optimization and Recovery: Reviewing existing code bases, identifying areas for improvement, and modifying code to improve readability, maintainability, and performance</Description>
+    <Alias>Code Optimization and Recovery</Alias>
+    <Milestone>false</Milestone>
+    <Deliverables>Optimized, clean, and maintainable code with improved performance, readability, and scalability, making it easier to maintain, modify, and improve the software application in the future.</Deliverables>
+    <ComplexityTask>AdvancedBeginner</ComplexityTask>
+    <RequiredEffortTime>P15D</RequiredEffortTime>
+    <CreationDate>2024-02-18T21:29:48.1402404+02:00</CreationDate>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompletionDate xsi:nil="true" />
+    <EngineerId xsi:nil="true" />
+  </Task>
+</ArrayOfTask>

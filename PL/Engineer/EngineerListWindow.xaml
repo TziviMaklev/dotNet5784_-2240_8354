@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
-        Title="EngineerListWindow" Height="640" Width="800">
+        Title="EngineerListWindow" Height="640" Width="800"
+         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <!--Extrnal Grid-->
     <Grid>
         <Grid.RowDefinitions>
@@ -20,11 +21,15 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--Choose kategory-->
-            <ComboBox Grid.Column="1" Margin="266,10,0,0" Width="120" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <ComboBox  Grid.Column="1" Margin="266,10,0,0" Width="120" 
+                       ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
+                       SelectedValue="{Binding Path=Experience, Mode=TwoWay}"
+                       SelectionChanged ="cbEngineerSelector_SelectionChanged"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             <Label Grid.Column="0" Content="Label" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
         </Grid>
-        <ListView Grid.Row="1">
-            <ListView.View>
+        <ListView Grid.Row="1" ItemsSource="{Binding EngineerList}"  >
+            <ListView.View >
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
