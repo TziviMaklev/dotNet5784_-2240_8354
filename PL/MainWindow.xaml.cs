@@ -37,7 +37,7 @@ namespace PL
             if (MessageBox.Show
                 ("Do you really want to initialize the database?", "Agreement", MessageBoxButton.YesNo)==MessageBoxResult.Yes)
             {
-                //IBl blInstance = new Bl();
+                IBl blInstance = new Bl();
                 blInstance.InitializeDB();
             };
         }

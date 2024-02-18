@@ -210,6 +210,20 @@ public static class Initialization
         s_dal!.Dependency.Create(new Dependency(0, 21, 15));
     }
 
+    public static void Reset()
+    {
+        if(s_dal != null)
+        {
+            s_dal.Task.Reset();
+            s_dal.Dependency.Reset();
+            s_dal.Engineer.Reset();
+        }
+        else
+        {
+            throw new DalDoesNotExistException("s_dal is not exist");
+        }
+    }
+
     /// <summary>
     /// make all the data in lists
     /// </summary>

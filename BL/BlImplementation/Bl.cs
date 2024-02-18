@@ -6,7 +6,7 @@ using BlApi;
 /// <summary>
 /// call all the defenitions of the interfaces
 /// </summary>
-internal class Bl : IBl
+public class Bl : IBl
 {
     public IEngineer Engineer => new EngineerImplementation();
 
@@ -15,5 +15,6 @@ internal class Bl : IBl
     public ITask Task => new TaskImplementation();
 
     public void InitializeDB() => DalTest.Initialization.Do();
+
     public void ResetDB() => DalTest.Initialization.Reset();
 }
