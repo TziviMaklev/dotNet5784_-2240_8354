@@ -23,8 +23,15 @@ internal class EngineerImplementation : IEngineer
         XElement engineers = XMLTools.LoadListFromXMLElement("engineers");
         var engineer = engineers.Descendants("Engineer")
             .FirstOrDefault(e => e.Element("Id")!.Value.Equals(item.Id));
+        // יצירת אובייקט Random
+        Random rand = new Random();
+        int newId = rand.Next(111111111, 999999999);
+        while(engineers.Descendants("Engineer").FirstOrDefault(e => e.Element("Id")!.Value.Equals(newId)) != null)
+        {
+            newId = rand.Next(111111111, 999999999);
+        }
         XElement? returnEngineer = new XElement("Engineer",
-                                                 new XElement("Id", item.Id),
+                                                 new XElement("Id", newId),
                                                  new XElement("Name", item.Name),
                                                  new XElement("Email", item.Email),
                                                  new XElement("Level", item.Level),

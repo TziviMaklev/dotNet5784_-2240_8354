@@ -212,16 +212,10 @@ public static class Initialization
 
     public static void Reset()
     {
-        if(s_dal != null)
-        {
-            s_dal.Task.Reset();
-            s_dal.Dependency.Reset();
-            s_dal.Engineer.Reset();
-        }
-        else
-        {
-            throw new DalDoesNotExistException("s_dal is not exist");
-        }
+        s_dal = DalApi.Factory.Get;
+        s_dal.Task.Reset();
+        s_dal.Dependency.Reset();
+        s_dal.Engineer.Reset();
     }
 
     /// <summary>

@@ -42,7 +42,18 @@ namespace PL.Engineer
             EngineerList = (Experience == BO.EngineerExperience.All) ?
               new ObservableCollection<BO.Engineer>(s_bl?.Engineer.RequestEngineersList()!) : new ObservableCollection<BO.Engineer>(s_bl?.Engineer.RequestEngineersList(item => item.Level == Experience)!);
         }
+        private void viewEngineer(object sender, RoutedEventArgs e)
+        {
 
+            int? selectedEngId = ((sender as ListView)?.SelectedItem as BO.Engineer)?.Id;
+            if (selectedEngId is not null)
+                new EngineerWindow(selectedEngId.Value).ShowDialog();
+        }
+
+        private void AddEngineer(object sender, RoutedEventArgs e)
+        {
+            new EngineerWindow().ShowDialog();
+        }
     }
 
 }

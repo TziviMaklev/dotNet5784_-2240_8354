@@ -8,33 +8,32 @@
         Title="EngineerListWindow" Height="640" Width="800"
          DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <!--Extrnal Grid-->
-    <Grid>
+    <Grid Background="#FF4DA12B">
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <!--Internal, Upper Grid-->
-        <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+        <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto" Background="#FF57BE35">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--Choose kategory-->
-            <ComboBox  Grid.Column="1" Margin="266,10,0,0" Width="120" 
+            <ComboBox  Grid.Column="1" Margin="10,10,7,7" 
                        ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
                        SelectedValue="{Binding Path=Experience, Mode=TwoWay}"
-                       SelectionChanged ="cbEngineerSelector_SelectionChanged"
-                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            <Label Grid.Column="0" Content="Label" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
+                       SelectionChanged ="cbEngineerSelector_SelectionChanged"/>
+            <Label Content="Select level:" HorizontalAlignment="Center" VerticalAlignment="Center" Width="198" FontSize="16"/>
         </Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding EngineerList}"  >
-            <ListView.View >
+        <ListView Grid.Row="1" ItemsSource="{Binding EngineerList}" SelectionChanged="viewEngineer" Background="Black" Foreground="#FF98EE76">
+            <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100"/>
+        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="AddEngineer" Background="{x:Null}" FontSize="16" BorderBrush="{x:Null}"/>
     </Grid>
 </Window>

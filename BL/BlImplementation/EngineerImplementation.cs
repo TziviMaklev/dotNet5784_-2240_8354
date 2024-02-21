@@ -75,7 +75,7 @@ internal class EngineerImplementation : IEngineer
         return boEngineer;
 
     }
-    
+
     /// <summary>
     /// read all engineeres
     /// </summary>
@@ -103,23 +103,35 @@ internal class EngineerImplementation : IEngineer
         return engineers;
 
     }
-    
-    /// <summary>
-    /// update detales of an engineer
-    /// </summary>
-    /// <param name="engineer">the engineer with the new detailes</param>
-    /// <exception cref="BO.BlDoesNotExistException">the id of this engineer is not exist</exception>
-    public void UpdateEngineerDetails(BO.Engineer engineer)
-    {
-        DO.Engineer? doEngineer = _dal.Engineer.Read(engineer.Id);
-        if (doEngineer != null)
-        {
-            _dal.Engineer.Update(doEngineer);
-        }
-        else
-        {
-            throw new BO.BlDoesNotExistException($"engineer with ID={engineer.Id} does Not exist");
-        }
 
+    ///// <summary>
+    ///// update detales of an engineer
+    ///// </summary>
+    ///// <param name="engineer">the engineer with the new detailes</param>
+    ///// <exception cref="BO.BlDoesNotExistException">the id of this engineer is not exist</exception>
+    //public void UpdateEngineerDetails(BO.Engineer engineer)
+    //{
+    //    DO.Engineer? doEngineer = engineer ;
+
+    //    if (doEngineer != null)
+    //    {
+    //        _dal.Engineer.Update(doEngineer);
+    //    }
+    //    else
+    //    {
+    //        throw new BO.BlDoesNotExistException($"engineer with ID={engineer.Id} does Not exist");
+    //    }
+
+    //}
+    public void UpdateEngineerDetails(BO.Engineer boEngineer)
+    {
+        try
+        {
+            _dal.Engineer.Update(new DO.Engineer(boEngineer.Id, boEngineer.Name!, boEngineer.Email!, (DO.EngineerExperience)boEngineer.Level, boEngineer.Cost));
+        }
+        catch
+        {
+            throw new BO.BlDoesNotExistException($"Engineer with ID={boEngineer.Id} doesn't exist");
+        }
     }
 }

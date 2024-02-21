@@ -12,6 +12,4 @@ internal class EngineerExperienceCollection : IEnumerable
 
     public IEnumerator GetEnumerator() => s_enums.GetEnumerator();
 }
-
-
-
+public enum StateOfWindow { Add, Update };
