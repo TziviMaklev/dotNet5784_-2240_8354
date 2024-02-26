@@ -26,6 +26,7 @@ namespace PL.Engineer
         public EngineerListWindow()
         {
             InitializeComponent();
+            DataContext = this;
             EngineerList =new ObservableCollection<BO.Engineer> (s_bl?.Engineer.RequestEngineersList()!);
         }
         public ObservableCollection<BO.Engineer> EngineerList

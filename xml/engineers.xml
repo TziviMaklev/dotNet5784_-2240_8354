@@ -1,2 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfEngineer />
+<ArrayOfEngineer>
+  <Engineer>
+    <Id>514676480</Id>
+    <Name>David</Name>
+    <Email>David@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>189.9</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>429015304</Id>
+    <Name>Alexander</Name>
+    <Email>Alexander@gmail.com</Email>
+    <Level>Competent</Level>
+    <Cost>360</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>651349751</Id>
+    <Name>Samuel</Name>
+    <Email>Samuel@gmail.com</Email>
+    <Level>Proficient</Level>
+    <Cost>428.74</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>697210394</Id>
+    <Name>Daniel</Name>
+    <Email>Daniel@gmail.com</Email>
+    <Level>Expert</Level>
+    <Cost>712</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>649386333</Id>
+    <Name>Ben</Name>
+    <Email>Benjamin@gmail.com</Email>
+    <Level>Novice</Level>
+    <Cost>103.3</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>959281806</Id>
+    <Name>dfghj</Name>
+    <Email>dfgh@dfgh</Email>
+    <Level>Novice</Level>
+    <Cost>233</Cost>
+  </Engineer>
+</ArrayOfEngineer>
