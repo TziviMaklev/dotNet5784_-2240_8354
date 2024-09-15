@@ -1,9 +1,5 @@
 
 
-שיחות
-
-יעל רוב
-yael223590@gmail.com
 # Project Management System
 
 ## Overview
